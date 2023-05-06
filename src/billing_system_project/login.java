@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
 import db_connection.db_connection;
+import manager.manager_frame;
 /**
  *
  * @author abdoa
@@ -41,6 +42,7 @@ public class login extends javax.swing.JFrame {
         password_TextField = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         role_ComboBox = new javax.swing.JComboBox<>();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -57,7 +59,19 @@ public class login extends javax.swing.JFrame {
 
         jLabel3.setText("role");
 
-        role_ComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Manager", "Cashier", "Stock manager" }));
+        role_ComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "Manager", "Cashier", "Stock manager" }));
+        role_ComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                role_ComboBoxActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Clear");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -65,6 +79,8 @@ public class login extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addGap(29, 29, 29)
                 .addComponent(jButton1)
                 .addGap(25, 25, 25))
             .addGroup(layout.createSequentialGroup()
@@ -102,7 +118,9 @@ public class login extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(password_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
                 .addGap(35, 35, 35))
         );
 
@@ -114,14 +132,22 @@ public class login extends javax.swing.JFrame {
             Connection con;
             db_connection c= new db_connection();
             con= c.connect();
-            if(role_ComboBox.getSelectedIndex()==0){            
+            if(role_ComboBox.getSelectedIndex()==1){ 
+                String id =id_TextField.getText();
+                String password= password_TextField.getText();
+            if(id.isEmpty()||password.isEmpty()) {
+             JOptionPane.showMessageDialog(this, "fill all fields");
+
+            }
+            else{
             PreparedStatement ps = con.prepareStatement("select * from manager");
             ResultSet rs=ps.executeQuery();
             while(rs.next()){
-            if(rs.getString("id").equals(id_TextField.getText())){
-                if(rs.getString("password").equals(password_TextField.getText())){
-                       JOptionPane.showMessageDialog(this, "login successed");
-                             }
+            if(rs.getString("id").equals(id)){
+                if(rs.getString("password").equals(password)){
+                    this.setVisible(false);
+                    manager_frame x = new manager_frame();
+                    x.setVisible(true);                             }
                else{
                    JOptionPane.showMessageDialog(this, "wrong password");
 
@@ -129,15 +155,15 @@ public class login extends javax.swing.JFrame {
 
              }
             else{
-                                   JOptionPane.showMessageDialog(this, "not found");
+                   JOptionPane.showMessageDialog(this, "not found");
 
             }
             }
-            
             }
-            else if(role_ComboBox.getSelectedIndex()==1||role_ComboBox.getSelectedIndex()==2){
-                                PreparedStatement ps = con.prepareStatement("select * from employee");
-                                                   JOptionPane.showMessageDialog(this, "coming soon!!!!!");
+            }
+            else if(role_ComboBox.getSelectedIndex()==2||role_ComboBox.getSelectedIndex()==3){
+            PreparedStatement ps = con.prepareStatement("select * from employee");
+            JOptionPane.showMessageDialog(this, "coming soon!!!!!");
 
             }
             else{
@@ -154,6 +180,17 @@ public class login extends javax.swing.JFrame {
                         e.printStackTrace();
 
         }     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void role_ComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_role_ComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_role_ComboBoxActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        id_TextField.setText("");
+        password_TextField.setText("");
+        role_ComboBox.setSelectedIndex(0);
+
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -193,6 +230,7 @@ public class login extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField id_TextField;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

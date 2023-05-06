@@ -2,7 +2,8 @@ package db_connection;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-
+import java.sql.ResultSet;
+import java.sql.PreparedStatement;
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -14,6 +15,7 @@ import java.sql.SQLException;
  */
 public class db_connection {
      Connection con;
+      ResultSet rs;
        public Connection connect (){
            try{
         String url = "jdbc:sqlserver://localhost:1433;databaseName=Billing_system_db;integratedSecurity=true;encrypt=false";
@@ -29,5 +31,21 @@ public class db_connection {
        return con; 
        }
 
+       public ResultSet fetch(String table_name){
+            try{ db_connection c= new db_connection();
+           Connection conn=c.connect();
+           String query = "SELECT * FROM  ?";
+           PreparedStatement stmt = conn.prepareStatement(query);
+           stmt.setString(1, table_name);
+          rs = stmt.executeQuery();
+            
+            }
+            
+            catch (SQLException ee){
+            
+            ee.getMessage();
+        }
+            return rs;
+       }
     
 }

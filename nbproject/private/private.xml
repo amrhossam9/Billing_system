@@ -3,8 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/F:/my_Programming_Projects/billing_system_project/src/Products/products_frame.java</file>
             <file>file:/F:/my_Programming_Projects/billing_system_project/src/billing_system_project/Billing_system_project.java</file>
-            <file>file:/F:/my_Programming_Projects/billing_system_project/src/Registeration.java</file>
+            <file>file:/F:/my_Programming_Projects/billing_system_project/src/db_connection/db_connection.java</file>
+            <file>file:/F:/my_Programming_Projects/billing_system_project/src/billing_system_project/login.java</file>
+            <file>file:/F:/my_Programming_Projects/billing_system_project/src/manager/manager_frame.java</file>
         </group>
     </open-files>
 </project-private>
