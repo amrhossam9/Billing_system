@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package manager;
+import Employees_info.emplyeeInfo_frame;
 import billing_system_project.login;
 import Products.products_frame;
 
@@ -45,6 +46,11 @@ public class manager_frame extends javax.swing.JFrame {
         });
 
         jButton2.setText("Employees info");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Customers info");
 
@@ -111,6 +117,13 @@ public class manager_frame extends javax.swing.JFrame {
 
         
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        emplyeeInfo_frame employeeFrame=new emplyeeInfo_frame();
+        employeeFrame.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
