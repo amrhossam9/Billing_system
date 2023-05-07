@@ -132,34 +132,40 @@ public class login extends javax.swing.JFrame {
             Connection con;
             db_connection c= new db_connection();
             con= c.connect();
+            String id =id_TextField.getText();
+            String password= password_TextField.getText();
+            
+   if(id.isEmpty()||password.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "fill all fields");
+
+   }
+   else{
             if(role_ComboBox.getSelectedIndex()==1){ 
-                String id =id_TextField.getText();
-                String password= password_TextField.getText();
-            if(id.isEmpty()||password.isEmpty()) {
-             JOptionPane.showMessageDialog(this, "fill all fields");
-
-            }
-            else{
-            PreparedStatement ps = con.prepareStatement("select * from manager");
-            ResultSet rs=ps.executeQuery();
-            while(rs.next()){
-            if(rs.getString("id").equals(id)){
-                if(rs.getString("password").equals(password)){
-                    this.setVisible(false);
-                    manager_frame x = new manager_frame();
-                    x.setVisible(true);                             }
-               else{
-                   JOptionPane.showMessageDialog(this, "wrong password");
-
-                       }
-
-             }
-            else{
-                   JOptionPane.showMessageDialog(this, "not found");
-
-            }
-            }
-            }
+                        
+                        PreparedStatement ps = con.prepareStatement("select * from employee where role = ?");
+                        ps.setString(1, "manager");
+                        ResultSet rs=ps.executeQuery();
+                        boolean found =false;
+                        while(rs.next()){
+                        if(rs.getString("employee_id").equals(id)){
+                            if(rs.getString("password").equals(password)){
+                                this.setVisible(false);
+                                manager_frame x = new manager_frame();
+                                x.setVisible(true);
+                                found= true;
+                                break;
+                            }
+                            else{
+                               JOptionPane.showMessageDialog(this, "wrong password"); 
+                               found= true;
+                            }
+                         }}
+                        if(!rs.next()&& found==false){
+          
+                                JOptionPane.showMessageDialog(this, "not found");
+                        }
+            
+            
             }
             else if(role_ComboBox.getSelectedIndex()==2||role_ComboBox.getSelectedIndex()==3){
             PreparedStatement ps = con.prepareStatement("select * from employee");
@@ -169,7 +175,7 @@ public class login extends javax.swing.JFrame {
             else{
                 JOptionPane.showMessageDialog(this, "enter role");
             }
-           
+            }
             
             
         }

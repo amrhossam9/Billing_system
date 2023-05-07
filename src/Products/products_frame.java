@@ -5,6 +5,7 @@
 package Products;
 
 import db_connection.db_connection;
+import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,9 +19,29 @@ import net.proteanit.sql.DbUtils;
  */
 public class products_frame extends javax.swing.JFrame {
 
-    /**
-     * Creates new form products_frame
-     */
+   
+    public void fetch_products(){
+        try{ 
+     
+     db_connection c= new db_connection();
+           
+           //ResultSet rs =c.fetch("products");
+
+            Connection conn=c.connect();
+           String query = "SELECT * FROM  products";
+           PreparedStatement stmt = conn.prepareStatement(query);
+         ResultSet rs = stmt.executeQuery();
+                    products_Table.setModel(DbUtils.resultSetToTableModel(rs));
+
+            }
+            
+            catch (SQLException ee){
+            
+            ee.getMessage();
+        }
+    }
+    
+    
     public products_frame() {
         initComponents();
     }
@@ -37,6 +58,15 @@ public class products_frame extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         products_Table = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        search_TextField = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
+        category_ComboBox = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
+        brand_ComboBox = new javax.swing.JComboBox<>();
+        jButton4 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,6 +81,15 @@ public class products_frame extends javax.swing.JFrame {
                 "Product_id", "Name", "Price", "Discount", "Quantity", "Brand_name", "Category"
             }
         ));
+        products_Table.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                products_TableAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
         products_Table.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 products_TableFocusGained(evt);
@@ -70,6 +109,108 @@ public class products_frame extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setText("Search");
+
+        search_TextField.setToolTipText("product name");
+
+        jButton2.setText("Find");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        category_ComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--" }));
+        category_ComboBox.addContainerListener(new java.awt.event.ContainerAdapter() {
+            public void componentAdded(java.awt.event.ContainerEvent evt) {
+                category_ComboBoxComponentAdded(evt);
+            }
+        });
+        category_ComboBox.addHierarchyListener(new java.awt.event.HierarchyListener() {
+            public void hierarchyChanged(java.awt.event.HierarchyEvent evt) {
+                category_ComboBoxHierarchyChanged(evt);
+            }
+        });
+        category_ComboBox.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                category_ComboBoxAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        category_ComboBox.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                category_ComboBoxFocusGained(evt);
+            }
+        });
+        category_ComboBox.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+                category_ComboBoxPopupMenuCanceled(evt);
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+                category_ComboBoxPopupMenuWillBecomeInvisible(evt);
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+                category_ComboBoxPopupMenuWillBecomeVisible(evt);
+            }
+        });
+        category_ComboBox.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                category_ComboBoxComponentShown(evt);
+            }
+        });
+        category_ComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                category_ComboBoxActionPerformed(evt);
+            }
+        });
+        category_ComboBox.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                category_ComboBoxPropertyChange(evt);
+            }
+        });
+        category_ComboBox.addVetoableChangeListener(new java.beans.VetoableChangeListener() {
+            public void vetoableChange(java.beans.PropertyChangeEvent evt)throws java.beans.PropertyVetoException {
+                category_ComboBoxVetoableChange(evt);
+            }
+        });
+
+        jLabel2.setText("Category");
+
+        jButton3.setText("Filter");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        brand_ComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--" }));
+        brand_ComboBox.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                brand_ComboBoxAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        brand_ComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                brand_ComboBoxActionPerformed(evt);
+            }
+        });
+
+        jButton4.setText("Filter");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("Brand");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -77,22 +218,65 @@ public class products_frame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton1)
-                        .addGap(12, 12, 12)))
-                .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(search_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton1)
+                                .addGap(12, 12, 12))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(brand_ComboBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(category_ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(42, 42, 42)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jButton4)
+                                            .addComponent(jButton3)
+                                            .addComponent(jButton2))))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
+                .addGap(30, 30, 30)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(search_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton3)
+                    .addComponent(category_ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton4)
+                    .addComponent(brand_ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1)
-                .addGap(22, 22, 22))
+                .addContainerGap())
         );
+
+        search_TextField.getAccessibleContext().setAccessibleName("product name");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -113,13 +297,59 @@ public class products_frame extends javax.swing.JFrame {
     }//GEN-LAST:event_products_TablePropertyChange
 
     private void products_TableFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_products_TableFocusGained
- try{ db_connection c= new db_connection();
+ 
+        
+    }//GEN-LAST:event_products_TableFocusGained
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        
+
+ try{ 
+     
+     db_connection c= new db_connection();
            
            //ResultSet rs =c.fetch("products");
-
+        String product_name = search_TextField.getText();
             Connection conn=c.connect();
-           String query = "SELECT * FROM  products";
+           String query = "SELECT * FROM  products where name like ? ";
            PreparedStatement stmt = conn.prepareStatement(query);
+           stmt.setString(1, "%"+product_name+"%");
+         ResultSet rs = stmt.executeQuery();
+                    products_Table.setModel(DbUtils.resultSetToTableModel(rs));
+
+            }
+            
+            catch (SQLException ee){
+            
+            ee.getMessage();
+        }
+
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void category_ComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_category_ComboBoxActionPerformed
+      
+    }//GEN-LAST:event_category_ComboBoxActionPerformed
+
+    private void category_ComboBoxFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_category_ComboBoxFocusGained
+        {
+        }    }//GEN-LAST:event_category_ComboBoxFocusGained
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+       
+        if(category_ComboBox.getSelectedIndex()==0){
+       
+        fetch_products();
+        }
+        
+        else{
+        try{ 
+            
+        String cat_name= category_ComboBox.getSelectedItem().toString();
+        db_connection c= new db_connection(); 
+        Connection conn=c.connect();
+           String query = "SELECT * FROM  products where category_name = ? ";
+           PreparedStatement stmt = conn.prepareStatement(query);
+           stmt.setString(1, cat_name);
          ResultSet rs = stmt.executeQuery();
                     products_Table.setModel(DbUtils.resultSetToTableModel(rs));
 
@@ -130,7 +360,115 @@ public class products_frame extends javax.swing.JFrame {
             ee.getMessage();
         }
         
-    }//GEN-LAST:event_products_TableFocusGained
+                }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void category_ComboBoxHierarchyChanged(java.awt.event.HierarchyEvent evt) {//GEN-FIRST:event_category_ComboBoxHierarchyChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_category_ComboBoxHierarchyChanged
+
+    private void category_ComboBoxPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_category_ComboBoxPropertyChange
+    }//GEN-LAST:event_category_ComboBoxPropertyChange
+
+    private void category_ComboBoxVetoableChange(java.beans.PropertyChangeEvent evt)throws java.beans.PropertyVetoException {//GEN-FIRST:event_category_ComboBoxVetoableChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_category_ComboBoxVetoableChange
+
+    private void category_ComboBoxPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_category_ComboBoxPopupMenuWillBecomeInvisible
+        // TODO add your handling code here:
+    }//GEN-LAST:event_category_ComboBoxPopupMenuWillBecomeInvisible
+
+    private void category_ComboBoxPopupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_category_ComboBoxPopupMenuCanceled
+        // TODO add your handling code here:
+    }//GEN-LAST:event_category_ComboBoxPopupMenuCanceled
+
+    private void category_ComboBoxPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_category_ComboBoxPopupMenuWillBecomeVisible
+        // TODO add your handling code here:
+    }//GEN-LAST:event_category_ComboBoxPopupMenuWillBecomeVisible
+
+    private void category_ComboBoxComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_category_ComboBoxComponentAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_category_ComboBoxComponentAdded
+
+    private void category_ComboBoxComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_category_ComboBoxComponentShown
+        // TODO add your handling code here:
+    }//GEN-LAST:event_category_ComboBoxComponentShown
+
+    private void category_ComboBoxAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_category_ComboBoxAncestorAdded
+try{ 
+     
+     db_connection c= new db_connection();
+         Connection conn=c.connect();
+           String query = "SELECT category_name FROM  categories";
+            PreparedStatement stmt =  conn.prepareStatement(query);
+         ResultSet rs = stmt.executeQuery();
+         while(rs.next()){
+             String name =rs.getString("category_name");
+             category_ComboBox.addItem(name);
+             System.out.println(name);
+         }
+         conn.close();
+        }
+        
+catch (SQLException ee){
+            
+            ee.getMessage();}
+    }//GEN-LAST:event_category_ComboBoxAncestorAdded
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        if(brand_ComboBox.getSelectedIndex()==0){
+       
+        fetch_products();
+        }
+        
+        else{  
+        try{ 
+            
+        String brand_name= brand_ComboBox.getSelectedItem().toString();
+        db_connection c= new db_connection(); 
+        Connection conn=c.connect();
+           String query = "SELECT * FROM  products where brand_name = ? ";
+           PreparedStatement stmt = conn.prepareStatement(query);
+           stmt.setString(1, brand_name);
+         ResultSet rs = stmt.executeQuery();
+                    products_Table.setModel(DbUtils.resultSetToTableModel(rs));
+
+            }
+            
+            catch (SQLException ee){
+            
+            ee.getMessage();
+        }}
+            }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void brand_ComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brand_ComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_brand_ComboBoxActionPerformed
+
+    private void brand_ComboBoxAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_brand_ComboBoxAncestorAdded
+try{ 
+     
+     db_connection c= new db_connection();
+         Connection conn=c.connect();
+           String query = "SELECT brand_name FROM  brands";
+            PreparedStatement stmt =  conn.prepareStatement(query);
+         ResultSet rs = stmt.executeQuery();
+         while(rs.next()){
+             String name =rs.getString("brand_name");
+             brand_ComboBox.addItem(name);
+             System.out.println(name);
+         }
+         conn.close();
+        }
+        
+catch (SQLException ee){
+            
+            ee.getMessage();}
+    }//GEN-LAST:event_brand_ComboBoxAncestorAdded
+
+    private void products_TableAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_products_TableAncestorAdded
+fetch_products();
+    }//GEN-LAST:event_products_TableAncestorAdded
 
     /**
      * @param args the command line arguments
@@ -144,13 +482,23 @@ public class products_frame extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new products_frame().setVisible(true);
+                
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> brand_ComboBox;
+    private javax.swing.JComboBox<String> category_ComboBox;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable products_Table;
+    private javax.swing.JTextField search_TextField;
     // End of variables declaration//GEN-END:variables
 }
