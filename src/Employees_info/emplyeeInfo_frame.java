@@ -12,8 +12,10 @@ import java.sql.SQLException;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import manager.manager_frame;
 import net.proteanit.sql.DbUtils;
 
 /**
@@ -27,6 +29,24 @@ public class emplyeeInfo_frame extends javax.swing.JFrame {
      */
     public emplyeeInfo_frame() {
         initComponents();
+        Connection con;
+            db_connection c= new db_connection();
+            con= c.connect();
+
+            try {
+
+                String selectedColoumns = "employee_id,name,role,phone,address,gender,sallary";
+
+                PreparedStatement stmt = con.prepareStatement(
+                        String.format("select %s from employee",selectedColoumns));
+
+                ResultSet resultSet = stmt.executeQuery();
+                
+                EmployeeInfo.setModel(DbUtils.resultSetToTableModel(resultSet));
+
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
     }
 
     /**
@@ -38,15 +58,35 @@ public class emplyeeInfo_frame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        displayAllEmployees = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         EmployeeInfo = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
+        searchLabel = new javax.swing.JLabel();
         searchField = new javax.swing.JTextField();
         searchButton = new javax.swing.JButton();
         searchType = new javax.swing.JComboBox<>();
+        BackButton = new javax.swing.JButton();
+        SalaryField = new javax.swing.JTextField();
+        NameLabel = new javax.swing.JLabel();
+        RoleLabel = new javax.swing.JLabel();
+        PhoneLabel = new javax.swing.JLabel();
+        AddressLabel = new javax.swing.JLabel();
+        SalaryLabel = new javax.swing.JLabel();
+        NameField = new javax.swing.JTextField();
+        AddressField = new javax.swing.JTextField();
+        RoleField = new javax.swing.JTextField();
+        PhoneField = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 250, 244));
 
+        displayAllEmployees.setBackground(new java.awt.Color(12, 19, 79));
+
+        EmployeeInfo.setBackground(new java.awt.Color(29, 38, 125));
+        EmployeeInfo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(212, 173, 252)));
+        EmployeeInfo.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        EmployeeInfo.setForeground(new java.awt.Color(255, 255, 255));
         EmployeeInfo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
@@ -55,12 +95,18 @@ public class emplyeeInfo_frame extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Employee_id", "name", "role", "phone", "address", "gender", "salary"
+                "Employee_id", "name", "role", "phone", "address", "gender", "sallary"
             }
         ));
+        EmployeeInfo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                EmployeeInfoMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(EmployeeInfo);
 
-        jLabel1.setText("Serch:");
+        searchLabel.setForeground(new java.awt.Color(255, 250, 244));
+        searchLabel.setText("Serch:");
 
         searchButton.setText("Search");
         searchButton.addActionListener(new java.awt.event.ActionListener() {
@@ -71,33 +117,140 @@ public class emplyeeInfo_frame extends javax.swing.JFrame {
 
         searchType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "id", "name", "phone", "role" }));
 
+        BackButton.setText("Back");
+        BackButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BackButtonActionPerformed(evt);
+            }
+        });
+
+        NameLabel.setForeground(new java.awt.Color(255, 255, 255));
+        NameLabel.setText("Name:");
+
+        RoleLabel.setForeground(new java.awt.Color(255, 255, 255));
+        RoleLabel.setText("Role:");
+
+        PhoneLabel.setForeground(new java.awt.Color(255, 255, 255));
+        PhoneLabel.setText("Phone:");
+
+        AddressLabel.setForeground(new java.awt.Color(255, 255, 255));
+        AddressLabel.setText("Address:");
+
+        SalaryLabel.setForeground(new java.awt.Color(255, 255, 255));
+        SalaryLabel.setText("Sallary:");
+
+        jButton1.setText("Update Info");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout displayAllEmployeesLayout = new javax.swing.GroupLayout(displayAllEmployees);
+        displayAllEmployees.setLayout(displayAllEmployeesLayout);
+        displayAllEmployeesLayout.setHorizontalGroup(
+            displayAllEmployeesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(displayAllEmployeesLayout.createSequentialGroup()
+                .addGap(102, 102, 102)
+                .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(searchType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(165, 165, 165)
+                .addComponent(searchButton)
+                .addGap(60, 60, 60))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, displayAllEmployeesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(displayAllEmployeesLayout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(BackButton)
+                    .addGap(12, 12, 12))
+                .addGroup(displayAllEmployeesLayout.createSequentialGroup()
+                    .addGap(0, 15, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 695, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(displayAllEmployeesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, displayAllEmployeesLayout.createSequentialGroup()
+                            .addComponent(NameLabel)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(NameField, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, displayAllEmployeesLayout.createSequentialGroup()
+                            .addComponent(RoleLabel)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(RoleField, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(displayAllEmployeesLayout.createSequentialGroup()
+                            .addComponent(PhoneLabel)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                            .addComponent(PhoneField, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jButton1)
+                        .addGroup(displayAllEmployeesLayout.createSequentialGroup()
+                            .addGroup(displayAllEmployeesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(AddressLabel)
+                                .addComponent(SalaryLabel))
+                            .addGap(18, 18, 18)
+                            .addGroup(displayAllEmployeesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(AddressField, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
+                                .addComponent(SalaryField))))
+                    .addGap(11, 11, 11)))
+            .addGroup(displayAllEmployeesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(displayAllEmployeesLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(searchLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(935, Short.MAX_VALUE)))
+        );
+        displayAllEmployeesLayout.setVerticalGroup(
+            displayAllEmployeesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(displayAllEmployeesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(displayAllEmployeesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(searchButton)
+                    .addComponent(searchType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(displayAllEmployeesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(displayAllEmployeesLayout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addGap(34, 34, 34))
+                    .addGroup(displayAllEmployeesLayout.createSequentialGroup()
+                        .addGap(56, 56, 56)
+                        .addGroup(displayAllEmployeesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(NameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(NameLabel))
+                        .addGap(18, 18, 18)
+                        .addGroup(displayAllEmployeesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(RoleField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(RoleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(displayAllEmployeesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(PhoneField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(PhoneLabel))
+                        .addGap(18, 18, 18)
+                        .addGroup(displayAllEmployeesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(AddressField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(AddressLabel))
+                        .addGap(18, 18, 18)
+                        .addGroup(displayAllEmployeesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(SalaryField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(SalaryLabel))
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
+                        .addComponent(BackButton)
+                        .addContainerGap())))
+            .addGroup(displayAllEmployeesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(displayAllEmployeesLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(searchLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(401, Short.MAX_VALUE)))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(searchType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 241, Short.MAX_VALUE)
-                .addComponent(searchButton)
-                .addGap(39, 39, 39))
+            .addComponent(displayAllEmployees, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(searchButton)
-                    .addComponent(searchType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(displayAllEmployees, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -128,6 +281,7 @@ public class emplyeeInfo_frame extends javax.swing.JFrame {
 
                 PreparedStatement stmt = con.prepareStatement(
                         String.format("select %s from employee where %s = ?",selectedColoumns,s));
+                
                 stmt.setString(1, searchField.getText().trim());
 
                 ResultSet resultSet = stmt.executeQuery();
@@ -140,6 +294,78 @@ public class emplyeeInfo_frame extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_searchButtonActionPerformed
+
+    private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        manager_frame mangerFrame=new manager_frame();
+        mangerFrame.setVisible(true);
+    }//GEN-LAST:event_BackButtonActionPerformed
+
+    private void EmployeeInfoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EmployeeInfoMouseClicked
+        // TODO add your handling code here:
+        int row =        EmployeeInfo.getSelectedRow();
+        String name =    EmployeeInfo.getValueAt(row, 1).toString();
+        String role =    EmployeeInfo.getValueAt(row, 2).toString();
+        String phone =   EmployeeInfo.getValueAt(row, 3).toString();
+        String address = EmployeeInfo.getValueAt(row, 4).toString();
+        String salary =  EmployeeInfo.getValueAt(row, 6).toString();
+        
+        NameField.setText(name);
+        RoleField.setText(role);
+        PhoneField.setText(phone);
+        AddressField.setText(address);
+        SalaryField.setText(salary);
+        
+    }//GEN-LAST:event_EmployeeInfoMouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        int row =        EmployeeInfo.getSelectedRow();
+        String id =      EmployeeInfo.getValueAt(row, 0).toString();
+        String name =    NameField.getText();
+        String role =    RoleField.getText();
+        int phone =      Integer.parseInt(PhoneField.getText());
+        String address = AddressField.getText();
+        float sallary =  Float.parseFloat(SalaryField.getText());
+        
+        Connection con;
+            db_connection c= new db_connection();
+            con= c.connect();
+        try{
+            PreparedStatement stmt = con.prepareStatement("UPDATE employee SET"
+                                                        + " name = ?,phone = ?,address= ?,role = ?,sallary = ? "
+                                                        + "WHERE employee_id = ?;");
+                
+                stmt.setString(1, name);
+                stmt.setInt(2, phone);
+                stmt.setString(3, address);
+                stmt.setString(4, role);
+                stmt.setFloat(5, sallary);
+                stmt.setString(6, id);
+
+                stmt.executeQuery();
+                
+                
+        }catch (SQLException ex) {
+                System.out.println(ex);
+            }
+
+            try {
+
+                String selectedColoumns = "employee_id,name,role,phone,address,gender,sallary";
+
+                PreparedStatement stmt = con.prepareStatement(
+                        String.format("select %s from employee",selectedColoumns));
+
+                ResultSet resultSet = stmt.executeQuery();
+                
+                EmployeeInfo.setModel(DbUtils.resultSetToTableModel(resultSet));
+
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -177,11 +403,24 @@ public class emplyeeInfo_frame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField AddressField;
+    private javax.swing.JLabel AddressLabel;
+    private javax.swing.JButton BackButton;
     private javax.swing.JTable EmployeeInfo;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JTextField NameField;
+    private javax.swing.JLabel NameLabel;
+    private javax.swing.JTextField PhoneField;
+    private javax.swing.JLabel PhoneLabel;
+    private javax.swing.JTextField RoleField;
+    private javax.swing.JLabel RoleLabel;
+    private javax.swing.JTextField SalaryField;
+    private javax.swing.JLabel SalaryLabel;
+    private javax.swing.JPanel displayAllEmployees;
+    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton searchButton;
     private javax.swing.JTextField searchField;
+    private javax.swing.JLabel searchLabel;
     private javax.swing.JComboBox<String> searchType;
     // End of variables declaration//GEN-END:variables
 }
