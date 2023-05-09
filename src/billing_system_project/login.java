@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package billing_system_project;
+import Products.stockmanager_products_frame;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -140,19 +141,32 @@ public class login extends javax.swing.JFrame {
 
    }
    else{
-            if(role_ComboBox.getSelectedIndex()==1){ 
-                        
+            if(role_ComboBox.getSelectedIndex()!=0){ 
+                        String role=role_ComboBox.getSelectedItem().toString();
                         PreparedStatement ps = con.prepareStatement("select * from employee where role = ?");
-                        ps.setString(1, "manager");
+                        ps.setString(1, role);
                         ResultSet rs=ps.executeQuery();
                         boolean found =false;
                         while(rs.next()){
                         if(rs.getString("employee_id").equals(id)){
                             if(rs.getString("password").equals(password)){
-                                this.setVisible(false);
-                                manager_frame x = new manager_frame();
-                                x.setVisible(true);
                                 found= true;
+                                this.setVisible(false);
+                                switch(role_ComboBox.getSelectedIndex()){
+                                    case 1:
+                                        manager_frame x = new manager_frame();
+                                        x.setVisible(true);
+                                        break;
+                                    case 2:
+                                        JOptionPane.showMessageDialog(this, "soon"); 
+                                        break;
+                                    case 3:
+                                        stockmanager_products_frame y = new stockmanager_products_frame();
+                                        y.setVisible(true);
+                                        break;
+                                        
+                                }
+                                
                                 break;
                             }
                             else{
@@ -167,11 +181,7 @@ public class login extends javax.swing.JFrame {
             
             
             }
-            else if(role_ComboBox.getSelectedIndex()==2||role_ComboBox.getSelectedIndex()==3){
-            PreparedStatement ps = con.prepareStatement("select * from employee");
-            JOptionPane.showMessageDialog(this, "coming soon!!!!!");
-
-            }
+           
             else{
                 JOptionPane.showMessageDialog(this, "enter role");
             }
