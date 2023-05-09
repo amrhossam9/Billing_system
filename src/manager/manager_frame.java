@@ -5,7 +5,7 @@
 package manager;
 import Employees_info.emplyeeInfo_frame;
 import billing_system_project.login;
-import Products.products_frame;
+import Products.manager_products_frame;
 
 
 /**
@@ -112,7 +112,7 @@ public class manager_frame extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.setVisible(false);
-        products_frame y =new products_frame();
+        manager_products_frame y =new manager_products_frame();
         y.setVisible(true);
 
         

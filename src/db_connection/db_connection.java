@@ -25,7 +25,7 @@ public class db_connection {
        }
        
         catch (SQLException ee){
-            
+            System.out.println("failed to connect");
             ee.getMessage();
         }
        return con; 
@@ -34,9 +34,8 @@ public class db_connection {
        public ResultSet fetch(String table_name){
             try{ db_connection c= new db_connection();
            Connection conn=c.connect();
-           String query = "SELECT * FROM  ?";
+           String query = "SELECT * FROM ('"+table_name+"')";
            PreparedStatement stmt = conn.prepareStatement(query);
-           stmt.setString(1, table_name);
           rs = stmt.executeQuery();
             
             }
