@@ -9,7 +9,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.Vector;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
@@ -75,6 +77,7 @@ public class emplyeeInfo_frame extends javax.swing.JFrame {
         employeeRoleComboBox = new javax.swing.JComboBox<>();
         genderComboBox = new javax.swing.JComboBox<>();
         addEmployeeButton = new javax.swing.JButton();
+        backtoEmployeesDataButton = new javax.swing.JButton();
         displayAllEmployees = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         EmployeeInfo = new javax.swing.JTable();
@@ -95,6 +98,7 @@ public class emplyeeInfo_frame extends javax.swing.JFrame {
         PhoneField = new javax.swing.JTextField();
         updateInfo = new javax.swing.JButton();
         newEmployeeButton = new javax.swing.JButton();
+        deleteEmployeeButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 250, 244));
@@ -122,11 +126,23 @@ public class emplyeeInfo_frame extends javax.swing.JFrame {
         employeeName6.setForeground(new java.awt.Color(255, 250, 244));
         employeeName6.setText("Employee Sallary");
 
-        employeeRoleComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Manger", "Stock Manger", "Cashier" }));
+        employeeRoleComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Manager", "Stock Manger", "Cashier" }));
 
         genderComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "male", "female" }));
 
         addEmployeeButton.setText("Add Employee");
+        addEmployeeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addEmployeeButtonActionPerformed(evt);
+            }
+        });
+
+        backtoEmployeesDataButton.setText("Back");
+        backtoEmployeesDataButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backtoEmployeesDataButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout addNewEmployeeLayout = new javax.swing.GroupLayout(addNewEmployee);
         addNewEmployee.setLayout(addNewEmployeeLayout);
@@ -135,26 +151,27 @@ public class emplyeeInfo_frame extends javax.swing.JFrame {
             .addGroup(addNewEmployeeLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(addNewEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(addNewEmployeeLayout.createSequentialGroup()
-                        .addGroup(addNewEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(employeeName)
-                            .addComponent(employeeName6)
-                            .addComponent(employeeName5)
-                            .addComponent(employeeName3)
-                            .addComponent(employeeName4)
-                            .addComponent(employeeName1)
-                            .addComponent(employeeName2))
-                        .addGap(37, 37, 37)
-                        .addGroup(addNewEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(employeePhoneField)
-                            .addComponent(employeeAddressField)
-                            .addComponent(employeeSallaryField)
-                            .addComponent(employeeNameField)
-                            .addComponent(employeePasswordField)
-                            .addComponent(employeeRoleComboBox, 0, 190, Short.MAX_VALUE)
-                            .addComponent(genderComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(addEmployeeButton))
-                .addContainerGap(629, Short.MAX_VALUE))
+                    .addComponent(employeeName)
+                    .addComponent(employeeName6)
+                    .addComponent(employeeName5)
+                    .addComponent(employeeName3)
+                    .addComponent(employeeName4)
+                    .addComponent(employeeName1)
+                    .addComponent(employeeName2))
+                .addGap(37, 37, 37)
+                .addGroup(addNewEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(employeePhoneField)
+                    .addComponent(employeeAddressField)
+                    .addComponent(employeeSallaryField)
+                    .addComponent(employeeNameField)
+                    .addComponent(employeePasswordField)
+                    .addComponent(employeeRoleComboBox, 0, 190, Short.MAX_VALUE)
+                    .addComponent(genderComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(141, 141, 141)
+                .addGroup(addNewEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(addEmployeeButton)
+                    .addComponent(backtoEmployeesDataButton))
+                .addContainerGap(392, Short.MAX_VALUE))
         );
         addNewEmployeeLayout.setVerticalGroup(
             addNewEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -162,11 +179,13 @@ public class emplyeeInfo_frame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(addNewEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(employeeName, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(employeeNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(employeeNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addEmployeeButton))
                 .addGap(18, 18, 18)
                 .addGroup(addNewEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(employeeName2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(employeePhoneField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(employeePhoneField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(backtoEmployeesDataButton))
                 .addGap(29, 29, 29)
                 .addGroup(addNewEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(employeeName1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -187,9 +206,7 @@ public class emplyeeInfo_frame extends javax.swing.JFrame {
                 .addGroup(addNewEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(employeeName6, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(employeeSallaryField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(addEmployeeButton)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(79, Short.MAX_VALUE))
         );
 
         displayAllEmployees.setBackground(new java.awt.Color(12, 19, 79));
@@ -258,6 +275,18 @@ public class emplyeeInfo_frame extends javax.swing.JFrame {
         });
 
         newEmployeeButton.setText("Add new employee");
+        newEmployeeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newEmployeeButtonActionPerformed(evt);
+            }
+        });
+
+        deleteEmployeeButton.setText("Delete Employee");
+        deleteEmployeeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteEmployeeButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout displayAllEmployeesLayout = new javax.swing.GroupLayout(displayAllEmployees);
         displayAllEmployees.setLayout(displayAllEmployeesLayout);
@@ -295,7 +324,10 @@ public class emplyeeInfo_frame extends javax.swing.JFrame {
                             .addComponent(PhoneLabel)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(PhoneField, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(updateInfo)
+                        .addGroup(displayAllEmployeesLayout.createSequentialGroup()
+                            .addComponent(deleteEmployeeButton)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(updateInfo))
                         .addGroup(displayAllEmployeesLayout.createSequentialGroup()
                             .addGroup(displayAllEmployeesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(AddressLabel)
@@ -338,7 +370,9 @@ public class emplyeeInfo_frame extends javax.swing.JFrame {
                             .addComponent(SalaryField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(SalaryLabel))
                         .addGap(18, 18, 18)
-                        .addComponent(updateInfo)
+                        .addGroup(displayAllEmployeesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(updateInfo)
+                            .addComponent(deleteEmployeeButton))
                         .addGap(67, 67, 67)
                         .addGroup(displayAllEmployeesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(BackButton)
@@ -355,18 +389,13 @@ public class emplyeeInfo_frame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(displayAllEmployees, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(addNewEmployee, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addContainerGap()))
+                .addComponent(addNewEmployee, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(displayAllEmployees, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addComponent(addNewEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 33, Short.MAX_VALUE)))
+                .addComponent(addNewEmployee, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -460,23 +489,120 @@ public class emplyeeInfo_frame extends javax.swing.JFrame {
                 
         }catch (SQLException ex) {
                 System.out.println(ex);
-            }
+        }
 
-            try {
+        try {
 
-                String selectedColoumns = "employee_id,name,role,phone,address,gender,sallary";
+            String selectedColoumns = "employee_id,name,role,phone,address,gender,sallary";
 
-                PreparedStatement stmt = con.prepareStatement(
-                        String.format("select %s from employee",selectedColoumns));
+            PreparedStatement stmt = con.prepareStatement(
+                    String.format("select %s from employee",selectedColoumns));
 
-                ResultSet resultSet = stmt.executeQuery();
-                
-                EmployeeInfo.setModel(DbUtils.resultSetToTableModel(resultSet));
+            ResultSet resultSet = stmt.executeQuery();
 
-            } catch (SQLException ex) {
-                System.out.println(ex);
-            }
+            EmployeeInfo.setModel(DbUtils.resultSetToTableModel(resultSet));
+
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
     }//GEN-LAST:event_updateInfoActionPerformed
+
+    private void addEmployeeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addEmployeeButtonActionPerformed
+        // TODO add your handling code here:
+        if(employeeNameField.getText().isEmpty()||employeePhoneField.getText().isEmpty()||employeeAddressField.getText().isEmpty()||
+                employeePasswordField.getPassword().length == 0||employeeSallaryField.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(this, "Enter all the fields");
+        }
+        else
+        {
+            String EmployeeNameField = employeeNameField.getText(),
+               employeePhone = employeePhoneField.getText(),
+               employeeAddress = employeeAddressField.getText(),
+               employeeGender = genderComboBox.getSelectedItem().toString(),
+               EmployeePassword = new String (employeePasswordField.getPassword()),
+               employeeSallary = employeeSallaryField.getText(),
+               EmployeeRole = employeeRoleComboBox.getSelectedItem().toString();
+        
+            PreparedStatement stmt;
+            try {
+                
+                stmt = con.prepareStatement("Select *"
+                        + "from employee where phone = ?");
+                stmt.setInt(1, Integer.parseInt(employeePhone));
+                
+                ResultSet resultSet= stmt.executeQuery();
+                
+                if(resultSet.next() == true)
+                {
+                    JOptionPane.showMessageDialog(this, "User already exist the phone number is saved in the database");
+                }
+                else
+                {
+                    stmt = con.prepareStatement("INSERT INTO employee ("
+                        + "name,phone,address,gender,role,password,sallary) "
+                        + "VALUES(?,?,?,?,?,?,?);");
+                    stmt.setString(1, EmployeeNameField);
+                    stmt.setInt(2, Integer.parseInt(employeePhone));
+                    stmt.setString(3, employeeAddress);
+                    stmt.setString(4, employeeGender);
+                    stmt.setString(5, EmployeeRole);
+                    stmt.setString(6, EmployeePassword);
+                    stmt.setFloat(7, Float.parseFloat(employeeSallary));
+
+                    stmt.executeQuery();
+                    
+                } 
+            } catch (SQLException ex) {
+                System.out.print(ex);
+            } 
+            JOptionPane.showMessageDialog(null, "User added successfully");
+                    displayAllEmployees.setVisible(true);
+                    addNewEmployee.setVisible(false);
+        }
+                 
+    }//GEN-LAST:event_addEmployeeButtonActionPerformed
+
+    private void newEmployeeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newEmployeeButtonActionPerformed
+        // TODO add your handling code here:
+        displayAllEmployees.setVisible(false);
+    }//GEN-LAST:event_newEmployeeButtonActionPerformed
+
+    private void backtoEmployeesDataButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backtoEmployeesDataButtonActionPerformed
+        // TODO add your handling code here:
+        displayAllEmployees.setVisible(true);
+        addNewEmployee.setVisible(false);
+    }//GEN-LAST:event_backtoEmployeesDataButtonActionPerformed
+
+    private void deleteEmployeeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteEmployeeButtonActionPerformed
+        // TODO add your handling code here:
+        int row =        EmployeeInfo.getSelectedRow();
+        String id =      EmployeeInfo.getValueAt(row, 0).toString();
+
+        try{
+            PreparedStatement stmt = con.prepareStatement("Delete from employee "
+                                                        + "WHERE employee_id = ?;");
+                
+                stmt.setString(1, id);
+                stmt.executeQuery();
+        }catch (SQLException ex) {
+                System.out.println(ex);
+        }  
+        try {
+
+            String selectedColoumns = "employee_id,name,role,phone,address,gender,sallary";
+
+            PreparedStatement stmt = con.prepareStatement(
+                    String.format("select %s from employee",selectedColoumns));
+
+            ResultSet resultSet = stmt.executeQuery();
+
+            EmployeeInfo.setModel(DbUtils.resultSetToTableModel(resultSet));
+
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }//GEN-LAST:event_deleteEmployeeButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -528,6 +654,8 @@ public class emplyeeInfo_frame extends javax.swing.JFrame {
     private javax.swing.JLabel SalaryLabel;
     private javax.swing.JButton addEmployeeButton;
     private javax.swing.JPanel addNewEmployee;
+    private javax.swing.JButton backtoEmployeesDataButton;
+    private javax.swing.JButton deleteEmployeeButton;
     private javax.swing.JPanel displayAllEmployees;
     private javax.swing.JTextField employeeAddressField;
     private javax.swing.JLabel employeeName;
