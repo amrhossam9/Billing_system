@@ -21,7 +21,7 @@ import net.proteanit.sql.DbUtils;
  */
 public class stockmanager_products_frame extends javax.swing.JFrame {
 
-   
+   //fetch the databse into the table
     public void fetch_products(){
 
         try{ 
@@ -41,7 +41,69 @@ public class stockmanager_products_frame extends javax.swing.JFrame {
             ee.getMessage();
         }
     }
-    
+    //check if the brand isn't in the database it insert it and add it to the combobox
+    public void check_brand(String brand){
+        try{ 
+     
+     db_connection c= new db_connection();
+            Connection conn=c.connect();
+           String query = "SELECT * FROM  brands where brand_name = ? ";
+           PreparedStatement stmt = conn.prepareStatement(query);
+           stmt.setString(1, brand);
+         ResultSet rs = stmt.executeQuery();
+         if(!rs.next()){
+              query = "insert into brands values  (?) ";
+             stmt = conn.prepareStatement(query);
+             stmt.setString(1, brand);
+             stmt.execute();
+             brand_ComboBox.addItem(brand);
+             System.out.println("New brand added");
+             message_Label.setText("New brand added");
+             
+         }
+         conn.close();
+         stmt.close();
+            }
+            
+            catch (SQLException ee){
+            
+            ee.getMessage();
+        }
+    } 
+    //check if the category isn't in the database it insert it and add it to the combobox
+    public void check_category(String category){
+          try{ 
+     
+     db_connection c= new db_connection();
+            Connection conn=c.connect();
+           String query = "SELECT * FROM  categories where category_name = ? ";
+           PreparedStatement stmt = conn.prepareStatement(query);
+           stmt.setString(1, category);
+         ResultSet rs = stmt.executeQuery();
+         if(!rs.next()){
+              query = "insert into categories values  (?) ";
+             stmt = conn.prepareStatement(query);
+             stmt.setString(1, category);
+             stmt.execute();
+             category_ComboBox.addItem(category);
+             System.out.println("new category category");
+              if("New brand added".equals(message_Label.getText())){
+                 message_Label.setText("New brand and category added");
+             }
+             else
+              message_Label.setText("New category added");
+             
+         }
+         conn.close();
+         stmt.close();
+            }
+            
+            catch (SQLException ee){
+            
+            ee.getMessage();
+        }
+        
+    }
     
     public stockmanager_products_frame() {
         initComponents();
@@ -83,9 +145,19 @@ public class stockmanager_products_frame extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        error_Label = new javax.swing.JLabel();
+        message_Label = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+        });
 
         products_Table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -311,8 +383,22 @@ public class stockmanager_products_frame extends javax.swing.JFrame {
 
         jLabel9.setText("Category");
 
-        error_Label.setForeground(new java.awt.Color(255, 0, 0));
-        error_Label.setText("    ");
+        message_Label.setForeground(new java.awt.Color(255, 0, 0));
+        message_Label.setText("    ");
+        message_Label.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+                message_LabelAncestorRemoved(evt);
+            }
+        });
+        message_Label.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentHidden(java.awt.event.ComponentEvent evt) {
+                message_LabelComponentHidden(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -384,13 +470,11 @@ public class stockmanager_products_frame extends javax.swing.JFrame {
                                         .addGap(0, 0, Short.MAX_VALUE))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(search_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(search_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 566, Short.MAX_VALUE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
-                                        .addComponent(error_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(18, 18, 18)
+                                        .addGap(9, 9, 9)
+                                        .addComponent(message_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButton1)))
                         .addGap(18, 18, 18))))
         );
@@ -451,7 +535,7 @@ public class stockmanager_products_frame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(error_Label))
+                    .addComponent(message_Label))
                 .addContainerGap())
         );
 
@@ -574,7 +658,7 @@ public class stockmanager_products_frame extends javax.swing.JFrame {
     }//GEN-LAST:event_category_ComboBoxComponentShown
 
     private void category_ComboBoxAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_category_ComboBoxAncestorAdded
-try{ 
+try{ //add all the categories from the database into the combobox when the frame is opened
      
      db_connection c= new db_connection();
          Connection conn=c.connect();
@@ -584,7 +668,6 @@ try{
          while(rs.next()){
              String name =rs.getString("category_name");
              category_ComboBox.addItem(name);
-             System.out.println(name);
          }
          conn.close();
          stmt.close();
@@ -627,7 +710,7 @@ catch (SQLException ee){
     }//GEN-LAST:event_brand_ComboBoxActionPerformed
 
     private void brand_ComboBoxAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_brand_ComboBoxAncestorAdded
-try{ 
+try{ //add all the brands from the database into the combobox when the frame is opened
      
      db_connection c= new db_connection();
          Connection conn=c.connect();
@@ -676,6 +759,8 @@ fetch_products();
         try{
             db_connection c=new db_connection();
             Connection conn= c.connect() ;
+            check_brand(brand);
+            check_category(category);
             String query ="INSERT INTO products values (?,?,?,?,?,?)";
             PreparedStatement stmt =conn.prepareStatement(query);
             stmt.setString(1,name );
@@ -712,11 +797,11 @@ fetch_products();
         char c= evt.getKeyChar();
         if(Character.isLetter(c)){
             price_TextField.setEditable(false);
-            error_Label.setText("Please Enter number only");
+            message_Label.setText("Please Enter number only");
         }
         else{
            price_TextField.setEditable(true);
-           error_Label.setText("");
+           message_Label.setText("");
 
         }
 
@@ -727,11 +812,11 @@ fetch_products();
 char c= evt.getKeyChar();
         if(Character.isLetter(c)){
             discount_TextField.setEditable(false);
-            error_Label.setText("Please Enter number only");
+            message_Label.setText("Please Enter number only");
         }
         else{
            discount_TextField.setEditable(true);
-           error_Label.setText("");
+           message_Label.setText("");
 
         }
     }//GEN-LAST:event_discount_TextFieldKeyPressed
@@ -740,11 +825,11 @@ char c= evt.getKeyChar();
 char c= evt.getKeyChar();
         if(Character.isLetter(c)){
             quantity_TextField.setEditable(false);
-            error_Label.setText("Please Enter number only");
+            message_Label.setText("Please Enter number only");
         }
         else{
            quantity_TextField.setEditable(true);
-           error_Label.setText("");
+           message_Label.setText("");
 
         }
     }//GEN-LAST:event_quantity_TextFieldKeyPressed
@@ -872,6 +957,20 @@ char c= evt.getKeyChar();
         }
     }//GEN-LAST:event_edit_ButtonActionPerformed
 
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+     
+    }//GEN-LAST:event_formKeyPressed
+
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+       }//GEN-LAST:event_formMouseClicked
+
+    private void message_LabelAncestorRemoved(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_message_LabelAncestorRemoved
+        // TODO add your handling code here:
+    }//GEN-LAST:event_message_LabelAncestorRemoved
+
+    private void message_LabelComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_message_LabelComponentHidden
+message_Label.setText("");    }//GEN-LAST:event_message_LabelComponentHidden
+
     /**
      * @param args the command line arguments
      */
@@ -900,7 +999,6 @@ char c= evt.getKeyChar();
     private javax.swing.JButton delete_Button;
     private javax.swing.JTextField discount_TextField;
     private javax.swing.JButton edit_Button;
-    private javax.swing.JLabel error_Label;
     private javax.swing.JButton find_Button;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
@@ -913,6 +1011,7 @@ char c= evt.getKeyChar();
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel message_Label;
     private javax.swing.JTextField nameTextField;
     private javax.swing.JTextField price_TextField;
     private javax.swing.JTable products_Table;
