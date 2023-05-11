@@ -27,11 +27,12 @@ public class emplyeeInfo_frame extends javax.swing.JFrame {
     /**
      * Creates new form emplyeeInfo_frame
      */
+    Connection con;
+            db_connection c= new db_connection();
+            
     public emplyeeInfo_frame() {
         initComponents();
-        Connection con;
-            db_connection c= new db_connection();
-            con= c.connect();
+        con= c.connect();
 
             try {
 
@@ -76,7 +77,7 @@ public class emplyeeInfo_frame extends javax.swing.JFrame {
         AddressField = new javax.swing.JTextField();
         RoleField = new javax.swing.JTextField();
         PhoneField = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        updateInfo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 250, 244));
@@ -139,10 +140,10 @@ public class emplyeeInfo_frame extends javax.swing.JFrame {
         SalaryLabel.setForeground(new java.awt.Color(255, 255, 255));
         SalaryLabel.setText("Sallary:");
 
-        jButton1.setText("Update Info");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        updateInfo.setText("Update Info");
+        updateInfo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                updateInfoActionPerformed(evt);
             }
         });
 
@@ -180,7 +181,7 @@ public class emplyeeInfo_frame extends javax.swing.JFrame {
                             .addComponent(PhoneLabel)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                             .addComponent(PhoneField, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jButton1)
+                        .addComponent(updateInfo)
                         .addGroup(displayAllEmployeesLayout.createSequentialGroup()
                             .addGroup(displayAllEmployeesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(AddressLabel)
@@ -231,7 +232,7 @@ public class emplyeeInfo_frame extends javax.swing.JFrame {
                             .addComponent(SalaryField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(SalaryLabel))
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1)
+                        .addComponent(updateInfo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
                         .addComponent(BackButton)
                         .addContainerGap())))
@@ -264,9 +265,6 @@ public class emplyeeInfo_frame extends javax.swing.JFrame {
         }
         else
         {
-            Connection con;
-            db_connection c= new db_connection();
-            con= c.connect();
 
             try {
                 String s;
@@ -319,7 +317,7 @@ public class emplyeeInfo_frame extends javax.swing.JFrame {
         
     }//GEN-LAST:event_EmployeeInfoMouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void updateInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateInfoActionPerformed
         // TODO add your handling code here:
         int row =        EmployeeInfo.getSelectedRow();
         String id =      EmployeeInfo.getValueAt(row, 0).toString();
@@ -329,9 +327,7 @@ public class emplyeeInfo_frame extends javax.swing.JFrame {
         String address = AddressField.getText();
         float sallary =  Float.parseFloat(SalaryField.getText());
         
-        Connection con;
-            db_connection c= new db_connection();
-            con= c.connect();
+        
         try{
             PreparedStatement stmt = con.prepareStatement("UPDATE employee SET"
                                                         + " name = ?,phone = ?,address= ?,role = ?,sallary = ? "
@@ -365,7 +361,7 @@ public class emplyeeInfo_frame extends javax.swing.JFrame {
             } catch (SQLException ex) {
                 System.out.println(ex);
             }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_updateInfoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -416,11 +412,11 @@ public class emplyeeInfo_frame extends javax.swing.JFrame {
     private javax.swing.JTextField SalaryField;
     private javax.swing.JLabel SalaryLabel;
     private javax.swing.JPanel displayAllEmployees;
-    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton searchButton;
     private javax.swing.JTextField searchField;
     private javax.swing.JLabel searchLabel;
     private javax.swing.JComboBox<String> searchType;
+    private javax.swing.JButton updateInfo;
     // End of variables declaration//GEN-END:variables
 }
