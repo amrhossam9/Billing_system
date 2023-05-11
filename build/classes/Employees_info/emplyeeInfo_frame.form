@@ -27,15 +27,214 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="displayAllEmployees" min="-2" max="-2" attributes="0"/>
+          <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="addNewEmployee" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="displayAllEmployees" alignment="0" max="32767" attributes="0"/>
+          <Component id="displayAllEmployees" min="-2" max="-2" attributes="0"/>
+          <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <Component id="addNewEmployee" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="0" pref="33" max="32767" attributes="0"/>
+              </Group>
+          </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
+    <Container class="javax.swing.JPanel" name="addNewEmployee">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="4f" green="13" red="c" type="rgb"/>
+        </Property>
+      </Properties>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="employeeName" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="employeeName6" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="employeeName5" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="employeeName3" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="employeeName4" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="employeeName1" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="employeeName2" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="employeePhoneField" max="32767" attributes="0"/>
+                              <Component id="employeeAddressField" max="32767" attributes="0"/>
+                              <Component id="employeeSallaryField" max="32767" attributes="0"/>
+                              <Component id="employeeNameField" max="32767" attributes="0"/>
+                              <Component id="employeePasswordField" alignment="0" max="32767" attributes="0"/>
+                              <Component id="employeeRoleComboBox" pref="190" max="32767" attributes="0"/>
+                              <Component id="genderComboBox" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Component id="addEmployeeButton" alignment="0" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="629" max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="employeeName" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
+                      <Component id="employeeNameField" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="employeeName2" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
+                      <Component id="employeePhoneField" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="employeeName1" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
+                      <Component id="employeeAddressField" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="employeeName4" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
+                      <Component id="genderComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="employeeName3" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
+                      <Component id="employeeRoleComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="employeeName5" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
+                      <Component id="employeePasswordField" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="employeeName6" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
+                      <Component id="employeeSallaryField" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="addEmployeeButton" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="employeeName">
+          <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="f4" green="fa" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Employee Name"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="employeeName1">
+          <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="f4" green="fa" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Employee Address"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="employeeName2">
+          <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="f4" green="fa" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Employee Phone"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="employeeName3">
+          <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="f4" green="fa" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Employee Role"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="employeeName4">
+          <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="f4" green="fa" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Employee Gender"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="employeeName5">
+          <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="f4" green="fa" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Employee Password"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="employeeName6">
+          <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="f4" green="fa" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Employee Sallary"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="employeeNameField">
+        </Component>
+        <Component class="javax.swing.JTextField" name="employeePhoneField">
+        </Component>
+        <Component class="javax.swing.JTextField" name="employeeAddressField">
+        </Component>
+        <Component class="javax.swing.JTextField" name="employeeSallaryField">
+        </Component>
+        <Component class="javax.swing.JPasswordField" name="employeePasswordField">
+        </Component>
+        <Component class="javax.swing.JComboBox" name="employeeRoleComboBox">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="3">
+                <StringItem index="0" value="Manger"/>
+                <StringItem index="1" value="Stock Manger"/>
+                <StringItem index="2" value="Cashier"/>
+              </StringArray>
+            </Property>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="genderComboBox">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="2">
+                <StringItem index="0" value="male"/>
+                <StringItem index="1" value="female"/>
+              </StringArray>
+            </Property>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JButton" name="addEmployeeButton">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Add Employee"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
     <Container class="javax.swing.JPanel" name="displayAllEmployees">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -47,25 +246,29 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="102" max="-2" attributes="0"/>
-                  <Component id="searchField" min="-2" pref="229" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="searchType" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="165" max="-2" attributes="0"/>
-                  <Component id="searchButton" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
-              </Group>
-              <Group type="103" alignment="1" groupAlignment="1" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="BackButton" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="searchLabel" min="-2" pref="39" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                          <Component id="searchField" min="-2" pref="229" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                          <Component id="searchType" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                          <Component id="jScrollPane1" min="-2" pref="683" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="0" pref="15" max="32767" attributes="0"/>
-                      <Component id="jScrollPane1" min="-2" pref="695" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="searchButton" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="newEmployeeButton" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="BackButton" min="-2" max="-2" attributes="0"/>
+                          </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="NameLabel" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
@@ -76,9 +279,9 @@
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="RoleField" min="-2" pref="190" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
                               <Component id="PhoneLabel" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="28" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                               <Component id="PhoneField" min="-2" pref="190" max="-2" attributes="0"/>
                           </Group>
                           <Component id="updateInfo" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -89,20 +292,13 @@
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="AddressField" pref="190" max="32767" attributes="0"/>
-                                  <Component id="SalaryField" max="32767" attributes="0"/>
+                                  <Component id="AddressField" max="32767" attributes="0"/>
+                                  <Component id="SalaryField" min="-2" pref="190" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                   </Group>
-              </Group>
-              <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="searchLabel" min="-2" pref="39" max="-2" attributes="0"/>
-                      <EmptySpace pref="935" max="32767" attributes="0"/>
-                  </Group>
+                  <EmptySpace pref="12" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -111,18 +307,14 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="searchButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="searchType" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="searchField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="searchLabel" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
+                      <Component id="searchType" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="searchButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                          <Component id="jScrollPane1" pref="0" max="32767" attributes="0"/>
-                          <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="NameField" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="NameLabel" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -149,18 +341,18 @@
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="updateInfo" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="100" max="32767" attributes="0"/>
-                          <Component id="BackButton" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="BackButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="newEmployeeButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="jScrollPane1" pref="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
-              </Group>
-              <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="searchLabel" min="-2" pref="27" max="-2" attributes="0"/>
-                      <EmptySpace pref="401" max="32767" attributes="0"/>
-                  </Group>
+                  <EmptySpace pref="19" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -349,6 +541,11 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="updateInfoActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="newEmployeeButton">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Add new employee"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>
