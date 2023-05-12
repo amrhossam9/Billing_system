@@ -223,6 +223,11 @@ public class stockmanager_products_frame extends javax.swing.JFrame {
         jLabel1.setText("Search");
 
         search_TextField.setToolTipText("product name");
+        search_TextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                search_TextFieldActionPerformed(evt);
+            }
+        });
 
         find_Button.setText("Find");
         find_Button.addActionListener(new java.awt.event.ActionListener() {
@@ -970,6 +975,10 @@ char c= evt.getKeyChar();
 
     private void message_LabelComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_message_LabelComponentHidden
 message_Label.setText("");    }//GEN-LAST:event_message_LabelComponentHidden
+
+    private void search_TextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_search_TextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_search_TextFieldActionPerformed
 
     /**
      * @param args the command line arguments
