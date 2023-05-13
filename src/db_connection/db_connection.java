@@ -14,12 +14,13 @@ import java.sql.PreparedStatement;
  * @author abdoa
  */
 public class db_connection {
-     Connection con;
-      ResultSet rs;
-       public Connection connect (){
+    private static Connection con;
+    ResultSet rs;
+     private static final String URL = "jdbc:sqlserver://localhost:1433;databaseName=Billing_system_db;integratedSecurity=true;encrypt=false";
+
+       public static Connection connect (){
            try{
-        String url = "jdbc:sqlserver://localhost:1433;databaseName=Billing_system_db;integratedSecurity=true;encrypt=false";
-            con =DriverManager.getConnection(url);
+            con =DriverManager.getConnection(URL);
             System.out.println("Connection stablished");
        
        }
@@ -33,7 +34,7 @@ public class db_connection {
 
        public ResultSet fetch(String table_name){
             try{ db_connection c= new db_connection();
-           Connection conn=c.connect();
+           Connection conn=db_connection.connect();
            String query = "SELECT * FROM ('"+table_name+"')";
            PreparedStatement stmt = conn.prepareStatement(query);
           rs = stmt.executeQuery();
