@@ -4,6 +4,7 @@
  */
 package Bill;
 import db_connection.db_connection;
+import static java.lang.Integer.parseInt;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -385,17 +386,31 @@ double sum=0;
 double dis=0;
 double calc=0;
 double diastot=0;
+int x=0;
     private void ptMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ptMouseClicked
         DefaultTableModel model=(DefaultTableModel)pt.getModel();
         DefaultTableModel row=(DefaultTableModel)pt1.getModel();
         int rowIndex=pt.getSelectedRow();
+        String s=JOptionPane.showInputDialog(null, "enter the quantity");
         String p_id=model.getValueAt(rowIndex, 0).toString();
         String p_name= model.getValueAt(rowIndex, 1).toString();
         String p_price=model.getValueAt(rowIndex, 2).toString();
         String p_dis=model.getValueAt(rowIndex, 5).toString();
         String p_Quan= model.getValueAt(rowIndex, 3).toString();
         String p_cate=model.getValueAt(rowIndex, 4).toString();
-        row.addRow(new Object[]{p_id , p_name , p_price ,p_Quan , p_cate});
+        if(parseInt(s) > parseInt(p_Quan))
+        {
+            JOptionPane.showMessageDialog(null,"THERE IS NO QUANTITY");
+        }
+        else{
+            x+=parseInt(p_Quan)-parseInt(s);
+            if(x > parseInt(p_Quan))
+            {
+                JOptionPane.showMessageDialog(null,"THIS PRODUCT IS FINISHED ");
+            }else {
+            p_Quan=Integer.toString(x);
+            System.out.println(p_Quan);
+        row.addRow(new Object[]{p_id , p_name , p_price ,s , p_cate});
         double price=Double.parseDouble(p_price);
         sum+=price;
         dis=Double.parseDouble(p_dis);
@@ -405,6 +420,8 @@ double diastot=0;
         
         disc.setText("Discount"+Double.toString(dis)+" : -" + Double.toString(calc));
         distot.setText(Double.toString(diastot));
+        }
+        }
     }//GEN-LAST:event_ptMouseClicked
 
     private void ptAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_ptAncestorAdded
