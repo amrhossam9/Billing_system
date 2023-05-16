@@ -4,10 +4,7 @@
  */
 package Bill;
 import db_connection.db_connection;
-<<<<<<< HEAD
 import static java.lang.Integer.parseInt;
-=======
->>>>>>> 66241d0d9059caf8a46552c63ca9cd38acc54656
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,12 +13,13 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import net.proteanit.sql.DbUtils;
+
 /**
  *
  * @author Mohamed2
  */
 public class Insert_Bill extends javax.swing.JFrame {
-    ArrayList <Bill> Data=new ArrayList <>();
+    ArrayList <Bill> Data;
     ArrayList <Bill> Data1=new ArrayList <>();
     public void Table_Content(){
         try{ 
@@ -116,6 +114,7 @@ public class Insert_Bill extends javax.swing.JFrame {
      * Creates new form Bill_View
      */
     public Insert_Bill() {
+        this.Data = new ArrayList <>();
         initComponents();
         
     }
@@ -389,41 +388,39 @@ double sum=0;
 double dis=0;
 double calc=0;
 double diastot=0;
-<<<<<<< HEAD
+
 int x=0;
-=======
->>>>>>> 66241d0d9059caf8a46552c63ca9cd38acc54656
+
     private void ptMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ptMouseClicked
         DefaultTableModel model=(DefaultTableModel)pt.getModel();
         DefaultTableModel row=(DefaultTableModel)pt1.getModel();
         int rowIndex=pt.getSelectedRow();
-<<<<<<< HEAD
+
         String s=JOptionPane.showInputDialog(null, "enter the quantity");
-=======
->>>>>>> 66241d0d9059caf8a46552c63ca9cd38acc54656
+
         String p_id=model.getValueAt(rowIndex, 0).toString();
         String p_name= model.getValueAt(rowIndex, 1).toString();
         String p_price=model.getValueAt(rowIndex, 2).toString();
         String p_dis=model.getValueAt(rowIndex, 5).toString();
         String p_Quan= model.getValueAt(rowIndex, 3).toString();
         String p_cate=model.getValueAt(rowIndex, 4).toString();
-<<<<<<< HEAD
-        if(parseInt(s) > parseInt(p_Quan))
+
+        if(Integer.parseInt(s) > Integer.parseInt(p_Quan))
         {
             JOptionPane.showMessageDialog(null,"THERE IS NO QUANTITY");
         }
         else{
-            x+=parseInt(p_Quan)-parseInt(s);
-            if(x > parseInt(p_Quan))
+            x+=Integer.parseInt(p_Quan)-Integer.parseInt(s);
+            if(x > Integer.parseInt(p_Quan))
             {
                 JOptionPane.showMessageDialog(null,"THIS PRODUCT IS FINISHED ");
             }else {
             p_Quan=Integer.toString(x);
             System.out.println(p_Quan);
         row.addRow(new Object[]{p_id , p_name , p_price ,s , p_cate});
-=======
+
         row.addRow(new Object[]{p_id , p_name , p_price ,p_Quan , p_cate});
->>>>>>> 66241d0d9059caf8a46552c63ca9cd38acc54656
+
         double price=Double.parseDouble(p_price);
         sum+=price;
         dis=Double.parseDouble(p_dis);
@@ -433,11 +430,10 @@ int x=0;
         
         disc.setText("Discount"+Double.toString(dis)+" : -" + Double.toString(calc));
         distot.setText(Double.toString(diastot));
-<<<<<<< HEAD
+
         }
         }
-=======
->>>>>>> 66241d0d9059caf8a46552c63ca9cd38acc54656
+
     }//GEN-LAST:event_ptMouseClicked
 
     private void ptAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_ptAncestorAdded
