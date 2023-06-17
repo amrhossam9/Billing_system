@@ -1,5 +1,6 @@
 package cashier;
 
+import Bill.order_items;
 import db_connection.db_connection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -75,6 +76,11 @@ public class cashierFrame extends javax.swing.JFrame {
         });
 
         Make_Bill.setText("Make_BIill");
+        Make_Bill.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Make_BillActionPerformed(evt);
+            }
+        });
 
         searchText.setText("Search");
         searchText.addActionListener(new java.awt.event.ActionListener() {
@@ -243,6 +249,13 @@ public class cashierFrame extends javax.swing.JFrame {
     private void searchbyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchbyActionPerformed
        
     }//GEN-LAST:event_searchbyActionPerformed
+
+    private void Make_BillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Make_BillActionPerformed
+     this.setVisible(false);
+     order_items o=new order_items();
+     o.setVisible(true);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Make_BillActionPerformed
 
     public static void main(String args[]) {
 
