@@ -50,6 +50,8 @@ public class emplyeeInfo_frame extends javax.swing.JFrame {
             } catch (SQLException ex) {
                 System.out.println(ex);
             }
+        displayAllEmployees.setVisible(true);
+        addNewEmployee.setVisible(false);
     }
 
     /**
@@ -470,62 +472,98 @@ public class emplyeeInfo_frame extends javax.swing.JFrame {
 
     private void updateInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateInfoActionPerformed
         // TODO add your handling code here:
-        int row =        EmployeeInfo.getSelectedRow();
-        String id =      EmployeeInfo.getValueAt(row, 0).toString();
-        String name =    NameField.getText();
-        String role =    RoleField.getText();
-        int phone =      Integer.parseInt(PhoneField.getText());
-        String address = AddressField.getText();
-        float sallary =  Float.parseFloat(SalaryField.getText());
-        
-        
-        try{
-            PreparedStatement stmt = con.prepareStatement("UPDATE employee SET"
-                                                        + " name = ?,phone = ?,address= ?,role = ?,sallary = ? "
-                                                        + "WHERE employee_id = ?;");
-                
-                stmt.setString(1, name);
-                stmt.setInt(2, phone);
-                stmt.setString(3, address);
-                stmt.setString(4, role);
-                stmt.setFloat(5, sallary);
-                stmt.setString(6, id);
-
-                stmt.executeQuery();
-                
-                
-        }catch (SQLException ex) {
-                System.out.println(ex);
+        if(EmployeeInfo.getSelectionModel().isSelectionEmpty())
+        {
+            JOptionPane.showMessageDialog(this, "Choose an Employee");
         }
+        else
+        {
+            int row =        EmployeeInfo.getSelectedRow();
+            String id =      EmployeeInfo.getValueAt(row, 0).toString();
+            String name =    NameField.getText();
+            String role =    RoleField.getText();
+            String  phone =  PhoneField.getText();
+            String address = AddressField.getText();
+            float sallary =  Float.parseFloat(SalaryField.getText());
 
-        try {
+            if(NameField.getText().isEmpty()||RoleField.getText().isEmpty()||PhoneField.getText().isEmpty()||
+                    AddressField.getText().isEmpty()||SalaryField.getText().isEmpty())
+            {
+                JOptionPane.showMessageDialog(this, "Enter all the fields");
+            }
+            else if(PhoneField.getText().length() != 11 || !PhoneField.getText().startsWith("01")
+                    || PhoneField.getText().contains("[a-zA-Z]+"))
+            {
+                JOptionPane.showMessageDialog(this, "Enter valid phone number");
+            }
+            else if(!address.endsWith("@gmail.com") && !address.endsWith("@yahoo.com") 
+                    && !address.endsWith("@outlook.com"))
+            {
+                JOptionPane.showMessageDialog(this, "Enter valid email");
+            }
+            else
+            {
+                try{
+                    PreparedStatement stmt = con.prepareStatement("UPDATE employee SET"
+                                                                + " name = ?,phone = ?,address= ?,role = ?,sallary = ? "
+                                                                + "WHERE employee_id = ?;");
 
-            String selectedColoumns = "employee_id,name,role,phone,address,gender,sallary";
+                        stmt.setString(1, name);
+                        stmt.setString(2, phone);
+                        stmt.setString(3, address);
+                        stmt.setString(4, role);
+                        stmt.setFloat(5, sallary);
+                        stmt.setString(6, id);
 
-            PreparedStatement stmt = con.prepareStatement(
-                    String.format("select %s from employee",selectedColoumns));
+                        stmt.executeQuery();
+                }
+                catch (SQLException ex) {
+                        System.out.println(ex);
+                }
 
-            ResultSet resultSet = stmt.executeQuery();
+                try 
+                {
+                    String selectedColoumns = "employee_id,name,role,phone,address,gender,sallary";
 
-            EmployeeInfo.setModel(DbUtils.resultSetToTableModel(resultSet));
+                    PreparedStatement stmt = con.prepareStatement(
+                            String.format("select %s from employee",selectedColoumns));
 
-        } catch (SQLException ex) {
-            System.out.println(ex);
+                    ResultSet resultSet = stmt.executeQuery();
+
+                    EmployeeInfo.setModel(DbUtils.resultSetToTableModel(resultSet));
+
+                } 
+                catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+            }
         }
+    
     }//GEN-LAST:event_updateInfoActionPerformed
 
     private void addEmployeeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addEmployeeButtonActionPerformed
         // TODO add your handling code here:
+        String employeeAddress = employeeAddressField.getText();
         if(employeeNameField.getText().isEmpty()||employeePhoneField.getText().isEmpty()||employeeAddressField.getText().isEmpty()||
                 employeePasswordField.getPassword().length == 0||employeeSallaryField.getText().isEmpty())
         {
             JOptionPane.showMessageDialog(this, "Enter all the fields");
         }
+        else if(employeePhoneField.getText().length() != 11 || !employeePhoneField.getText().startsWith("01")
+                || employeePhoneField.getText().contains("[a-zA-Z]+"))
+        {
+            JOptionPane.showMessageDialog(this, "Enter valid phone number");
+        }
+        else if(!employeeAddress.endsWith("@gmail.com") && !employeeAddress.endsWith("@yahoo.com") 
+                && !employeeAddress.endsWith("@outlook.com"))
+        {
+            JOptionPane.showMessageDialog(this, "Enter valid email");
+        }
         else
         {
             String EmployeeNameField = employeeNameField.getText(),
                employeePhone = employeePhoneField.getText(),
-               employeeAddress = employeeAddressField.getText(),
+               //employeeAddress = employeeAddressField.getText(),
                employeeGender = genderComboBox.getSelectedItem().toString(),
                EmployeePassword = new String (employeePasswordField.getPassword()),
                employeeSallary = employeeSallaryField.getText(),
@@ -533,13 +571,13 @@ public class emplyeeInfo_frame extends javax.swing.JFrame {
         
             PreparedStatement stmt;
             try {
-                
+
                 stmt = con.prepareStatement("Select *"
                         + "from employee where phone = ?");
-                stmt.setInt(1, Integer.parseInt(employeePhone));
-                
+                stmt.setString(1, employeePhone);
+
                 ResultSet resultSet= stmt.executeQuery();
-                
+
                 if(resultSet.next() == true)
                 {
                     JOptionPane.showMessageDialog(this, "User already exist the phone number is saved in the database");
@@ -550,7 +588,7 @@ public class emplyeeInfo_frame extends javax.swing.JFrame {
                         + "name,phone,address,gender,role,password,sallary) "
                         + "VALUES(?,?,?,?,?,?,?);");
                     stmt.setString(1, EmployeeNameField);
-                    stmt.setInt(2, Integer.parseInt(employeePhone));
+                    stmt.setString(2, employeePhone);
                     stmt.setString(3, employeeAddress);
                     stmt.setString(4, employeeGender);
                     stmt.setString(5, EmployeeRole);
@@ -561,11 +599,31 @@ public class emplyeeInfo_frame extends javax.swing.JFrame {
                     
                 } 
             } catch (SQLException ex) {
-                System.out.print(ex);
+                JOptionPane.showMessageDialog(null, "User added successfully");
+                try {
+
+                        String selectedColoumns = "employee_id,name,role,phone,address,gender,sallary";
+
+                        stmt = con.prepareStatement(
+                                String.format("select %s from employee",selectedColoumns));
+
+                        ResultSet resultSet = stmt.executeQuery();
+
+                        EmployeeInfo.setModel(DbUtils.resultSetToTableModel(resultSet));
+
+                } catch (SQLException ex1) {
+                }
+                displayAllEmployees.setVisible(true);
+                addNewEmployee.setVisible(false);
+                employeeNameField.setText("");
+                employeePhoneField.setText("");
+                employeeAddressField.setText("");
+                genderComboBox.setSelectedIndex(0);
+                employeePasswordField.setText("");
+                employeeSallaryField.setText("");
+                employeeRoleComboBox.setSelectedIndex(0);
             } 
-            JOptionPane.showMessageDialog(null, "User added successfully");
-                    displayAllEmployees.setVisible(true);
-                    addNewEmployee.setVisible(false);
+            
         }
                  
     }//GEN-LAST:event_addEmployeeButtonActionPerformed
@@ -573,12 +631,36 @@ public class emplyeeInfo_frame extends javax.swing.JFrame {
     private void newEmployeeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newEmployeeButtonActionPerformed
         // TODO add your handling code here:
         displayAllEmployees.setVisible(false);
+        addNewEmployee.setVisible(true);
     }//GEN-LAST:event_newEmployeeButtonActionPerformed
 
     private void backtoEmployeesDataButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backtoEmployeesDataButtonActionPerformed
         // TODO add your handling code here:
         displayAllEmployees.setVisible(true);
         addNewEmployee.setVisible(false);
+        
+        employeeNameField.setText("");
+        employeePhoneField.setText("");
+        employeeAddressField.setText("");
+        genderComboBox.setSelectedIndex(0);
+        employeePasswordField.setText("");
+        employeeSallaryField.setText("");
+        employeeRoleComboBox.setSelectedIndex(0);
+        
+        PreparedStatement stmt;
+        try {
+
+                        String selectedColoumns = "employee_id,name,role,phone,address,gender,sallary";
+
+                        stmt = con.prepareStatement(
+                                String.format("select %s from employee",selectedColoumns));
+
+                        ResultSet resultSet = stmt.executeQuery();
+
+                        EmployeeInfo.setModel(DbUtils.resultSetToTableModel(resultSet));
+
+        } catch (SQLException ex1) {
+        }
     }//GEN-LAST:event_backtoEmployeesDataButtonActionPerformed
 
     private void deleteEmployeeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteEmployeeButtonActionPerformed
