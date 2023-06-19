@@ -496,11 +496,6 @@ public class emplyeeInfo_frame extends javax.swing.JFrame {
             {
                 JOptionPane.showMessageDialog(this, "Enter valid phone number");
             }
-            else if(!address.endsWith("@gmail.com") && !address.endsWith("@yahoo.com") 
-                    && !address.endsWith("@outlook.com"))
-            {
-                JOptionPane.showMessageDialog(this, "Enter valid email");
-            }
             else
             {
                 try{
@@ -553,11 +548,6 @@ public class emplyeeInfo_frame extends javax.swing.JFrame {
                 || employeePhoneField.getText().contains("[a-zA-Z]+"))
         {
             JOptionPane.showMessageDialog(this, "Enter valid phone number");
-        }
-        else if(!employeeAddress.endsWith("@gmail.com") && !employeeAddress.endsWith("@yahoo.com") 
-                && !employeeAddress.endsWith("@outlook.com"))
-        {
-            JOptionPane.showMessageDialog(this, "Enter valid email");
         }
         else
         {
