@@ -4,6 +4,7 @@
  */
 package billing_system_project;
 import Products.stockmanager_products_frame;
+import cashier.cashierFrame;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -153,14 +154,18 @@ public class login extends javax.swing.JFrame {
                                 found= true;
                                 this.setVisible(false);
                                 switch(role_ComboBox.getSelectedIndex()){
-                                    case 1:
+                                    case 1:                                                                     //manager frame 
                                         manager_frame x = new manager_frame();
                                         x.setVisible(true);
                                         break;
-                                    case 2:
-                                        JOptionPane.showMessageDialog(this, "soon"); 
+                                    case 2:                                                                     //Cashier frame
+                                    {
+                                        this.setVisible(false);
+                                        cashierFrame cf=new cashierFrame();
+                                        cf.setVisible(true);
+                                    } 
                                         break;
-                                    case 3:
+                                    case 3:                                                                      //stock manager
                                         stockmanager_products_frame y = new stockmanager_products_frame();
                                         y.setVisible(true);
                                         break;

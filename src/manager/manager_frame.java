@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package manager;
+import Products.getBills;
 import Employees_info.emplyeeInfo_frame;
 import Products.ViewCustomersFrame;
 import billing_system_project.login;
@@ -12,6 +13,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import Products.getBills;
+import java.sql.SQLException;
 
 
 /**
@@ -66,6 +69,11 @@ public class manager_frame extends javax.swing.JFrame {
         });
 
         jButton4.setText("Bills");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton5.setText("Logout");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -143,6 +151,18 @@ public class manager_frame extends javax.swing.JFrame {
         v.setVisible(true );
         
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        this.setVisible(false);
+        try {
+            getBills billsframe=new getBills();
+            billsframe.setVisible(true);
+            
+            // TODO add your handling code here:
+        } catch (SQLException ex) {
+            Logger.getLogger(manager_frame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments

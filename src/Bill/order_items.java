@@ -402,7 +402,7 @@ public class order_items extends javax.swing.JFrame {
      
             db_connection c= new db_connection();
             Connection conn=c.connect();
-            String order="select order_id from orders ORDERED BY order_id DESC";
+            String order="INSERT INTO orders (customer_id,cashier_id)OUTPUT inserted.order_id Values(?,?)";
             PreparedStatement stmt1 = conn.prepareStatement(order);
             ResultSet rs = stmt1.executeQuery();
             String orderi="";

@@ -52,7 +52,7 @@ public class ViewCustomersFrame extends javax.swing.JFrame {
          DefaultTableModel t1=(DefaultTableModel) CustomersTable.getModel();
         try{          
 //Connection to database
-            String URL = "jdbc:sqlserver://localhost:1433;databaseName=dbproject;integratedSecurity=true;encrypt=false";
+            String URL = "jdbc:sqlserver://localhost:1433;databaseName=Billing_system_db;integratedSecurity=true;encrypt=false";
             conn = DriverManager.getConnection(URL);
 
          
@@ -343,7 +343,7 @@ m1.setVisible(true);
         else
 {
    
-        String URL = "jdbc:sqlserver://localhost:1433;databaseName=dbproject;integratedSecurity=true;encrypt=false";
+        String URL = "jdbc:sqlserver://localhost:1433;databaseName=Billing_system_db;integratedSecurity=true;encrypt=false";
 String Query="Select * FROM customer WHERE first_name+' '+last_name LIKE ? ";
 String key=keytext2.getText().toLowerCase();
         PreparedStatement stm;
