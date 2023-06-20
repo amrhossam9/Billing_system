@@ -15,15 +15,15 @@ public class Customerinfo {
     private String phone;
     private String address;
     private String membership;
-    private String membershipdays;
-public Customerinfo(int cust_id ,String firstname,String lastname,String phone,String address,String membership,String membershipdays)
+
+public Customerinfo(int cust_id ,String firstname,String lastname,String phone,String address,String membership)
 {
     this.address=address;
     this.cust_id=cust_id;
     this.firstname=firstname;
     this.lastname=lastname;
     this.membership=membership;
-    this.membershipdays=membershipdays;
+    
     this.phone=phone;
 }
 
@@ -75,12 +75,5 @@ public Customerinfo(int cust_id ,String firstname,String lastname,String phone,S
         this.membership = membership;
     }
 
-    public String getMembershipdays() {
-        return membershipdays;
-    }
-
-    public void setMembershipdays(String membershipdays) {
-        this.membershipdays = membershipdays;
-    }
-
+   
 }

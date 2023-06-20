@@ -14,6 +14,7 @@ import java.util.logging.Logger;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import Products.getBills;
+import java.awt.Color;
 import java.sql.SQLException;
 
 
@@ -83,6 +84,7 @@ public class manager_frame extends javax.swing.JFrame {
         panelGradient3.add(panelGradient5);
         panelGradient5.setBounds(0, 0, 0, 0);
 
+        jLabel7.setBackground(new java.awt.Color(0, 0, 0));
         jLabel7.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 36)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -93,13 +95,20 @@ public class manager_frame extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel7MouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel7MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel7MouseExited(evt);
+            }
         });
         panelGradient3.add(jLabel7);
-        jLabel7.setBounds(-10, 10, 280, 70);
+        jLabel7.setBounds(0, 10, 250, 70);
 
-        getContentPane().add(panelGradient3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 330, 267, 88));
+        getContentPane().add(panelGradient3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 310, 290, 88));
 
         panelGradient4.setBackground(new java.awt.Color(40, 184, 213));
+        panelGradient4.setForeground(new java.awt.Color(204, 153, 255));
         panelGradient4.setToolTipText("");
         panelGradient4.setColorGradient(new java.awt.Color(2, 3, 68));
         panelGradient4.setRadius(30);
@@ -109,16 +118,24 @@ public class manager_frame extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 36)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 38)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/photos/ready-stock (1).png"))); // NOI18N
-        jLabel3.setText(" Stock");
+        jLabel3.setText(" View Stock");
         jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel3MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel3MouseExited(evt);
+            }
+        });
         panelGradient4.add(jLabel3);
-        jLabel3.setBounds(-20, 0, 260, 90);
+        jLabel3.setBounds(0, 10, 280, 70);
 
-        getContentPane().add(panelGradient4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 210, 267, 87));
+        getContentPane().add(panelGradient4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 200, 290, 87));
 
         panelGradient6.setBackground(new java.awt.Color(40, 184, 213));
         panelGradient6.setToolTipText("");
@@ -130,16 +147,25 @@ public class manager_frame extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 24)); // NOI18N
+        jLabel5.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel5.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 28)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/photos/costumer.png"))); // NOI18N
-        jLabel5.setText("  Customers Info");
+        jLabel5.setText(" Customers Info");
         jLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel5MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel5MouseExited(evt);
+            }
+        });
         panelGradient6.add(jLabel5);
-        jLabel5.setBounds(10, -10, 264, 98);
+        jLabel5.setBounds(10, 10, 270, 70);
 
-        getContentPane().add(panelGradient6, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 330, 278, 88));
+        getContentPane().add(panelGradient6, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 310, 290, 88));
 
         panelGradient9.setBackground(new java.awt.Color(40, 184, 213));
         panelGradient9.setToolTipText("");
@@ -151,46 +177,65 @@ public class manager_frame extends javax.swing.JFrame {
             }
         });
 
+        jLabel8.setBackground(new java.awt.Color(0, 0, 0));
         jLabel8.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 28)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/photos/teamwork.png"))); // NOI18N
         jLabel8.setText("  Employee info");
         jLabel8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel8MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel8MouseExited(evt);
+            }
+        });
         panelGradient9.add(jLabel8);
-        jLabel8.setBounds(0, 0, 270, 90);
+        jLabel8.setBounds(10, 0, 270, 90);
 
-        getContentPane().add(panelGradient9, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 210, 278, 87));
+        getContentPane().add(panelGradient9, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 200, 290, 87));
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
         jLabel6.setFont(new java.awt.Font("The Bold Font", 2, 48)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 51, 51));
+        jLabel6.setForeground(new java.awt.Color(51, 255, 204));
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/photos/profile.png"))); // NOI18N
         jLabel6.setText("Manager Menu");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 550, 150));
 
         jLabel9.setFont(new java.awt.Font("The Bold Font", 3, 48)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel9.setForeground(new java.awt.Color(0, 153, 153));
         jLabel9.setText("Manager Menu");
         getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 40, 520, 120));
 
         panelGradient1.setBackground(new java.awt.Color(255, 102, 51));
         panelGradient1.setColorGradient(new java.awt.Color(255, 255, 102));
+        panelGradient1.setRadius(35);
         panelGradient1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 panelGradient1MousePressed(evt);
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Trebuchet MS", 3, 36)); // NOI18N
+        jLabel1.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel1.setFont(new java.awt.Font("The Bold Font", 2, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/photos/logout_1.png"))); // NOI18N
         jLabel1.setText("Log Out");
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel1MouseExited(evt);
+            }
+        });
         panelGradient1.add(jLabel1);
-        jLabel1.setBounds(10, 0, 210, 70);
+        jLabel1.setBounds(10, 10, 230, 70);
 
-        getContentPane().add(panelGradient1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 460, 220, 70));
+        getContentPane().add(panelGradient1, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 450, 250, 80));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/photos/abstract-blur-supermarket.jpg"))); // NOI18N
         jLabel2.setText("jLabel2");
@@ -245,6 +290,54 @@ public class manager_frame extends javax.swing.JFrame {
         ViewCustomersFrame view=new ViewCustomersFrame();
         view.setVisible(true);
     }//GEN-LAST:event_panelGradient6MouseClicked
+
+    private void jLabel8MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseEntered
+        jLabel8.setForeground(Color.CYAN);
+       
+
+    }//GEN-LAST:event_jLabel8MouseEntered
+
+    private void jLabel8MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseExited
+ jLabel8.setForeground(Color.white);        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel8MouseExited
+
+    private void jLabel3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseEntered
+       
+                  jLabel3.setForeground(Color.CYAN);
+     // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel3MouseEntered
+
+    private void jLabel3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseExited
+        jLabel3.setForeground(Color.white);        // TODO add your handling code here:
+ // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel3MouseExited
+
+    private void jLabel5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseEntered
+                       jLabel5.setForeground(Color.CYAN);
+   // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel5MouseEntered
+
+    private void jLabel5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseExited
+                            jLabel5.setForeground(Color.white);
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel5MouseExited
+
+    private void jLabel1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseEntered
+         jLabel1.setForeground(Color.CYAN);
+    }//GEN-LAST:event_jLabel1MouseEntered
+
+    private void jLabel1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseExited
+       jLabel1.setForeground(Color.white);
+    }//GEN-LAST:event_jLabel1MouseExited
+
+    private void jLabel7MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseEntered
+       jLabel7.setForeground(Color.CYAN);
+    }//GEN-LAST:event_jLabel7MouseEntered
+
+    private void jLabel7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseExited
+        jLabel7.setForeground(Color.white);
+    }//GEN-LAST:event_jLabel7MouseExited
 
     /**
      * @param args the command line arguments
