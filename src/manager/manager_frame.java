@@ -131,6 +131,9 @@ public class manager_frame extends javax.swing.JFrame {
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 jLabel3MouseExited(evt);
             }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabel3MousePressed(evt);
+            }
         });
         panelGradient4.add(jLabel3);
         jLabel3.setBounds(0, 10, 280, 70);
@@ -155,6 +158,9 @@ public class manager_frame extends javax.swing.JFrame {
         jLabel5.setText(" Customers Info");
         jLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel5MouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jLabel5MouseEntered(evt);
             }
@@ -185,6 +191,9 @@ public class manager_frame extends javax.swing.JFrame {
         jLabel8.setText("  Employee info");
         jLabel8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel8MouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jLabel8MouseEntered(evt);
             }
@@ -230,6 +239,9 @@ public class manager_frame extends javax.swing.JFrame {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 jLabel1MouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabel1MousePressed(evt);
             }
         });
         panelGradient1.add(jLabel1);
@@ -286,9 +298,7 @@ public class manager_frame extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel7MouseClicked
 
     private void panelGradient6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelGradient6MouseClicked
-        this.setVisible(false);
-        ViewCustomersFrame view=new ViewCustomersFrame();
-        view.setVisible(true);
+    
     }//GEN-LAST:event_panelGradient6MouseClicked
 
     private void jLabel8MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseEntered
@@ -338,6 +348,31 @@ public class manager_frame extends javax.swing.JFrame {
     private void jLabel7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseExited
         jLabel7.setForeground(Color.white);
     }//GEN-LAST:event_jLabel7MouseExited
+
+    private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
+this.setVisible(false);
+        emplyeeInfo_frame employeeFrame=new emplyeeInfo_frame();
+        employeeFrame.setVisible(true);                     // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel8MouseClicked
+
+    private void jLabel3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MousePressed
+   this.setVisible(false);
+        manager_products_frame y =new manager_products_frame();
+        y.setVisible(true);        
+    }//GEN-LAST:event_jLabel3MousePressed
+
+    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+    this.setVisible(false);
+        ViewCustomersFrame view=new ViewCustomersFrame();
+        view.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel5MouseClicked
+
+    private void jLabel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MousePressed
+  this.setVisible(false);
+        login x= new login();
+        x.setVisible(true);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel1MousePressed
 
     /**
      * @param args the command line arguments

@@ -28,6 +28,7 @@ import javax.swing.table.TableRowSorter;
 import manager.manager_frame;
 import net.proteanit.sql.DbUtils;
 import billing_system_project.login;
+import cashier.newCustomerFrame;
 
 /**
  *
@@ -125,8 +126,10 @@ public class ViewCustomersFrame extends javax.swing.JFrame {
         lab = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         sort = new javax.swing.JComboBox<>();
-        add = new javax.swing.JButton();
-        Make_Bill = new javax.swing.JButton();
+        panelGradient1 = new cashier.PanelGradient();
+        jLabel1 = new javax.swing.JLabel();
+        panelGradient2 = new cashier.PanelGradient();
+        jLabel4 = new javax.swing.JLabel();
 
         jToolBar1.setRollover(true);
 
@@ -137,8 +140,8 @@ public class ViewCustomersFrame extends javax.swing.JFrame {
         setForeground(new java.awt.Color(51, 255, 204));
         setResizable(false);
 
-        kGradientPanel1.setkEndColor(new java.awt.Color(0, 153, 153));
-        kGradientPanel1.setkStartColor(new java.awt.Color(150, 222, 218));
+        kGradientPanel1.setkEndColor(new java.awt.Color(0, 153, 255));
+        kGradientPanel1.setkStartColor(new java.awt.Color(0, 153, 204));
 
         jScrollPane1.setBackground(new java.awt.Color(204, 255, 153));
         jScrollPane1.setBorder(null);
@@ -168,6 +171,7 @@ public class ViewCustomersFrame extends javax.swing.JFrame {
         jScrollPane1.setViewportView(CustomersTable);
         CustomersTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
+        keytext.setToolTipText("General Search");
         keytext.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 keytextActionPerformed(evt);
@@ -179,15 +183,16 @@ public class ViewCustomersFrame extends javax.swing.JFrame {
             }
         });
 
-        kGradientPanel2.setkEndColor(new java.awt.Color(185, 134, 84));
+        kGradientPanel2.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
+        kGradientPanel2.setkEndColor(new java.awt.Color(255, 204, 0));
         kGradientPanel2.setkGradientFocus(200);
         kGradientPanel2.setkStartColor(new java.awt.Color(255, 209, 0));
         kGradientPanel2.setMaximumSize(new java.awt.Dimension(800, 800));
 
-        labelbutton.setFont(new java.awt.Font("Yu Gothic UI", 3, 14)); // NOI18N
+        labelbutton.setFont(new java.awt.Font("The Bold Font", 1, 24)); // NOI18N
         labelbutton.setForeground(new java.awt.Color(255, 255, 255));
         labelbutton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelbutton.setText("LOGOUT");
+        labelbutton.setText("LOG OUT");
         labelbutton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         labelbutton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -199,26 +204,23 @@ public class ViewCustomersFrame extends javax.swing.JFrame {
         kGradientPanel2.setLayout(kGradientPanel2Layout);
         kGradientPanel2Layout.setHorizontalGroup(
             kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(labelbutton, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(labelbutton, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
         );
         kGradientPanel2Layout.setVerticalGroup(
             kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(labelbutton, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(labelbutton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
         jLabel2.setBackground(new java.awt.Color(255, 0, 102));
         jLabel2.setFont(new java.awt.Font("Bahnschrift", 3, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Search");
+        jLabel2.setText("General Search");
 
         lab.setBackground(new java.awt.Color(255, 255, 255));
-        lab.setFont(new java.awt.Font("Verdana", 3, 18)); // NOI18N
+        lab.setFont(new java.awt.Font("Perpetua Titling MT", 1, 24)); // NOI18N
         lab.setForeground(new java.awt.Color(255, 255, 255));
         lab.setText("CUSTOMER INFORMATION");
         lab.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -237,14 +239,48 @@ public class ViewCustomersFrame extends javax.swing.JFrame {
             }
         });
 
-        add.setText("New Customer");
-        add.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addActionPerformed(evt);
+        panelGradient1.setBackground(new java.awt.Color(255, 149, 11));
+        panelGradient1.setColorGradient(new java.awt.Color(255, 51, 51));
+        panelGradient1.setRadius(30);
+
+        jLabel1.setFont(new java.awt.Font("The Bold Font", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Add new customer");
+        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel1MouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabel1MousePressed(evt);
             }
         });
+        panelGradient1.add(jLabel1);
+        jLabel1.setBounds(10, 0, 170, 50);
 
-        Make_Bill.setText("Make_BIill");
+        panelGradient2.setBackground(new java.awt.Color(255, 204, 0));
+        panelGradient2.setColorGradient(new java.awt.Color(255, 153, 0));
+        panelGradient2.setRadius(30);
+
+        jLabel4.setFont(new java.awt.Font("The Bold Font", 1, 30)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Make Bill");
+        jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel4MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel4MouseExited(evt);
+            }
+        });
+        panelGradient2.add(jLabel4);
+        jLabel4.setBounds(10, 0, 170, 50);
 
         javax.swing.GroupLayout kGradientPanel1Layout = new javax.swing.GroupLayout(kGradientPanel1);
         kGradientPanel1.setLayout(kGradientPanel1Layout);
@@ -254,32 +290,30 @@ public class ViewCustomersFrame extends javax.swing.JFrame {
                 .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(kGradientPanel1Layout.createSequentialGroup()
                         .addContainerGap()
+                        .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                                .addGap(48, 48, 48)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(keytext, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(378, 378, 378))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)))
+                    .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
                         .addComponent(lab)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(sort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, kGradientPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, kGradientPanel1Layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                                .addComponent(Make_Bill, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 234, Short.MAX_VALUE)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(12, 12, 12)
-                                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 272, Short.MAX_VALUE))
-                                    .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                                        .addComponent(keytext, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(kGradientPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                                .addComponent(add)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                        .addComponent(sort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(41, 41, 41))
+            .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                .addGap(54, 54, 54)
+                .addComponent(panelGradient2, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(71, 71, 71)
+                .addComponent(panelGradient1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(kGradientPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31))
         );
         kGradientPanel1Layout.setVerticalGroup(
             kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -289,26 +323,24 @@ public class ViewCustomersFrame extends javax.swing.JFrame {
                     .addComponent(lab, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(sort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                    .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                        .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(add, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(17, 17, 17)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                        .addGap(5, 5, 5)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
                         .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(keytext, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Make_Bill, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
-                        .addComponent(kGradientPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(73, Short.MAX_VALUE))))
+                            .addComponent(keytext, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                        .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(panelGradient1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(panelGradient2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(kGradientPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(26, 26, 26))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -361,11 +393,6 @@ m1.setVisible(true);
 lab.setForeground(Color.WHITE);        // TODO add your handling code here:
     }//GEN-LAST:event_labMouseExited
 
-    private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
-        newCustomerFrame newcustomer = new newCustomerFrame();
-        newcustomer.setVisible(true);dispose();
-    }//GEN-LAST:event_addActionPerformed
-
     private void sortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sortActionPerformed
         String sort_by;
         String query;
@@ -395,6 +422,28 @@ lab.setForeground(Color.WHITE);        // TODO add your handling code here:
             System.out.println(ee.getMessage());
         }
     }//GEN-LAST:event_sortActionPerformed
+
+    private void jLabel1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseEntered
+        jLabel1.setForeground(Color.CYAN);
+    }//GEN-LAST:event_jLabel1MouseEntered
+
+    private void jLabel1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseExited
+      jLabel1.setForeground(Color.white);
+    }//GEN-LAST:event_jLabel1MouseExited
+
+    private void jLabel4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseEntered
+         jLabel4.setForeground(Color.CYAN);
+    }//GEN-LAST:event_jLabel4MouseEntered
+
+    private void jLabel4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseExited
+        jLabel4.setForeground(Color.white);
+    }//GEN-LAST:event_jLabel4MouseExited
+
+    private void jLabel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MousePressed
+        this.setVisible(false);
+        newCustomerFrame newcust=new newCustomerFrame();
+        newcust.setVisible(true);
+    }//GEN-LAST:event_jLabel1MousePressed
 
     /**
      * @param args the command line arguments
@@ -446,10 +495,10 @@ lab.setForeground(Color.WHITE);        // TODO add your handling code here:
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable CustomersTable;
-    private javax.swing.JButton Make_Bill;
-    private javax.swing.JButton add;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JToolBar jToolBar1;
     private keeptoo.KGradientPanel kGradientPanel1;
@@ -457,6 +506,8 @@ lab.setForeground(Color.WHITE);        // TODO add your handling code here:
     private javax.swing.JTextField keytext;
     private javax.swing.JLabel lab;
     private javax.swing.JLabel labelbutton;
+    private cashier.PanelGradient panelGradient1;
+    private cashier.PanelGradient panelGradient2;
     private javax.swing.JComboBox<String> sort;
     // End of variables declaration//GEN-END:variables
 }

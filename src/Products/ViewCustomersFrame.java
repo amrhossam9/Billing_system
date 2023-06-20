@@ -217,7 +217,7 @@ public class ViewCustomersFrame extends javax.swing.JFrame {
         jLabel2.setText("General Search");
 
         lab.setBackground(new java.awt.Color(255, 255, 255));
-        lab.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 36)); // NOI18N
+        lab.setFont(new java.awt.Font("Tw Cen MT", 1, 36)); // NOI18N
         lab.setForeground(new java.awt.Color(255, 255, 255));
         lab.setText("CUSTOMER INFORMATION");
         lab.addMouseListener(new java.awt.event.MouseAdapter() {
