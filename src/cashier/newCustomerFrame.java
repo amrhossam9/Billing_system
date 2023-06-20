@@ -3,12 +3,8 @@ package cashier;
 import db_connection.db_connection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import net.proteanit.sql.DbUtils;
-import java.time.format.DateTimeFormatter;  
-import java.time.LocalDateTime;    
-
+import javax.swing.JOptionPane;
 public class newCustomerFrame extends javax.swing.JFrame {
     
     public newCustomerFrame() {
@@ -187,18 +183,45 @@ public class newCustomerFrame extends javax.swing.JFrame {
         phone = phoneNumber.getText();
         address = adressfield.getText();
         membership = (String) membershipType.getSelectedItem();
-        try{
-            Connection conn=db_connection.connect();
-            query = "insert into customer(first_name,last_name,phone,address,membership) values(?,?,?,?,?);";
-            PreparedStatement stmt = conn.prepareStatement(query);
-            stmt.setString(1, first_name);stmt.setString(2, last_name);stmt.setString(3, phone);
-            stmt.setString(4, address);stmt.setString(5, membership);
-            stmt.execute();
-        }catch (SQLException ee){
-            System.out.println(ee.getMessage());
-        }catch(Exception ee){
-            System.out.println(ee.getMessage());
+        if(phone.isEmpty()||first_name.isEmpty()||last_name.isEmpty()||address.isEmpty()||membership.isEmpty())
+        {
+           JOptionPane.showMessageDialog(this, "Enter all the fields");
         }
+        else if(phone.length() != 11 || !phone.startsWith("01")|| phone.contains("[a-zA-Z]+"))
+        {
+            JOptionPane.showMessageDialog(this, "Enter valid phone number");
+       }
+        else{
+                try{
+                Connection conn=db_connection.connect();
+                query = """
+                         DECLARE @ids TABLE (id INT);
+                         INSERT INTO customer (first_name, last_name, membership)
+                                            OUTPUT inserted.customer_id INTO @ids
+                                            VALUES (?,?,?);
+
+                                            DECLARE @cus_id INT = (SELECT TOP 1 id FROM @ids);
+
+                                            INSERT INTO cus_phone (id, phone)
+                                            OUTPUT inserted.id INTO @ids
+                                            VALUES (@cus_id,?);
+
+                                            DECLARE @phone_id INT = (SELECT TOP 1 id FROM @ids);
+
+                                            INSERT INTO cus_address (id, address)
+                                            VALUES(@cus_id,?);
+                        """;
+                PreparedStatement stmt = conn.prepareStatement(query);
+                stmt.setString(1, first_name);stmt.setString(2, last_name);stmt.setString(3, membership);
+                stmt.setString(4, phone);stmt.setString(5, address);
+                stmt.execute();
+            }catch (SQLException ee){
+                System.out.println(ee.getMessage());
+            }catch(Exception ee){
+                System.out.println(ee.getMessage());
+            }
+        }
+            
     }//GEN-LAST:event_addActionPerformed
 
     private void firstNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_firstNameActionPerformed
@@ -219,7 +242,7 @@ public class newCustomerFrame extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 this.setVisible(false);
-cashierFrame c1=new cashierFrame();
+ViewCustomersFrame c1=new ViewCustomersFrame();
 c1.setVisible(true);
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
