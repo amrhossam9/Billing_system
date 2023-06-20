@@ -15,10 +15,6 @@ import javax.swing.JOptionPane;
 import manager.manager_frame;
 import net.proteanit.sql.DbUtils;
 
-/**
- *
- * newwwwwwwwwwwww
- */
 public class stockmanager_products_frame extends javax.swing.JFrame {
 
    //fetch the databse into the table
