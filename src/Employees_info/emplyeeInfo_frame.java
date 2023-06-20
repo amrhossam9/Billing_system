@@ -41,7 +41,9 @@ public class emplyeeInfo_frame extends javax.swing.JFrame {
                 String selectedColoumns = "employee_id,name,role,phone,address,gender,sallary";
 
                 PreparedStatement stmt = con.prepareStatement(
-                        String.format("select %s from employee",selectedColoumns));
+                        String.format("select %s from employee inner join emp_phone "
+                                + "on employee.employee_id = emp_phone.id inner join emp_address "
+                                + "on employee.employee_id = emp_address.id",selectedColoumns));
 
                 ResultSet resultSet = stmt.executeQuery();
                 
@@ -50,6 +52,8 @@ public class emplyeeInfo_frame extends javax.swing.JFrame {
             } catch (SQLException ex) {
                 System.out.println(ex);
             }
+        displayAllEmployees.setVisible(true);
+        addNewEmployee.setVisible(false);
     }
 
     /**
@@ -429,11 +433,14 @@ public class emplyeeInfo_frame extends javax.swing.JFrame {
                 String selectedColoumns = "employee_id,name,role,phone,address,gender,sallary";
 
                 PreparedStatement stmt = con.prepareStatement(
-                        String.format("select %s from employee where %s = ?",selectedColoumns,s));
+                        String.format("select %s from employee inner join emp_phone "
+                                + "on employee.employee_id = emp_phone.id inner join emp_address "
+                                + "on employee.employee_id = emp_address.id where %s = ?",selectedColoumns,s));
                 
                 stmt.setString(1, searchField.getText().trim());
 
                 ResultSet resultSet = stmt.executeQuery();
+                
                 
                 EmployeeInfo.setModel(DbUtils.resultSetToTableModel(resultSet));
 
@@ -441,7 +448,6 @@ public class emplyeeInfo_frame extends javax.swing.JFrame {
                 System.out.println(ex);
             }
         }
-        
     }//GEN-LAST:event_searchButtonActionPerformed
 
     private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
@@ -470,62 +476,91 @@ public class emplyeeInfo_frame extends javax.swing.JFrame {
 
     private void updateInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateInfoActionPerformed
         // TODO add your handling code here:
-        int row =        EmployeeInfo.getSelectedRow();
-        String id =      EmployeeInfo.getValueAt(row, 0).toString();
-        String name =    NameField.getText();
-        String role =    RoleField.getText();
-        int phone =      Integer.parseInt(PhoneField.getText());
-        String address = AddressField.getText();
-        float sallary =  Float.parseFloat(SalaryField.getText());
-        
-        
-        try{
-            PreparedStatement stmt = con.prepareStatement("UPDATE employee SET"
-                                                        + " name = ?,phone = ?,address= ?,role = ?,sallary = ? "
-                                                        + "WHERE employee_id = ?;");
-                
-                stmt.setString(1, name);
-                stmt.setInt(2, phone);
-                stmt.setString(3, address);
-                stmt.setString(4, role);
-                stmt.setFloat(5, sallary);
-                stmt.setString(6, id);
-
-                stmt.executeQuery();
-                
-                
-        }catch (SQLException ex) {
-                System.out.println(ex);
+        if(EmployeeInfo.getSelectionModel().isSelectionEmpty())
+        {
+            JOptionPane.showMessageDialog(this, "Choose an Employee");
         }
+        else
+        {
+            int row =        EmployeeInfo.getSelectedRow();
+            String id =      EmployeeInfo.getValueAt(row, 0).toString();
+            String name =    NameField.getText();
+            String role =    RoleField.getText();
+            String  phone =  PhoneField.getText();
+            String address = AddressField.getText();
+            float sallary =  Float.parseFloat(SalaryField.getText());
 
-        try {
+            if(NameField.getText().isEmpty()||RoleField.getText().isEmpty()||PhoneField.getText().isEmpty()||
+                    AddressField.getText().isEmpty()||SalaryField.getText().isEmpty())
+            {
+                JOptionPane.showMessageDialog(this, "Enter all the fields");
+            }
+            else if(PhoneField.getText().length() != 11 || !PhoneField.getText().startsWith("01")
+                    || PhoneField.getText().contains("[a-zA-Z]+"))
+            {
+                JOptionPane.showMessageDialog(this, "Enter valid phone number");
+            }
+            else
+            {
+                try{
+                    PreparedStatement stmt = con.prepareStatement("BEGIN TRANSACTION;"
+                                                                    +"DECLARE @emp_id INT = ?; "
+                                                                    +"UPDATE employee SET name = ?,role = ?,sallary = ? WHERE employee.employee_id = @emp_id; "
+                                                                    +"Update emp_phone SET phone = ? where id =@emp_id;" 
+                                                                    +"Update emp_address SET address = ? where id =@emp_id; "
+                                                                    + "COMMIT TRANSACTION;");
+                        stmt.setString(1, id);
+                        stmt.setString(2, name);
+                        stmt.setString(3, role);
+                        stmt.setFloat(4, sallary);
+                        stmt.setString(5, phone);
+                        stmt.setString(6, address);
+                        stmt.executeQuery();
+                }
+                catch (SQLException ex) {
+                        System.out.println(ex);
+                }
 
-            String selectedColoumns = "employee_id,name,role,phone,address,gender,sallary";
+                try 
+                {
+                    String selectedColoumns = "employee_id,name,role,phone,address,gender,sallary";
 
-            PreparedStatement stmt = con.prepareStatement(
-                    String.format("select %s from employee",selectedColoumns));
+                    PreparedStatement stmt = con.prepareStatement(
+                            String.format("select %s from employee inner join emp_phone "
+                                        + "on employee.employee_id = emp_phone.id inner join emp_address "
+                                        + "on employee.employee_id = emp_address.id",selectedColoumns));
 
-            ResultSet resultSet = stmt.executeQuery();
+                    ResultSet resultSet = stmt.executeQuery();
 
-            EmployeeInfo.setModel(DbUtils.resultSetToTableModel(resultSet));
+                    EmployeeInfo.setModel(DbUtils.resultSetToTableModel(resultSet));
 
-        } catch (SQLException ex) {
-            System.out.println(ex);
+                } 
+                catch (SQLException ex) {
+                    System.out.println(ex);
+                }
+            }
         }
+    
     }//GEN-LAST:event_updateInfoActionPerformed
 
     private void addEmployeeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addEmployeeButtonActionPerformed
         // TODO add your handling code here:
+        String employeeAddress = employeeAddressField.getText();
         if(employeeNameField.getText().isEmpty()||employeePhoneField.getText().isEmpty()||employeeAddressField.getText().isEmpty()||
                 employeePasswordField.getPassword().length == 0||employeeSallaryField.getText().isEmpty())
         {
             JOptionPane.showMessageDialog(this, "Enter all the fields");
         }
+        else if(employeePhoneField.getText().length() != 11 || !employeePhoneField.getText().startsWith("01")
+                || employeePhoneField.getText().contains("[a-zA-Z]+"))
+        {
+            JOptionPane.showMessageDialog(this, "Enter valid phone number");
+        }
         else
         {
             String EmployeeNameField = employeeNameField.getText(),
                employeePhone = employeePhoneField.getText(),
-               employeeAddress = employeeAddressField.getText(),
+               //employeeAddress = employeeAddressField.getText(),
                employeeGender = genderComboBox.getSelectedItem().toString(),
                EmployeePassword = new String (employeePasswordField.getPassword()),
                employeeSallary = employeeSallaryField.getText(),
@@ -533,52 +568,115 @@ public class emplyeeInfo_frame extends javax.swing.JFrame {
         
             PreparedStatement stmt;
             try {
-                
+
                 stmt = con.prepareStatement("Select *"
-                        + "from employee where phone = ?");
-                stmt.setInt(1, Integer.parseInt(employeePhone));
-                
+                        + "from employee inner join emp_phone "
+                        + "on employee.employee_id = emp_phone.id inner join emp_address "
+                        + "on employee.employee_id = emp_address.id where phone = ?");
+                stmt.setString(1, employeePhone);
+
                 ResultSet resultSet= stmt.executeQuery();
-                
+
                 if(resultSet.next() == true)
                 {
                     JOptionPane.showMessageDialog(this, "User already exist the phone number is saved in the database");
                 }
                 else
                 {
-                    stmt = con.prepareStatement("INSERT INTO employee ("
-                        + "name,phone,address,gender,role,password,sallary) "
-                        + "VALUES(?,?,?,?,?,?,?);");
+                    stmt = con.prepareStatement("DECLARE @ids TABLE (id INT);\n" +
+                                                "\n" +
+                                                "INSERT INTO employee (name, gender, role, password, sallary)\n" +
+                                                "OUTPUT inserted.employee_id INTO @ids\n" +
+                                                "VALUES (?,?,?,?,?);\n" +
+                                                "\n" +
+                                                "DECLARE @emp_id INT = (SELECT TOP 1 id FROM @ids);\n" +
+                                                "\n" +
+                                                "INSERT INTO emp_phone (id, phone)\n" +
+                                                "OUTPUT inserted.id INTO @ids\n" +
+                                                "VALUES (@emp_id,?);\n" +
+                                                "\n" +
+                                                "DECLARE @phone_id INT = (SELECT TOP 1 id FROM @ids);\n" +
+                                                "\n" +
+                                                "INSERT INTO emp_address (id, address)\n" +
+                                                "VALUES (@emp_id,?);");
                     stmt.setString(1, EmployeeNameField);
-                    stmt.setInt(2, Integer.parseInt(employeePhone));
-                    stmt.setString(3, employeeAddress);
-                    stmt.setString(4, employeeGender);
-                    stmt.setString(5, EmployeeRole);
-                    stmt.setString(6, EmployeePassword);
-                    stmt.setFloat(7, Float.parseFloat(employeeSallary));
+                    stmt.setString(2, employeeGender);
+                    stmt.setString(3, EmployeeRole);
+                    stmt.setString(4, EmployeePassword);
+                    stmt.setFloat(5, Float.parseFloat(employeeSallary));
+                    stmt.setString(6, employeePhone);
+                    stmt.setString(7, employeeAddress);
 
                     stmt.executeQuery();
                     
                 } 
             } catch (SQLException ex) {
-                System.out.print(ex);
+                JOptionPane.showMessageDialog(null, "User added successfully");
+                try {
+
+                        String selectedColoumns = "employee_id,name,role,phone,address,gender,sallary";
+
+                        stmt = con.prepareStatement(
+                                String.format("select %s from employee inner join emp_phone "
+                                        + "on employee.employee_id = emp_phone.id inner join emp_address "
+                                        + "on employee.employee_id = emp_address.id",selectedColoumns));
+
+                        ResultSet resultSet = stmt.executeQuery();
+
+                        EmployeeInfo.setModel(DbUtils.resultSetToTableModel(resultSet));
+
+                } catch (SQLException ex1) {
+                }
+                displayAllEmployees.setVisible(true);
+                addNewEmployee.setVisible(false);
+                employeeNameField.setText("");
+                employeePhoneField.setText("");
+                employeeAddressField.setText("");
+                genderComboBox.setSelectedIndex(0);
+                employeePasswordField.setText("");
+                employeeSallaryField.setText("");
+                employeeRoleComboBox.setSelectedIndex(0);
             } 
-            JOptionPane.showMessageDialog(null, "User added successfully");
-                    displayAllEmployees.setVisible(true);
-                    addNewEmployee.setVisible(false);
+            
         }
-                 
+                       
     }//GEN-LAST:event_addEmployeeButtonActionPerformed
 
     private void newEmployeeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newEmployeeButtonActionPerformed
         // TODO add your handling code here:
         displayAllEmployees.setVisible(false);
+        addNewEmployee.setVisible(true);
     }//GEN-LAST:event_newEmployeeButtonActionPerformed
 
     private void backtoEmployeesDataButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backtoEmployeesDataButtonActionPerformed
         // TODO add your handling code here:
         displayAllEmployees.setVisible(true);
         addNewEmployee.setVisible(false);
+        
+        employeeNameField.setText("");
+        employeePhoneField.setText("");
+        employeeAddressField.setText("");
+        genderComboBox.setSelectedIndex(0);
+        employeePasswordField.setText("");
+        employeeSallaryField.setText("");
+        employeeRoleComboBox.setSelectedIndex(0);
+        
+        PreparedStatement stmt;
+        try {
+
+                        String selectedColoumns = "employee_id,name,role,phone,address,gender,sallary";
+
+                        stmt = con.prepareStatement(
+                                String.format("select %s from employee inner join emp_phone "
+                                        + "on employee.employee_id = emp_phone.id inner join emp_address "
+                                        + "on employee.employee_id = emp_address.id",selectedColoumns));
+
+                        ResultSet resultSet = stmt.executeQuery();
+
+                        EmployeeInfo.setModel(DbUtils.resultSetToTableModel(resultSet));
+
+        } catch (SQLException ex1) {
+        }
     }//GEN-LAST:event_backtoEmployeesDataButtonActionPerformed
 
     private void deleteEmployeeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteEmployeeButtonActionPerformed
@@ -587,7 +685,9 @@ public class emplyeeInfo_frame extends javax.swing.JFrame {
         String id =      EmployeeInfo.getValueAt(row, 0).toString();
 
         try{
-            PreparedStatement stmt = con.prepareStatement("Delete from employee "
+            PreparedStatement stmt = con.prepareStatement("Delete from employee inner join emp_phone "
+                                                        + "on employee.employee_id = emp_phone.id inner join emp_address "
+                                                        + "on employee.employee_id = emp_address.id"
                                                         + "WHERE employee_id = ?;");
                 
                 stmt.setString(1, id);
@@ -600,7 +700,9 @@ public class emplyeeInfo_frame extends javax.swing.JFrame {
             String selectedColoumns = "employee_id,name,role,phone,address,gender,sallary";
 
             PreparedStatement stmt = con.prepareStatement(
-                    String.format("select %s from employee",selectedColoumns));
+                    String.format("select %s from employee inner join emp_phone "
+                            + "on employee.employee_id = emp_phone.id inner join emp_address "
+                            + "on employee.employee_id = emp_address.id",selectedColoumns));
 
             ResultSet resultSet = stmt.executeQuery();
 
