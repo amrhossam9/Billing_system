@@ -86,7 +86,7 @@ public class manager_frame extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 36)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setIcon(new javax.swing.ImageIcon("B:\\DB Project BIlling\\DB Project BIlling\\Billing_system\\icons and images\\bill.png")); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/photos/bill.png"))); // NOI18N
         jLabel7.setText("  View Bills");
         jLabel7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -112,7 +112,7 @@ public class manager_frame extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 36)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setIcon(new javax.swing.ImageIcon("B:\\DB Project BIlling\\DB Project BIlling\\Billing_system\\icons and images\\ready-stock (1).png")); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/photos/ready-stock (1).png"))); // NOI18N
         jLabel3.setText(" Stock");
         jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         panelGradient4.add(jLabel3);
@@ -133,7 +133,7 @@ public class manager_frame extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setIcon(new javax.swing.ImageIcon("B:\\DB Project BIlling\\DB Project BIlling\\Billing_system\\icons and images\\costumer.png")); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/photos/costumer.png"))); // NOI18N
         jLabel5.setText("  Customers Info");
         jLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         panelGradient6.add(jLabel5);
@@ -154,7 +154,7 @@ public class manager_frame extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 28)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setIcon(new javax.swing.ImageIcon("B:\\DB Project BIlling\\DB Project BIlling\\Billing_system\\icons and images\\teamwork.png")); // NOI18N
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/photos/teamwork.png"))); // NOI18N
         jLabel8.setText("  Employee info");
         jLabel8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         panelGradient9.add(jLabel8);
@@ -165,7 +165,7 @@ public class manager_frame extends javax.swing.JFrame {
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
         jLabel6.setFont(new java.awt.Font("The Bold Font", 2, 48)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 51, 51));
-        jLabel6.setIcon(new javax.swing.ImageIcon("B:\\DB Project BIlling\\DB Project BIlling\\Billing_system\\icons and images\\profile.png")); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/photos/profile.png"))); // NOI18N
         jLabel6.setText("Manager Menu");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 550, 150));
 
@@ -185,14 +185,14 @@ public class manager_frame extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Trebuchet MS", 3, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setIcon(new javax.swing.ImageIcon("B:\\DB Project BIlling\\DB Project BIlling\\Billing_system\\icons and images\\logout.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/photos/logout_1.png"))); // NOI18N
         jLabel1.setText("Log Out");
         panelGradient1.add(jLabel1);
         jLabel1.setBounds(10, 0, 210, 70);
 
         getContentPane().add(panelGradient1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 460, 220, 70));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("B:\\Users\\medo4\\Downloads\\abstract-blur-supermarket.jpg")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/photos/abstract-blur-supermarket.jpg"))); // NOI18N
         jLabel2.setText("jLabel2");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -100, 930, 680));
 

@@ -145,7 +145,7 @@ public class login extends javax.swing.JFrame {
 
         jLabel4.setBackground(new java.awt.Color(153, 153, 153));
         jLabel4.setForeground(new java.awt.Color(102, 255, 255));
-        jLabel4.setIcon(new javax.swing.ImageIcon("B:\\DB Project BIlling\\DB Project BIlling\\Billing_system\\imagess frames\\06-loader_telega.gif")); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/photos/06-loader_telega.gif"))); // NOI18N
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 0, 610, 420));
 
         jLabel2.setBackground(new java.awt.Color(0, 0, 0));

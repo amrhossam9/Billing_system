@@ -247,7 +247,7 @@
           <Color blue="ff" green="ff" red="66" type="rgb"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="B:\DB Project BIlling\DB Project BIlling\Billing_system\imagess frames\06-loader_telega.gif"/>
+          <Image iconType="3" name="/photos/06-loader_telega.gif"/>
         </Property>
       </Properties>
       <Constraints>
