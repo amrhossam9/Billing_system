@@ -37,8 +37,14 @@ public class ViewCustomersFrame extends javax.swing.JFrame {
      * Creates new form ViewCustomersFrame
      */
     public ViewCustomersFrame() {
-        initComponents();
-        showdata();
+        try {
+            initComponents();
+            UIManager.setLookAndFeel(new FlatDarkLaf());
+            showdata();
+        } catch (UnsupportedLookAndFeelException ex) {
+            Logger.getLogger(ViewCustomersFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
        
     }
     public void showdata()
@@ -221,8 +227,6 @@ public class ViewCustomersFrame extends javax.swing.JFrame {
                 labMouseExited(evt);
             }
         });
-
-        jLabel3.setIcon(new javax.swing.ImageIcon("B:\\Users\\medo4\\Downloads\\search.png")); // NOI18N
 
         jButton1.setText("Search by full name");
         jButton1.addActionListener(new java.awt.event.ActionListener() {

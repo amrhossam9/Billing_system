@@ -117,9 +117,6 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Make_BIill"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Make_BillActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="searchText">
       <Properties>

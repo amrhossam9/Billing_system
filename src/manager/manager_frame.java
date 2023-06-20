@@ -39,130 +39,212 @@ public class manager_frame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        panelGradient3 = new manager.PanelGradient();
+        panelGradient5 = new manager.PanelGradient();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        panelGradient4 = new manager.PanelGradient();
+        jLabel3 = new javax.swing.JLabel();
+        panelGradient6 = new manager.PanelGradient();
+        jLabel5 = new javax.swing.JLabel();
+        panelGradient9 = new manager.PanelGradient();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        panelGradient1 = new manager.PanelGradient();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setText("Stock");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+        panelGradient3.setBackground(new java.awt.Color(40, 184, 213));
+        panelGradient3.setToolTipText("");
+        panelGradient3.setColorGradient(new java.awt.Color(2, 3, 68));
+        panelGradient3.setRadius(30);
+        panelGradient3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                panelGradient3MousePressed(evt);
             }
         });
 
-        jButton2.setText("Employees info");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+        panelGradient5.setBackground(new java.awt.Color(40, 184, 213));
+        panelGradient5.setToolTipText("");
+        panelGradient5.setColorGradient(new java.awt.Color(2, 3, 68));
+        panelGradient5.setRadius(30);
+
+        jLabel4.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Stock");
+        panelGradient5.add(jLabel4);
+        jLabel4.setBounds(30, 10, 60, 20);
+
+        panelGradient3.add(panelGradient5);
+        panelGradient5.setBounds(0, 0, 0, 0);
+
+        jLabel7.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 36)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setIcon(new javax.swing.ImageIcon("B:\\DB Project BIlling\\DB Project BIlling\\Billing_system\\icons and images\\bill.png")); // NOI18N
+        jLabel7.setText("  View Bills");
+        jLabel7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel7MouseClicked(evt);
+            }
+        });
+        panelGradient3.add(jLabel7);
+        jLabel7.setBounds(-10, 10, 280, 70);
+
+        getContentPane().add(panelGradient3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 330, 267, 88));
+
+        panelGradient4.setBackground(new java.awt.Color(40, 184, 213));
+        panelGradient4.setToolTipText("");
+        panelGradient4.setColorGradient(new java.awt.Color(2, 3, 68));
+        panelGradient4.setRadius(30);
+        panelGradient4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                panelGradient4MouseClicked(evt);
             }
         });
 
-        jButton3.setText("Customers info");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+        jLabel3.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 36)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setIcon(new javax.swing.ImageIcon("B:\\DB Project BIlling\\DB Project BIlling\\Billing_system\\icons and images\\ready-stock (1).png")); // NOI18N
+        jLabel3.setText(" Stock");
+        jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        panelGradient4.add(jLabel3);
+        jLabel3.setBounds(-20, 0, 260, 90);
+
+        getContentPane().add(panelGradient4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 210, 267, 87));
+
+        panelGradient6.setBackground(new java.awt.Color(40, 184, 213));
+        panelGradient6.setToolTipText("");
+        panelGradient6.setColorGradient(new java.awt.Color(2, 3, 68));
+        panelGradient6.setRadius(30);
+        panelGradient6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                panelGradient6MouseClicked(evt);
             }
         });
 
-        jButton4.setText("Bills");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+        jLabel5.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 24)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setIcon(new javax.swing.ImageIcon("B:\\DB Project BIlling\\DB Project BIlling\\Billing_system\\icons and images\\costumer.png")); // NOI18N
+        jLabel5.setText("  Customers Info");
+        jLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        panelGradient6.add(jLabel5);
+        jLabel5.setBounds(10, -10, 264, 98);
+
+        getContentPane().add(panelGradient6, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 330, 278, 88));
+
+        panelGradient9.setBackground(new java.awt.Color(40, 184, 213));
+        panelGradient9.setToolTipText("");
+        panelGradient9.setColorGradient(new java.awt.Color(2, 3, 68));
+        panelGradient9.setRadius(30);
+        panelGradient9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                panelGradient9MousePressed(evt);
             }
         });
 
-        jButton5.setText("Logout");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+        jLabel8.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 28)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setIcon(new javax.swing.ImageIcon("B:\\DB Project BIlling\\DB Project BIlling\\Billing_system\\icons and images\\teamwork.png")); // NOI18N
+        jLabel8.setText("  Employee info");
+        jLabel8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        panelGradient9.add(jLabel8);
+        jLabel8.setBounds(0, 0, 270, 90);
+
+        getContentPane().add(panelGradient9, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 210, 278, 87));
+
+        jLabel6.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel6.setFont(new java.awt.Font("The Bold Font", 2, 48)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 51, 51));
+        jLabel6.setIcon(new javax.swing.ImageIcon("B:\\DB Project BIlling\\DB Project BIlling\\Billing_system\\icons and images\\profile.png")); // NOI18N
+        jLabel6.setText("Manager Menu");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 550, 150));
+
+        jLabel9.setFont(new java.awt.Font("The Bold Font", 3, 48)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel9.setText("Manager Menu");
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 40, 520, 120));
+
+        panelGradient1.setBackground(new java.awt.Color(255, 102, 51));
+        panelGradient1.setColorGradient(new java.awt.Color(255, 255, 102));
+        panelGradient1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                panelGradient1MousePressed(evt);
             }
         });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(54, 54, 54)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(41, 41, 41)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(84, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton5)
-                .addGap(19, 19, 19))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(109, 109, 109)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
-                .addComponent(jButton5)
-                .addGap(29, 29, 29))
-        );
+        jLabel1.setFont(new java.awt.Font("Trebuchet MS", 3, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setIcon(new javax.swing.ImageIcon("B:\\DB Project BIlling\\DB Project BIlling\\Billing_system\\icons and images\\logout.png")); // NOI18N
+        jLabel1.setText("Log Out");
+        panelGradient1.add(jLabel1);
+        jLabel1.setBounds(10, 0, 210, 70);
+
+        getContentPane().add(panelGradient1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 460, 220, 70));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon("B:\\Users\\medo4\\Downloads\\abstract-blur-supermarket.jpg")); // NOI18N
+        jLabel2.setText("jLabel2");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -100, 930, 680));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-
-        this.setVisible(false);
-        login x= new login();
-        x.setVisible(true);
-
-
-    }//GEN-LAST:event_jButton5ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        this.setVisible(false);
+    private void panelGradient4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelGradient4MouseClicked
+    this.setVisible(false);
         manager_products_frame y =new manager_products_frame();
         y.setVisible(true);
 
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_panelGradient4MouseClicked
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        this.setVisible(false);
-        emplyeeInfo_frame employeeFrame=new emplyeeInfo_frame();
-        employeeFrame.setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-        this.setVisible(false);
-        ViewCustomersFrame v=new ViewCustomersFrame();
-        v.setVisible(true );
-        
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void panelGradient3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelGradient3MousePressed
         this.setVisible(false);
         try {
             getBills billsframe=new getBills();
             billsframe.setVisible(true);
-            
-            // TODO add your handling code here:
         } catch (SQLException ex) {
             Logger.getLogger(manager_frame.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_panelGradient3MousePressed
+
+    private void panelGradient9MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelGradient9MousePressed
+     this.setVisible(false);
+        emplyeeInfo_frame employeeFrame=new emplyeeInfo_frame();
+        employeeFrame.setVisible(true);             
+    }//GEN-LAST:event_panelGradient9MousePressed
+
+    private void panelGradient1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelGradient1MousePressed
+          this.setVisible(false);
+        login x= new login();
+        x.setVisible(true);
+
+    }//GEN-LAST:event_panelGradient1MousePressed
+
+    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
+        try {
+            this.setVisible(false);
+            getBills g1=new getBills();
+            g1.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(manager_frame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jLabel7MouseClicked
+
+    private void panelGradient6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelGradient6MouseClicked
+        this.setVisible(false);
+        ViewCustomersFrame view=new ViewCustomersFrame();
+        view.setVisible(true);
+    }//GEN-LAST:event_panelGradient6MouseClicked
 
     /**
      * @param args the command line arguments
@@ -211,10 +293,20 @@ public class manager_frame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private manager.PanelGradient panelGradient1;
+    private manager.PanelGradient panelGradient3;
+    private manager.PanelGradient panelGradient4;
+    private manager.PanelGradient panelGradient5;
+    private manager.PanelGradient panelGradient6;
+    private manager.PanelGradient panelGradient9;
     // End of variables declaration//GEN-END:variables
 }
