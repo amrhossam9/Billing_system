@@ -17,7 +17,7 @@ import net.proteanit.sql.DbUtils;
 
 /**
  *
- * @author abdoa
+ * newwwwwwwwwwwww
  */
 public class stockmanager_products_frame extends javax.swing.JFrame {
 
@@ -28,7 +28,8 @@ public class stockmanager_products_frame extends javax.swing.JFrame {
      
      db_connection c= new db_connection();
      Connection conn=c.connect();
-       String query = "SELECT * FROM  products";
+       String query = "SELECT product_id as Id,name as Name,price AS Price,discount AS Discount,quantity AS Quantity,brand_name AS Brand,category_name AS Category FROM  products,brands,categories "
+               + "where categories.id=products.category_id and brands.id = products.brand_id";
         PreparedStatement stmt = conn.prepareStatement(query);
          ResultSet rs = stmt.executeQuery();
          products_Table.setModel(DbUtils.resultSetToTableModel(rs));
@@ -42,68 +43,95 @@ public class stockmanager_products_frame extends javax.swing.JFrame {
         }
     }
     //check if the brand isn't in the database it insert it and add it to the combobox
-    public void check_brand(String brand){
+    public int check_brand(String brand){
         try{ 
      
      db_connection c= new db_connection();
             Connection conn=c.connect();
-           String query = "SELECT * FROM  brands where brand_name = ? ";
+           String query = "SELECT id FROM  brands where brand_name = ? ";
            PreparedStatement stmt = conn.prepareStatement(query);
            stmt.setString(1, brand);
          ResultSet rs = stmt.executeQuery();
          if(!rs.next()){
-              query = "insert into brands values  (?) ";
+              query = "insert into brands (brand_name) output inserted.id values(?) ";
              stmt = conn.prepareStatement(query);
              stmt.setString(1, brand);
-             stmt.execute();
-             brand_ComboBox.addItem(brand);
+           ResultSet rss = stmt.executeQuery();
+          //stmt.execute();
+            brand_ComboBox.addItem(brand);
              System.out.println("New brand added");
              message_Label.setText("New brand added");
-             
-         }
-         conn.close();
+             rss.next();
+             int id = Integer.parseInt( rss.getString("id"));
+             System.out.println(id);
+              conn.close();
          stmt.close();
+             return id;
+         }
+          else  {
+             int id =Integer.parseInt( rs.getString("id"));
+             System.out.println(id);
+              conn.close();
+         stmt.close();
+             return id;
+         }  
+        
             }
             
             catch (SQLException ee){
-            
+                
+                System.out.println("errrrrrror");
             ee.getMessage();
         }
+        return 0;
     } 
     //check if the category isn't in the database it insert it and add it to the combobox
-    public void check_category(String category){
+    public int check_category(String category){
           try{ 
      
      db_connection c= new db_connection();
             Connection conn=c.connect();
-           String query = "SELECT * FROM  categories where category_name = ? ";
+           String query = "SELECT id FROM  categories where category_name = ? ";
            PreparedStatement stmt = conn.prepareStatement(query);
            stmt.setString(1, category);
          ResultSet rs = stmt.executeQuery();
          if(!rs.next()){
-              query = "insert into categories values  (?) ";
+              query = "insert into categories (category_name) output inserted.id values(?) ";
              stmt = conn.prepareStatement(query);
              stmt.setString(1, category);
-             stmt.execute();
+           ResultSet rss = stmt.executeQuery();
              category_ComboBox.addItem(category);
              System.out.println("new category category");
               if("New brand added".equals(message_Label.getText())){
                  message_Label.setText("New brand and category added");
              }
              else
-              message_Label.setText("New category added");
+              {message_Label.setText("New category added");}
+               rss.next();
+             int id = Integer.parseInt( rss.getString("id"));
+             System.out.println(id);
+              conn.close();
+         stmt.close();
+             return id;
              
          }
-         conn.close();
+         else{
+         int id =Integer.parseInt( rs.getString("id"));
+             System.out.println(id);
+              conn.close();
          stmt.close();
+             return id;
             }
+          
+          }
             
             catch (SQLException ee){
             
             ee.getMessage();
         }
-        
+        return 0;
     }
+    
     
     public stockmanager_products_frame() {
         initComponents();
@@ -571,13 +599,13 @@ public class stockmanager_products_frame extends javax.swing.JFrame {
 
     private void find_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_find_ButtonActionPerformed
         
-
- try{ 
+try{ 
      
      db_connection c= new db_connection();
            String product_name = search_TextField.getText();
             Connection conn=c.connect();
-           String query = "SELECT * FROM  products where name like ? ";
+           String query = "SELECT product_id as Id,name as Name,price AS Price,discount AS Discount,quantity AS Quantity,brand_name AS Brand,category_name AS Category FROM  products,brands,categories "
+               + "where categories.id=products.category_id and brands.id = products.brand_id and name like ? ";
            PreparedStatement stmt = conn.prepareStatement(query);
            stmt.setString(1, "%"+product_name+"%");
          ResultSet rs = stmt.executeQuery();
@@ -603,7 +631,7 @@ public class stockmanager_products_frame extends javax.swing.JFrame {
 
     private void cat_filter_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cat_filter_ButtonActionPerformed
        
-        if(category_ComboBox.getSelectedIndex()==0){
+         if(category_ComboBox.getSelectedIndex()==0){
        
         fetch_products();
         }
@@ -614,7 +642,8 @@ public class stockmanager_products_frame extends javax.swing.JFrame {
         String cat_name= category_ComboBox.getSelectedItem().toString();
         db_connection c= new db_connection(); 
         Connection conn=c.connect();
-           String query = "SELECT * FROM  products where category_name = ? ";
+           String query ="SELECT product_id as Id,name as Name,price AS Price,discount AS Discount,quantity AS Quantity,brand_name AS Brand,category_name AS Category FROM  products,brands,categories "
+               + "where categories.id=products.category_id and brands.id = products.brand_id and category_name = ? " ;
            PreparedStatement stmt = conn.prepareStatement(query);
            stmt.setString(1, cat_name);
          ResultSet rs = stmt.executeQuery();
@@ -695,7 +724,8 @@ catch (SQLException ee){
         String brand_name= brand_ComboBox.getSelectedItem().toString();
         db_connection c= new db_connection(); 
         Connection conn=c.connect();
-           String query = "SELECT * FROM  products where brand_name = ? ";
+           String query ="SELECT product_id as Id,name as Name,price AS Price,discount AS Discount,quantity AS Quantity,brand_name AS Brand,category_name AS Category FROM  products,brands,categories "
+               + "where categories.id=products.category_id and brands.id = products.brand_id and brand_name = ? " ;
            PreparedStatement stmt = conn.prepareStatement(query);
            stmt.setString(1, brand_name);
          ResultSet rs = stmt.executeQuery();
@@ -764,16 +794,16 @@ fetch_products();
         try{
             db_connection c=new db_connection();
             Connection conn= c.connect() ;
-            check_brand(brand);
-            check_category(category);
+           int brand_id= check_brand(brand);
+            int cat_id=check_category(category);
             String query ="INSERT INTO products values (?,?,?,?,?,?)";
             PreparedStatement stmt =conn.prepareStatement(query);
             stmt.setString(1,name );
             stmt.setDouble(2, Double.parseDouble(price));
             stmt.setDouble(3,Double.parseDouble( discount));
             stmt.setInt(4, Integer.parseUnsignedInt(quantity));
-            stmt.setString(5, brand);
-            stmt.setString(6, category);
+            stmt.setInt(5,brand_id);
+            stmt.setInt(6, cat_id);
             stmt.execute();            
             fetch_products();
             JOptionPane.showMessageDialog(this, "Item Added ");
@@ -860,7 +890,7 @@ char c= evt.getKeyChar();
 
     private void delete_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delete_ButtonActionPerformed
 
-        String name=nameTextField.getText();
+         String name=nameTextField.getText();
         String price=price_TextField.getText();
         String discount =discount_TextField.getText();
         String quantity= quantity_TextField.getText();
@@ -926,16 +956,18 @@ char c= evt.getKeyChar();
              try{
             db_connection c=new db_connection();
             Connection conn= c.connect() ;
+            int brand_id= check_brand(brand);
+            int cat_id=check_category(category);
             int row = products_Table.getSelectedRow();
             int id=  Integer.parseInt(products_Table.getValueAt(row, 0).toString());
-            String query ="UPDATE products SET name =? ,price=? , discount =?, quantity=?, brand_name =? , category_name=? WHERE product_id = ?";
+            String query ="UPDATE products SET name =? ,price=? , discount =?, quantity=?, brand_id =? , category_id=? WHERE product_id = ?";
             PreparedStatement stmt =conn.prepareStatement(query);
             stmt.setString(1,name );
             stmt.setDouble(2, Double.parseDouble(price));
             stmt.setDouble(3,Double.parseDouble( discount));
             stmt.setInt(4, Integer.parseUnsignedInt(quantity));
-            stmt.setString(5, brand);
-            stmt.setString(6, category);
+            stmt.setInt(5, brand_id);
+            stmt.setInt(6, cat_id);
             stmt.setInt(7,id );
             stmt.execute();
             System.out.println("7777777777777777777777777777");

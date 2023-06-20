@@ -36,6 +36,11 @@ public class login extends javax.swing.JFrame {
         initComponents();
        
     }
+  public static int id_returned;
+    
+    public static int get_cashier_id(){//function to return cashier id---------->id
+        return id_returned;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

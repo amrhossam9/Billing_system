@@ -20,18 +20,17 @@ import net.proteanit.sql.DbUtils;
 public class manager_products_frame extends javax.swing.JFrame {
 
    
-    public void fetch_products(){
+   public void fetch_products(){
+
         try{ 
      
      db_connection c= new db_connection();
-           
-           //ResultSet rs =c.fetch("products");
-
-            Connection conn=c.connect();
-           String query = "SELECT * FROM  products";
-           PreparedStatement stmt = conn.prepareStatement(query);
+     Connection conn=c.connect();
+       String query = "SELECT product_id as Id,name as Name,price AS Price,discount AS Discount,quantity AS Quantity,brand_name AS Brand,category_name AS Category FROM  products,brands,categories "
+               + "where categories.id=products.category_id and brands.id = products.brand_id";
+        PreparedStatement stmt = conn.prepareStatement(query);
          ResultSet rs = stmt.executeQuery();
-                    products_Table.setModel(DbUtils.resultSetToTableModel(rs));
+         products_Table.setModel(DbUtils.resultSetToTableModel(rs));
          conn.close();
          stmt.close();
             }
@@ -41,7 +40,6 @@ public class manager_products_frame extends javax.swing.JFrame {
             ee.getMessage();
         }
     }
-    
     
     public manager_products_frame() {
         initComponents();
@@ -321,13 +319,14 @@ public class manager_products_frame extends javax.swing.JFrame {
 
     private void find_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_find_ButtonActionPerformed
         
-
- try{ 
+        
+try{ 
      
      db_connection c= new db_connection();
            String product_name = search_TextField.getText();
             Connection conn=c.connect();
-           String query = "SELECT * FROM  products where name like ? ";
+           String query = "SELECT product_id as Id,name as Name,price AS Price,discount AS Discount,quantity AS Quantity,brand_name AS Brand,category_name AS Category FROM  products,brands,categories "
+               + "where categories.id=products.category_id and brands.id = products.brand_id and name like ? ";
            PreparedStatement stmt = conn.prepareStatement(query);
            stmt.setString(1, "%"+product_name+"%");
          ResultSet rs = stmt.executeQuery();
@@ -341,6 +340,7 @@ public class manager_products_frame extends javax.swing.JFrame {
             ee.getMessage();
         }
 
+
     }//GEN-LAST:event_find_ButtonActionPerformed
 
     private void category_ComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_category_ComboBoxActionPerformed
@@ -353,7 +353,7 @@ public class manager_products_frame extends javax.swing.JFrame {
 
     private void cat_filter_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cat_filter_ButtonActionPerformed
        
-        if(category_ComboBox.getSelectedIndex()==0){
+          if(category_ComboBox.getSelectedIndex()==0){
        
         fetch_products();
         }
@@ -364,7 +364,8 @@ public class manager_products_frame extends javax.swing.JFrame {
         String cat_name= category_ComboBox.getSelectedItem().toString();
         db_connection c= new db_connection(); 
         Connection conn=c.connect();
-           String query = "SELECT * FROM  products where category_name = ? ";
+           String query ="SELECT product_id as Id,name as Name,price AS Price,discount AS Discount,quantity AS Quantity,brand_name AS Brand,category_name AS Category FROM  products,brands,categories "
+               + "where categories.id=products.category_id and brands.id = products.brand_id and category_name = ? " ;
            PreparedStatement stmt = conn.prepareStatement(query);
            stmt.setString(1, cat_name);
          ResultSet rs = stmt.executeQuery();
@@ -446,7 +447,8 @@ catch (SQLException ee){
         String brand_name= brand_ComboBox.getSelectedItem().toString();
         db_connection c= new db_connection(); 
         Connection conn=c.connect();
-           String query = "SELECT * FROM  products where brand_name = ? ";
+           String query ="SELECT product_id as Id,name as Name,price AS Price,discount AS Discount,quantity AS Quantity,brand_name AS Brand,category_name AS Category FROM  products,brands,categories "
+               + "where categories.id=products.category_id and brands.id = products.brand_id and brand_name = ? " ;
            PreparedStatement stmt = conn.prepareStatement(query);
            stmt.setString(1, brand_name);
          ResultSet rs = stmt.executeQuery();
