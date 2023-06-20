@@ -4,7 +4,7 @@
  */
 package billing_system_project;
 import Products.stockmanager_products_frame;
-import cashier.cashierFrame;
+import cashier.ViewCustomersFrame;
 import com.formdev.flatlaf.FlatDarkLaf;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -195,7 +195,7 @@ public class login extends javax.swing.JFrame {
                                     case 2:                                                                     //Cashier frame
                                     {
                                         this.setVisible(false);
-                                        cashierFrame cf=new cashierFrame();
+                                        ViewCustomersFrame cf=new ViewCustomersFrame();
                                         cf.setVisible(true);
                                     } 
                                         break;
