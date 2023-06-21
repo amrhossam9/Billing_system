@@ -363,8 +363,8 @@ public class ViewCustomersFrame extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void keytextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_keytextKeyReleased
-    //GEN-FIRST:event_keytextKeyReleased
+    private void keytextKeyReleased(java.awt.event.KeyEvent evt) {                                    
+//GEN-FIRST:event_keytextKeyReleased
         DefaultTableModel table=(DefaultTableModel) CustomersTable.getModel();
 
         String searchkey=keytext.getText();
@@ -461,40 +461,44 @@ static float discount;
         return id;
     }
  
-    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
-        //GEN-FIRST:event_jLabel4MouseClicked
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {                                     
+//GEN-FIRST:event_jLabel4MouseClicked
         // TODO add your handling code here:
         int row = CustomersTable.getSelectedRow();
-        id = Integer.parseInt(CustomersTable.getValueAt(row, 0).toString());
-        String memberShip = CustomersTable.getValueAt(row,4).toString();
-        discount = 0;
-        
-        
-        if(null != memberShip)
-        switch (memberShip) {
-            case "Gold":
-                discount = (float) 0.25;
-                break;
-            case "Silver":
-                discount = (float) 0.10;
-                break;
-            case "Bronze":
-                discount = (float) 0.05;
-                break;
-            case "none":
-                discount = (float) 0.00;
-                break;
-            case "Platinum":
-                discount = (float) 0.3;
-                break;
-            default:
-                break;
+        if(row > 0)
+        {
+            id = Integer.parseInt(CustomersTable.getValueAt(row, 0).toString());
+            String memberShip = CustomersTable.getValueAt(row,4).toString();
+            discount = 0;
+
+
+            if(null != memberShip)
+            switch (memberShip) {
+                case "Gold":
+                    discount = (float) 0.25;
+                    break;
+                case "Silver":
+                    discount = (float) 0.10;
+                    break;
+                case "Bronze":
+                    discount = (float) 0.05;
+                    break;
+                case "none":
+                    discount = (float) 0.00;
+                    break;
+                case "Platinum":
+                    discount = (float) 0.3;
+                    break;
+                default:
+                    break;
+            }
+            System.out.print(discount);
+            order_items ord = new order_items();
+            ord.setVisible(true);
+
+            this.setVisible(false);
         }
-        System.out.print(discount);
-        order_items ord = new order_items();
-        ord.setVisible(true);
         
-        this.setVisible(false);
     }//GEN-LAST:event_jLabel4MouseClicked
 
     /**

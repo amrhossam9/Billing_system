@@ -686,38 +686,42 @@ public class emplyeeInfo_frame extends javax.swing.JFrame {
     private void deleteEmployeeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteEmployeeButtonActionPerformed
         // TODO add your handling code here:
         int row =        EmployeeInfo.getSelectedRow();
-        String id =      EmployeeInfo.getValueAt(row, 0).toString();
+        
+        if(row >= 0)
+        {
+            String id =      EmployeeInfo.getValueAt(row, 0).toString();
+            try{
+                PreparedStatement stmt = con.prepareStatement("BEGIN TRANSACTION;\n" +
+                                                            "DECLARE @empID INT = ?;\n" +
+                                                            "Delete from emp_phone where id = @empID;\n" +
+                                                            "Delete from emp_address where id = @empID;\n" +
+                                                            "Delete from employee where employee_id = @empID;\n" +
+                                                            "COMMIT TRANSACTION;");
 
-        try{
-            PreparedStatement stmt = con.prepareStatement("BEGIN TRANSACTION;\n" +
-                                                        "DECLARE @empID INT = ?;\n" +
-                                                        "Delete from emp_phone where id = @empID;\n" +
-                                                        "Delete from emp_address where id = @empID;\n" +
-                                                        "Delete from employee where employee_id = @empID;\n" +
-                                                        "COMMIT TRANSACTION;");
-                
-                stmt.setString(1, id);
-                stmt.executeQuery();
-                System.out.print("HERE");
-        }catch (SQLException ex) {
+                    stmt.setString(1, id);
+                    stmt.executeQuery();
+                    System.out.print("HERE");
+            }catch (SQLException ex) {
+                    System.out.println(ex);
+            }  
+            try {
+
+                String selectedColoumns = "employee_id,name,role,phone,address,gender,sallary";
+
+                PreparedStatement stmt = con.prepareStatement(
+                        String.format("select %s from employee inner join emp_phone "
+                                + "on employee.employee_id = emp_phone.id inner join emp_address "
+                                + "on employee.employee_id = emp_address.id",selectedColoumns));
+
+                ResultSet resultSet = stmt.executeQuery();
+
+                EmployeeInfo.setModel(DbUtils.resultSetToTableModel(resultSet));
+
+            } catch (SQLException ex) {
                 System.out.println(ex);
-        }  
-        try {
-
-            String selectedColoumns = "employee_id,name,role,phone,address,gender,sallary";
-
-            PreparedStatement stmt = con.prepareStatement(
-                    String.format("select %s from employee inner join emp_phone "
-                            + "on employee.employee_id = emp_phone.id inner join emp_address "
-                            + "on employee.employee_id = emp_address.id",selectedColoumns));
-
-            ResultSet resultSet = stmt.executeQuery();
-
-            EmployeeInfo.setModel(DbUtils.resultSetToTableModel(resultSet));
-
-        } catch (SQLException ex) {
-            System.out.println(ex);
+            }
         }
+  
     }//GEN-LAST:event_deleteEmployeeButtonActionPerformed
 
     private void jLabel7MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseEntered

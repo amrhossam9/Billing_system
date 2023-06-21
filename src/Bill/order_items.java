@@ -320,95 +320,105 @@ public class order_items extends javax.swing.JFrame {
     }//GEN-LAST:event_BillTableMouseClicked
 
     private void SubmitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitButtonActionPerformed
-        int index = 0;
-        int orderID = getOrderID();
-        Connection conn = null;
-        PreparedStatement stmt;
-        while(index < BillTable.getRowCount())
+        
+        if(BillTable.getRowCount()>0)
         {
-            int productID = Integer.parseInt(BillTable.getValueAt(index, 0).toString());
-            int quantity = Integer.parseInt(BillTable.getValueAt(index, 3).toString());
+            int index = 0;
+            int orderID = getOrderID();
+            Connection conn = null;
+            PreparedStatement stmt;
+            while(index < BillTable.getRowCount())
+            {
+                int productID = Integer.parseInt(BillTable.getValueAt(index, 0).toString());
+                int quantity = Integer.parseInt(BillTable.getValueAt(index, 3).toString());
 
-            db_connection c = new db_connection();
-            conn = c.connect();
-            try {
-                System.out.println(customer_id);
-                System.out.println(cashier_id);
-                stmt = conn.prepareStatement(
-                    """
-                    BEGIN TRANSACTION;
-                    DECLARE @productID INT = ?;
-                    DECLARE @quantityVar INT = ?;
-                    DECLARE @orderID INT = ?;
-                    Insert into order_items (quantity,order_id,product_id) values (@quantityVar,@orderID,@productID);
-                    DECLARE @oldQuantityVar INT = 0;
-                    SELECT @oldQuantityVar=quantity FROM products where product_id = @productID;
-                    UPDATE products set quantity = (@oldQuantityVar-@quantityVar) where product_id = @productID;
-                    COMMIT TRANSACTION;""");
+                db_connection c = new db_connection();
+                conn = c.connect();
+                try {
+                    System.out.println(customer_id);
+                    System.out.println(cashier_id);
+                    stmt = conn.prepareStatement(
+                        """
+                        BEGIN TRANSACTION;
+                        DECLARE @productID INT = ?;
+                        DECLARE @quantityVar INT = ?;
+                        DECLARE @orderID INT = ?;
+                        Insert into order_items (quantity,order_id,product_id) values (@quantityVar,@orderID,@productID);
+                        DECLARE @oldQuantityVar INT = 0;
+                        SELECT @oldQuantityVar=quantity FROM products where product_id = @productID;
+                        UPDATE products set quantity = (@oldQuantityVar-@quantityVar) where product_id = @productID;
+                        COMMIT TRANSACTION;""");
 
-                    stmt.setInt(1, productID);
-                    stmt.setInt(2, quantity);
-                    stmt.setInt(3, orderID);
+                        stmt.setInt(1, productID);
+                        stmt.setInt(2, quantity);
+                        stmt.setInt(3, orderID);
 
-                    stmt.execute();
+                        stmt.execute();
 
-                    System.out.println("SSS");
+                        System.out.println("SSS");
+                    } catch (SQLException ex) {
+                        Logger.getLogger(order_items.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                    index++;
+                }
+
+                JOptionPane.showMessageDialog(null, "The order made successfully order id = "+orderID);
+
+                ViewCustomersFrame cashier = new ViewCustomersFrame();
+                cashier.setVisible(true);
+                this.setVisible(false);
+                try {
+                    stmt = conn.prepareStatement("delete from products where quantity = 0");
                 } catch (SQLException ex) {
                     Logger.getLogger(order_items.class.getName()).log(Level.SEVERE, null, ex);
                 }
-
-                index++;
-            }
-
-            JOptionPane.showMessageDialog(null, "The order made successfully order id = "+orderID);
-
-            ViewCustomersFrame cashier = new ViewCustomersFrame();
-            cashier.setVisible(true);
-            this.setVisible(false);
-            try {
-                stmt = conn.prepareStatement("delete from products where quantity = 0");
-            } catch (SQLException ex) {
-                Logger.getLogger(order_items.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Enter Products");
+        }
+        
 
     }//GEN-LAST:event_SubmitButtonActionPerformed
 
     private void RemoveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoveButtonActionPerformed
 
         int row = BillTable.getSelectedRow();
-
-        int productID = Integer.parseInt(BillTable.getValueAt(row, 0).toString());
-        int quantity  = Integer.parseInt(BillTable.getValueAt(row, 3).toString());
-        float price  = Float.parseFloat(BillTable.getValueAt(row, 2).toString());
-        float discountOfProduct = Float.parseFloat(BillTable.getValueAt(row, 4).toString());
-
-        DefaultTableModel rowToDelete=(DefaultTableModel)BillTable.getModel();
-        rowToDelete.removeRow(row);
-
-        int index = 0;
-        while(index < ProductsTable.getRowCount())
+        if(row >= 0)
         {
-            if(productID == Integer.parseInt(ProductsTable.getValueAt(index, 0).toString()))
+            int productID = Integer.parseInt(BillTable.getValueAt(row, 0).toString());
+            int quantity  = Integer.parseInt(BillTable.getValueAt(row, 3).toString());
+            float price  = Float.parseFloat(BillTable.getValueAt(row, 2).toString());
+            float discountOfProduct = Float.parseFloat(BillTable.getValueAt(row, 4).toString());
+
+            DefaultTableModel rowToDelete=(DefaultTableModel)BillTable.getModel();
+            rowToDelete.removeRow(row);
+
+            int index = 0;
+            while(index < ProductsTable.getRowCount())
             {
-                break;
+                if(productID == Integer.parseInt(ProductsTable.getValueAt(index, 0).toString()))
+                {
+                    break;
+                }
+                index++;
             }
-            index++;
-        }
 
-        int oldQuantity = Integer.parseInt(ProductsTable.getValueAt(index, 4).toString());
-        ProductsTable.setValueAt(oldQuantity + quantity, index, 4);
-        
-        total -= ((price - discountOfProduct) * quantity);
-        System.out.println(price);
-        System.out.println((price - discountOfProduct));
-        System.out.println((price - discountOfProduct) * quantity);
-            
-        float subTotal = total - (total*discount);
+            int oldQuantity = Integer.parseInt(ProductsTable.getValueAt(index, 4).toString());
+            ProductsTable.setValueAt(oldQuantity + quantity, index, 4);
 
-        tot.setText(Float.toString(total));
-        distot.setText(Float.toString(subTotal));
-        Dis.setText(Float.toString(discount));
-        
+            total -= ((price - discountOfProduct) * quantity);
+            System.out.println(price);
+            System.out.println((price - discountOfProduct));
+            System.out.println((price - discountOfProduct) * quantity);
+
+            float subTotal = total - (total*discount);
+
+            tot.setText(Float.toString(total));
+            distot.setText(Float.toString(subTotal));
+            Dis.setText(Float.toString(discount));
+        }       
     }//GEN-LAST:event_RemoveButtonActionPerformed
 
     private void find_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_find_ButtonActionPerformed
@@ -454,13 +464,33 @@ public class order_items extends javax.swing.JFrame {
             }
             else
             {
-                DefaultTableModel newRow;
-                newRow = (DefaultTableModel) BillTable.getModel();
-                newRow.addRow(new Object[]{productID, productName, price, Integer.parseInt(requestedQuantity), discountOfProduct});
+                int index = 0;
+                while(index < BillTable.getRowCount())
+                {
+                    if(productID == Integer.parseInt(BillTable.getValueAt(index, 0).toString()))
+                    {
+                        break;
+                    }
+                    index++;
+                }
+                
+                if(index >= 0 && index <BillTable.getRowCount())
+                {
+                    int BillQuantity = Integer.parseInt(BillTable.getValueAt(index, 3).toString());
+                    BillTable.setValueAt(BillQuantity + Integer.parseInt(requestedQuantity), index, 3);
+                    total += ((price - discountOfProduct) * Integer.parseInt(requestedQuantity));
+                }
+                else
+                {
+                    DefaultTableModel newRow;
+                    newRow = (DefaultTableModel) BillTable.getModel();
+                    newRow.addRow(new Object[]{productID, productName, price, Integer.parseInt(requestedQuantity), discountOfProduct});
 
-                ProductsTable.setValueAt(quantity - Integer.parseInt(requestedQuantity), row, 4);
-                System.out.println(price - Integer.parseInt(requestedQuantity));
-                total += ((price - discountOfProduct) * Integer.parseInt(requestedQuantity));
+                    ProductsTable.setValueAt(quantity - Integer.parseInt(requestedQuantity), row, 4);
+                    System.out.println(price - Integer.parseInt(requestedQuantity));
+                    total += ((price - discountOfProduct) * Integer.parseInt(requestedQuantity));
+                }
+                
                 float subTotal = total - (total*discount);
                 
                 tot.setText(Float.toString(total));
