@@ -84,8 +84,6 @@ public class emplyeeInfo_frame extends javax.swing.JFrame {
         addEmployeeButton = new javax.swing.JButton();
         backtoEmployeesDataButton = new javax.swing.JButton();
         displayAllEmployees = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        EmployeeInfo = new javax.swing.JTable();
         panelGradient1 = new Employees_info.PanelGradient();
         SalaryLabel = new javax.swing.JLabel();
         AddressLabel = new javax.swing.JLabel();
@@ -106,6 +104,8 @@ public class emplyeeInfo_frame extends javax.swing.JFrame {
         searchLabel = new javax.swing.JLabel();
         panelGradient2 = new cashier.PanelGradient();
         jLabel7 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        EmployeeInfo = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 250, 244));
@@ -219,62 +219,39 @@ public class emplyeeInfo_frame extends javax.swing.JFrame {
         displayAllEmployees.setBackground(new java.awt.Color(12, 19, 79));
         displayAllEmployees.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        EmployeeInfo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(212, 173, 252)));
-        EmployeeInfo.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        EmployeeInfo.setForeground(new java.awt.Color(255, 255, 255));
-        EmployeeInfo.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "Employee_id", "name", "role", "phone", "address", "gender", "sallary"
-            }
-        ));
-        EmployeeInfo.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                EmployeeInfoMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(EmployeeInfo);
-
-        displayAllEmployees.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 600, 360));
-
         panelGradient1.setBackground(new java.awt.Color(0, 159, 253));
         panelGradient1.setForeground(new java.awt.Color(42, 42, 114));
         panelGradient1.setColorGradient(new java.awt.Color(42, 42, 114));
 
-        SalaryLabel.setFont(new java.awt.Font("Sitka Text", 1, 22)); // NOI18N
+        SalaryLabel.setFont(new java.awt.Font("Sitka Text", 1, 18)); // NOI18N
         SalaryLabel.setForeground(new java.awt.Color(255, 255, 255));
         SalaryLabel.setText("Salary");
         panelGradient1.add(SalaryLabel);
-        SalaryLabel.setBounds(640, 250, 85, 28);
+        SalaryLabel.setBounds(660, 250, 85, 28);
 
-        AddressLabel.setFont(new java.awt.Font("Sitka Text", 1, 22)); // NOI18N
+        AddressLabel.setFont(new java.awt.Font("Sitka Text", 1, 18)); // NOI18N
         AddressLabel.setForeground(new java.awt.Color(255, 255, 255));
         AddressLabel.setText("Address");
         panelGradient1.add(AddressLabel);
-        AddressLabel.setBounds(640, 210, 100, 28);
+        AddressLabel.setBounds(660, 210, 100, 28);
 
-        PhoneLabel.setFont(new java.awt.Font("Sitka Text", 1, 22)); // NOI18N
+        PhoneLabel.setFont(new java.awt.Font("Sitka Text", 1, 18)); // NOI18N
         PhoneLabel.setForeground(new java.awt.Color(255, 255, 255));
         PhoneLabel.setText("Phone");
         panelGradient1.add(PhoneLabel);
-        PhoneLabel.setBounds(640, 170, 70, 28);
+        PhoneLabel.setBounds(660, 170, 70, 28);
 
-        RoleLabel.setFont(new java.awt.Font("Sitka Text", 1, 22)); // NOI18N
+        RoleLabel.setFont(new java.awt.Font("Sitka Text", 1, 18)); // NOI18N
         RoleLabel.setForeground(new java.awt.Color(255, 255, 255));
         RoleLabel.setText("Role");
         panelGradient1.add(RoleLabel);
-        RoleLabel.setBounds(640, 130, 60, 28);
+        RoleLabel.setBounds(660, 130, 60, 28);
 
-        NameLabel.setFont(new java.awt.Font("Sitka Text", 1, 22)); // NOI18N
+        NameLabel.setFont(new java.awt.Font("Sitka Text", 1, 18)); // NOI18N
         NameLabel.setForeground(new java.awt.Color(255, 255, 255));
         NameLabel.setText("Name");
         panelGradient1.add(NameLabel);
-        NameLabel.setBounds(640, 90, 78, 28);
+        NameLabel.setBounds(660, 90, 78, 28);
 
         AddressField.setFont(new java.awt.Font("Sitka Text", 1, 18)); // NOI18N
         panelGradient1.add(AddressField);
@@ -296,7 +273,7 @@ public class emplyeeInfo_frame extends javax.swing.JFrame {
         panelGradient1.add(SalaryField);
         SalaryField.setBounds(740, 250, 230, 30);
 
-        deleteEmployeeButton.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
+        deleteEmployeeButton.setFont(new java.awt.Font("Segoe UI Black", 1, 15)); // NOI18N
         deleteEmployeeButton.setText("Delete Employee");
         deleteEmployeeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -304,9 +281,9 @@ public class emplyeeInfo_frame extends javax.swing.JFrame {
             }
         });
         panelGradient1.add(deleteEmployeeButton);
-        deleteEmployeeButton.setBounds(810, 310, 190, 30);
+        deleteEmployeeButton.setBounds(820, 310, 180, 30);
 
-        updateInfo.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
+        updateInfo.setFont(new java.awt.Font("Segoe UI Black", 1, 15)); // NOI18N
         updateInfo.setText("Update Info");
         updateInfo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -314,7 +291,7 @@ public class emplyeeInfo_frame extends javax.swing.JFrame {
             }
         });
         panelGradient1.add(updateInfo);
-        updateInfo.setBounds(620, 310, 180, 30);
+        updateInfo.setBounds(660, 310, 142, 30);
 
         BackButton.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
         BackButton.setText("Back");
@@ -376,6 +353,48 @@ public class emplyeeInfo_frame extends javax.swing.JFrame {
         panelGradient1.add(panelGradient2);
         panelGradient2.setBounds(30, 430, 250, 40);
 
+        EmployeeInfo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(212, 173, 252)));
+        EmployeeInfo.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        EmployeeInfo.setForeground(new java.awt.Color(255, 255, 255));
+        EmployeeInfo.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Employee_id", "name", "role", "phone", "address", "gender", "sallary"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        EmployeeInfo.getTableHeader().setReorderingAllowed(false);
+        EmployeeInfo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                EmployeeInfoMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(EmployeeInfo);
+        if (EmployeeInfo.getColumnModel().getColumnCount() > 0) {
+            EmployeeInfo.getColumnModel().getColumn(0).setResizable(false);
+            EmployeeInfo.getColumnModel().getColumn(1).setResizable(false);
+            EmployeeInfo.getColumnModel().getColumn(2).setResizable(false);
+            EmployeeInfo.getColumnModel().getColumn(3).setResizable(false);
+            EmployeeInfo.getColumnModel().getColumn(4).setResizable(false);
+            EmployeeInfo.getColumnModel().getColumn(5).setResizable(false);
+            EmployeeInfo.getColumnModel().getColumn(6).setResizable(false);
+        }
+
+        panelGradient1.add(jScrollPane1);
+        jScrollPane1.setBounds(0, 70, 650, 360);
+
         displayAllEmployees.add(panelGradient1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 1020, 490));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -400,6 +419,7 @@ public class emplyeeInfo_frame extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed

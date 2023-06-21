@@ -202,6 +202,7 @@ public class stockmanager_products_frame extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        products_Table.getTableHeader().setReorderingAllowed(false);
         products_Table.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 products_TableAncestorAdded(evt);
@@ -571,6 +572,7 @@ public class stockmanager_products_frame extends javax.swing.JFrame {
         search_TextField.getAccessibleContext().setAccessibleName("product name");
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

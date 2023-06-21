@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import manager.manager_frame;
 import net.proteanit.sql.DbUtils;
 
 /*
@@ -66,18 +67,18 @@ public class getBills extends javax.swing.JFrame {
         searchButton = new javax.swing.JButton();
         searchType = new javax.swing.JComboBox<>();
         showBillButton = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         showBill = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         info_bills = new javax.swing.JTable();
         customerName = new javax.swing.JLabel();
-        backtoEmployeesDataButton = new javax.swing.JButton();
         retCustomerName = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        displayAllBills.setBackground(new java.awt.Color(12, 19, 79));
+        displayAllBills.setBackground(new java.awt.Color(51, 51, 51));
 
-        BillsInfo.setBackground(new java.awt.Color(29, 38, 125));
         BillsInfo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(212, 173, 252)));
         BillsInfo.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         BillsInfo.setForeground(new java.awt.Color(255, 255, 255));
@@ -118,6 +119,13 @@ public class getBills extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setText("Back");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout displayAllBillsLayout = new javax.swing.GroupLayout(displayAllBills);
         displayAllBills.setLayout(displayAllBillsLayout);
         displayAllBillsLayout.setHorizontalGroup(
@@ -125,22 +133,23 @@ public class getBills extends javax.swing.JFrame {
             .addGroup(displayAllBillsLayout.createSequentialGroup()
                 .addGroup(displayAllBillsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(displayAllBillsLayout.createSequentialGroup()
-                        .addGroup(displayAllBillsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(displayAllBillsLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(searchLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(38, 38, 38)
-                                .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(31, 31, 31)
-                                .addComponent(searchType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(210, 210, 210)
-                                .addComponent(searchButton))
-                            .addGroup(displayAllBillsLayout.createSequentialGroup()
-                                .addGap(14, 14, 14)
-                                .addComponent(showBillButton)))
+                        .addContainerGap()
+                        .addComponent(searchLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(38, 38, 38)
+                        .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31)
+                        .addComponent(searchType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(210, 210, 210)
+                        .addComponent(searchButton)
                         .addGap(0, 137, Short.MAX_VALUE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
+            .addGroup(displayAllBillsLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(showBillButton, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(65, 65, 65))
         );
         displayAllBillsLayout.setVerticalGroup(
             displayAllBillsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -153,14 +162,15 @@ public class getBills extends javax.swing.JFrame {
                     .addComponent(searchButton))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
-                .addComponent(showBillButton)
-                .addGap(27, 27, 27))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
+                .addGroup(displayAllBillsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(showBillButton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19))
         );
 
-        showBill.setBackground(new java.awt.Color(12, 19, 79));
+        showBill.setBackground(new java.awt.Color(51, 51, 51));
 
-        info_bills.setBackground(new java.awt.Color(29, 38, 125));
         info_bills.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(212, 173, 252)));
         info_bills.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         info_bills.setForeground(new java.awt.Color(255, 255, 255));
@@ -182,18 +192,20 @@ public class getBills extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(info_bills);
 
-        customerName.setForeground(new java.awt.Color(255, 250, 244));
+        customerName.setFont(new java.awt.Font("Sitka Text", 1, 18)); // NOI18N
+        customerName.setForeground(new java.awt.Color(255, 255, 255));
         customerName.setText("Customer name:");
 
-        backtoEmployeesDataButton.setText("Back");
-        backtoEmployeesDataButton.addActionListener(new java.awt.event.ActionListener() {
+        retCustomerName.setFont(new java.awt.Font("Sitka Text", 1, 18)); // NOI18N
+        retCustomerName.setForeground(new java.awt.Color(255, 255, 255));
+        retCustomerName.setText("Customer name:");
+
+        jButton1.setText("Back");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backtoEmployeesDataButtonActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
-
-        retCustomerName.setForeground(new java.awt.Color(255, 250, 244));
-        retCustomerName.setText("Customer name:");
 
         javax.swing.GroupLayout showBillLayout = new javax.swing.GroupLayout(showBill);
         showBill.setLayout(showBillLayout);
@@ -202,9 +214,6 @@ public class getBills extends javax.swing.JFrame {
             .addGroup(showBillLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(showBillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, showBillLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(backtoEmployeesDataButton))
                     .addGroup(showBillLayout.createSequentialGroup()
                         .addComponent(customerName)
                         .addGap(18, 18, 18)
@@ -212,6 +221,10 @@ public class getBills extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, showBillLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(93, 93, 93))
         );
         showBillLayout.setVerticalGroup(
             showBillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -220,11 +233,11 @@ public class getBills extends javax.swing.JFrame {
                 .addGroup(showBillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(customerName, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(retCustomerName, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(63, 63, 63)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(backtoEmployeesDataButton)
-                .addContainerGap())
+                .addGap(42, 42, 42)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -245,13 +258,21 @@ public class getBills extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void showBillButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showBillButtonActionPerformed
         // TODO add your handling code here:
+        int row =        BillsInfo.getSelectedRow();
+        if (row<0)
+        {JOptionPane.showMessageDialog(null, "Please Select Order");}
+        else
+        {
         displayAllBills.setVisible(false);
         showBill.setVisible(true);
-        int row =        BillsInfo.getSelectedRow();
+        
+        
+        
         String BillID =    BillsInfo.getValueAt(row, 1).toString();
         String FirstNameCustomer =    BillsInfo.getValueAt(row, 1).toString();
         String SecondNameCustomer =    BillsInfo.getValueAt(row, 2).toString();
@@ -271,7 +292,7 @@ public class getBills extends javax.swing.JFrame {
             Logger.getLogger(getBills.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-                
+        }
         
     }//GEN-LAST:event_showBillButtonActionPerformed
 
@@ -314,18 +335,23 @@ public class getBills extends javax.swing.JFrame {
         
     }//GEN-LAST:event_BillsInfoMouseClicked
 
-    private void backtoEmployeesDataButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backtoEmployeesDataButtonActionPerformed
-        // TODO add your handling code here:
-        displayAllBills.setVisible(true);
-        showBill.setVisible(false);
-    }//GEN-LAST:event_backtoEmployeesDataButtonActionPerformed
-
     private void info_billsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_info_billsMouseClicked
         // TODO add your handling code here:
         
 
         
     }//GEN-LAST:event_info_billsMouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+   displayAllBills.setVisible(true);
+        showBill.setVisible(false);        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+     this.setVisible(false);
+     manager_frame m=new manager_frame();
+     m.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -368,10 +394,11 @@ public class getBills extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable BillsInfo;
-    private javax.swing.JButton backtoEmployeesDataButton;
     private javax.swing.JLabel customerName;
     private javax.swing.JPanel displayAllBills;
     private javax.swing.JTable info_bills;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel retCustomerName;

@@ -53,13 +53,13 @@ public class login extends javax.swing.JFrame {
 
         jButton1 = new javax.swing.JButton();
         id_TextField = new javax.swing.JTextField();
-        password_TextField1 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         role_ComboBox = new javax.swing.JComboBox<>();
         jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        password_TextField1 = new javax.swing.JPasswordField();
         jLabel4 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -89,14 +89,6 @@ public class login extends javax.swing.JFrame {
         id_TextField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         id_TextField.setSelectionColor(new java.awt.Color(255, 255, 255));
         getContentPane().add(id_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 190, 230, 30));
-
-        password_TextField1.setBackground(new java.awt.Color(102, 102, 102));
-        password_TextField1.setFont(new java.awt.Font("Sitka Text", 2, 18)); // NOI18N
-        password_TextField1.setForeground(new java.awt.Color(255, 255, 255));
-        password_TextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        password_TextField1.setName(""); // NOI18N
-        password_TextField1.setSelectionColor(new java.awt.Color(255, 255, 255));
-        getContentPane().add(password_TextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 250, 230, 30));
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 18)); // NOI18N
@@ -147,6 +139,15 @@ public class login extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(51, 153, 255));
         jLabel1.setText(" ome To WalMart");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 40, 440, 40));
+
+        password_TextField1.setBackground(new java.awt.Color(102, 102, 102));
+        password_TextField1.setForeground(new java.awt.Color(255, 255, 255));
+        password_TextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                password_TextField1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(password_TextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 242, 230, 30));
 
         jLabel4.setBackground(new java.awt.Color(153, 153, 153));
         jLabel4.setForeground(new java.awt.Color(102, 255, 255));
@@ -248,6 +249,10 @@ public class login extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void password_TextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_password_TextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_password_TextField1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -294,7 +299,7 @@ public class login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JTextField password_TextField1;
+    private javax.swing.JPasswordField password_TextField1;
     private javax.swing.JComboBox<String> role_ComboBox;
     // End of variables declaration//GEN-END:variables
 }
