@@ -30,6 +30,7 @@ import manager.manager_frame;
 import net.proteanit.sql.DbUtils;
 import billing_system_project.login;
 import cashier.newCustomerFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -495,8 +496,11 @@ static float discount;
             System.out.print(discount);
             order_items ord = new order_items();
             ord.setVisible(true);
-
             this.setVisible(false);
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Pleases Select Customer First");
         }
         
     }//GEN-LAST:event_jLabel4MouseClicked
