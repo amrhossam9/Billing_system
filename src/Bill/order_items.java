@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Bill;
+
 import db_connection.db_connection;
 
 import static java.lang.Integer.parseInt;
@@ -15,87 +16,70 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import net.proteanit.sql.DbUtils;
+import static billing_system_project.login.get_cashier_id;
+import Products.manager_products_frame;
+import cashier.ViewCustomersFrame;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
- * @author Mohamed2
+ * @author Amr
  */
-
 public class order_items extends javax.swing.JFrame {
 
-     public void Table_Content(){
-        try{ 
-     
-     db_connection c= new db_connection();
-           
-           //ResultSet rs =c.fetch("products");
+    //int cashier_id = get_cashier_id();
+    int cashier_id = get_cashier_id();
+    int customer_id = ViewCustomersFrame.getID();
+
+    public void Table_Content() {
         
-            Connection conn=c.connect();
-            String query = "SELECT * FROM  products";
-            PreparedStatement stmt = conn.prepareStatement(query);
-            ResultSet rs = stmt.executeQuery();
-            pt.setModel(DbUtils.resultSetToTableModel(rs));
-         conn.close();
-         stmt.close();
-            }
-            
-            catch (SQLException ee){
-            
-            ee.getMessage();
-        }
     }
-     public int get_order()
-     {
-         try{ 
-     
-     db_connection c= new db_connection();
-           
-           //ResultSet rs =c.fetch("products");
-        int cashier_id;
-        int customer_id;
-            Connection conn=c.connect();
-            String query = "INSERT INTO orders (customer_id,cashier_id) OUTPUT inserted.order_id VALUES(2,2)";
-            PreparedStatement stmt = conn.prepareStatement(query);
-            ResultSet rs = stmt.executeQuery();
-            String s=rs.getString(1);
-            conn.close();
-            stmt.close();
-            return Parseint(s);
-            
-            }
-            
-            catch (SQLException ee){
-            
-            ee.getMessage();
-        }
-         return 0;
-     }
-     public void Table_Content2(){
-        try{ 
-     
-     db_connection c= new db_connection();
-           
-           //ResultSet rs =c.fetch("products");
-        
-            Connection conn=c.connect();
-            String query = "SELECT * FROM  products";
-            PreparedStatement stmt = conn.prepareStatement(query);
-            ResultSet rs = stmt.executeQuery();
-            pt1.setModel(DbUtils.resultSetToTableModel(rs));
-         conn.close();
-         stmt.close();
-            }
-            
-            catch (SQLException ee){
-            
-            ee.getMessage();
-        }
-    }
-     
-             /**
+
+    /**
      * Creates new form order_items
      */
     public order_items() {
         initComponents();
+        fetch_products();
+        
+    }
+    public int getOrderID()
+    {
+        ResultSet rs = null;
+        int orderID = 0;
+        try {
+            db_connection c = new db_connection();
+            conn = c.connect();
+            PreparedStatement stmt = conn.prepareStatement("Insert Into orders (customer_id,cashier_id) output inserted.order_id values(?,?)");
+            stmt.setInt(1, customer_id);
+            stmt.setInt(2, cashier_id);
+            rs = stmt.executeQuery();
+            rs.next();
+            //System.out.println("HERE");
+            orderID = Integer.parseInt(rs.getString("order_id"));
+            //System.out.println(orderID);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return orderID;
+    }
+    public void fetch_products(){
+
+        try {
+
+            db_connection c = new db_connection();
+            Connection conn = c.connect();
+            String query = "SELECT product_id as Id,name as Name,price AS Price,discount AS Discount,quantity AS Quantity,brand_name AS Brand,category_name AS Category FROM  products,brands,categories "
+                    + "where categories.id=products.category_id and brands.id = products.brand_id";
+            PreparedStatement stmt = conn.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+            ProductsTable.setModel(DbUtils.resultSetToTableModel(rs));
+            conn.close();
+            stmt.close();
+        } catch (SQLException ee) {
+            ee.getMessage();
+        }
     }
 
     /**
@@ -109,23 +93,24 @@ public class order_items extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        pt = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
+        ProductsTable = new javax.swing.JTable();
+        searchLabel = new javax.swing.JLabel();
         search_TextField = new javax.swing.JTextField();
         find_Button = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        RemoveButton = new javax.swing.JButton();
+        SubmitButton = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        pt1 = new javax.swing.JTable();
+        BillTable = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         tot = new javax.swing.JLabel();
         distot = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         disc = new javax.swing.JLabel();
+        Dis = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        pt.setModel(new javax.swing.table.DefaultTableModel(
+        ProductsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
@@ -144,33 +129,14 @@ public class order_items extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        pt.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                ptAncestorAdded(evt);
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-        });
-        pt.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                ptFocusGained(evt);
-            }
-        });
-        pt.addMouseListener(new java.awt.event.MouseAdapter() {
+        ProductsTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                ptMouseClicked(evt);
+                ProductsTableMouseClicked(evt);
             }
         });
-        pt.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                ptPropertyChange(evt);
-            }
-        });
-        jScrollPane1.setViewportView(pt);
+        jScrollPane1.setViewportView(ProductsTable);
 
-        jLabel1.setText("Search");
+        searchLabel.setText("Search");
 
         search_TextField.setToolTipText("product name");
 
@@ -181,34 +147,50 @@ public class order_items extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Remove");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        RemoveButton.setText("Remove");
+        RemoveButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                RemoveButtonActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Submit Order");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        SubmitButton.setText("Submit Order");
+        SubmitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                SubmitButtonActionPerformed(evt);
             }
         });
 
-        pt1.setModel(new javax.swing.table.DefaultTableModel(
+        BillTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "order_id", "Name", "Price", "Qunatity", "Category"
+                "product_id", "Name", "Price", "Qunatity", "Discount"
             }
-        ));
-        pt1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                pt1MouseClicked(evt);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(pt1);
+        BillTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BillTableMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(BillTable);
+        if (BillTable.getColumnModel().getColumnCount() > 0) {
+            BillTable.getColumnModel().getColumn(0).setResizable(false);
+            BillTable.getColumnModel().getColumn(1).setResizable(false);
+            BillTable.getColumnModel().getColumn(2).setResizable(false);
+            BillTable.getColumnModel().getColumn(3).setResizable(false);
+            BillTable.getColumnModel().getColumn(4).setResizable(false);
+        }
+        BillTable.getAccessibleContext().setAccessibleDescription("");
 
         jLabel2.setText("TOTAL:");
 
@@ -216,9 +198,11 @@ public class order_items extends javax.swing.JFrame {
 
         distot.setText("0");
 
-        jLabel5.setText("TOTAL:");
+        jLabel5.setText("Cash:");
 
-        disc.setText("Discount 50%:");
+        disc.setText("Discount:");
+
+        Dis.setText("0");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -236,33 +220,33 @@ public class order_items extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(find_Button))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addContainerGap())
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(searchLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(RemoveButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(SubmitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(43, 43, 43)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(distot, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tot, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(disc, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(disc)
+                        .addGap(58, 58, 58)
+                        .addComponent(Dis, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(distot, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(tot, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -273,7 +257,7 @@ public class order_items extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(20, 20, 20)
-                        .addComponent(jLabel1)
+                        .addComponent(searchLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(search_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -287,17 +271,19 @@ public class order_items extends javax.swing.JFrame {
                             .addComponent(jLabel2)
                             .addComponent(tot))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
-                        .addComponent(disc)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(disc, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(Dis, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
                             .addComponent(distot))
                         .addGap(33, 33, 33))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(55, 55, 55)
-                        .addComponent(jButton1)
+                        .addComponent(RemoveButton)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2)
+                        .addComponent(SubmitButton)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
@@ -309,7 +295,7 @@ public class order_items extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -317,264 +303,163 @@ public class order_items extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ptAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_ptAncestorAdded
-        Table_Content();
-    }//GEN-LAST:event_ptAncestorAdded
+    private void BillTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BillTableMouseClicked
 
-    private void ptFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ptFocusGained
+    }//GEN-LAST:event_BillTableMouseClicked
 
-    }//GEN-LAST:event_ptFocusGained
+    private void SubmitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitButtonActionPerformed
+        int index = 0;
+        int orderID = getOrderID();
+        Connection conn = null;
+        PreparedStatement stmt;
+        while(index < BillTable.getRowCount())
+        {
+            int productID = Integer.parseInt(BillTable.getValueAt(index, 0).toString());
+            int quantity = Integer.parseInt(BillTable.getValueAt(index, 3).toString());
 
-    private void ptPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_ptPropertyChange
+            db_connection c = new db_connection();
+            conn = c.connect();
+            try {
+                System.out.println(customer_id);
+                System.out.println(cashier_id);
+                stmt = conn.prepareStatement(
+                    """
+                    BEGIN TRANSACTION;
+                    DECLARE @productID INT = ?;
+                    DECLARE @quantityVar INT = ?;
+                    DECLARE @orderID INT = ?;
+                    Insert into order_items (quantity,order_id,product_id) values (@quantityVar,@orderID,@productID);
+                    DECLARE @oldQuantityVar INT = 0;
+                    SELECT @oldQuantityVar=quantity FROM products where product_id = @productID;
+                    UPDATE products set quantity = (@oldQuantityVar-@quantityVar) where product_id = @productID;
+                    COMMIT TRANSACTION;""");
 
-    }//GEN-LAST:event_ptPropertyChange
+                    stmt.setInt(1, productID);
+                    stmt.setInt(2, quantity);
+                    stmt.setInt(3, orderID);
+
+                    stmt.execute();
+
+                    System.out.println("SSS");
+                } catch (SQLException ex) {
+                    Logger.getLogger(order_items.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                index++;
+            }
+
+            JOptionPane.showMessageDialog(null, "The order made successfully order id = "+orderID);
+
+            ViewCustomersFrame cashier = new ViewCustomersFrame();
+            cashier.setVisible(true);
+            this.setVisible(false);
+            try {
+                stmt = conn.prepareStatement("delete from products where quantity = 0");
+            } catch (SQLException ex) {
+                Logger.getLogger(order_items.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+    }//GEN-LAST:event_SubmitButtonActionPerformed
+
+    private void RemoveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoveButtonActionPerformed
+
+        int row = BillTable.getSelectedRow();
+
+        int productID = Integer.parseInt(BillTable.getValueAt(row, 0).toString());
+        int quantity  = Integer.parseInt(BillTable.getValueAt(row, 3).toString());
+        float price  = Float.parseFloat(BillTable.getValueAt(row, 2).toString());
+        float discountOfProduct = Float.parseFloat(BillTable.getValueAt(row, 4).toString());
+
+        DefaultTableModel rowToDelete=(DefaultTableModel)BillTable.getModel();
+        rowToDelete.removeRow(row);
+
+        int index = 0;
+        while(index < ProductsTable.getRowCount())
+        {
+            if(productID == Integer.parseInt(ProductsTable.getValueAt(index, 0).toString()))
+            {
+                break;
+            }
+            index++;
+        }
+
+        int oldQuantity = Integer.parseInt(ProductsTable.getValueAt(index, 4).toString());
+        ProductsTable.setValueAt(oldQuantity + quantity, index, 4);
+        
+        total -= ((price - discountOfProduct) * quantity);
+        System.out.println(price);
+        System.out.println((price - discountOfProduct));
+        System.out.println((price - discountOfProduct) * quantity);
+            
+        float subTotal = total - (total*discount);
+
+        tot.setText(Float.toString(total));
+        distot.setText(Float.toString(subTotal));
+        Dis.setText(Float.toString(discount));
+        
+    }//GEN-LAST:event_RemoveButtonActionPerformed
 
     private void find_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_find_ButtonActionPerformed
 
-        try{
-
-            db_connection c= new db_connection();
+        try {
+            db_connection c = new db_connection();
             String product_name = search_TextField.getText();
-            Connection conn=c.connect();
+            conn = c.connect();
             String query = "SELECT * FROM  products where name like ? ";
             PreparedStatement stmt = conn.prepareStatement(query);
-            stmt.setString(1, "%"+product_name+"%");
+            stmt.setString(1, "%" + product_name + "%");
             ResultSet rs = stmt.executeQuery();
-            pt.setModel(DbUtils.resultSetToTableModel(rs));
+            ProductsTable.setModel(DbUtils.resultSetToTableModel(rs));
             conn.close();
             stmt.close();
-        }
-
-        catch (SQLException ee){
-
+        } catch (SQLException ee) {
             ee.getMessage();
         }
     }//GEN-LAST:event_find_ButtonActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        DefaultTableModel row=(DefaultTableModel)pt1.getModel();
-        DefaultTableModel model=(DefaultTableModel)pt.getModel();
-        try {
-            
-            if(pt1.getSelectedRow()==1)
-            {  int rowIndex=pt.getSelectedRow();
-                row.removeRow(pt1.getSelectedRow());
-                String p_price=model.getValueAt(rowIndex, 2).toString();
-                String p_dis=model.getValueAt(rowIndex, 5).toString();
-                double price=Double.parseDouble(p_price);
-                x-=parseInt(s);
-                sum-=price;
+    float discount = ViewCustomersFrame.getDiscount();
+    float total = 0;
+    private void ProductsTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ProductsTableMouseClicked
+        int row = ProductsTable.getSelectedRow();
 
-                dis=Double.parseDouble(p_dis);
-                calc-=dis*(price/100);
-                diastot= sum-dis*(price/100);
-                tot.setText(Double.toString(sum));
+        String requestedQuantity = JOptionPane.showInputDialog(null, "Required Quantity");
 
-                disc.setText("Discount"+Double.toString(dis)+" : -" + Double.toString(calc));
-                distot.setText(Double.toString(diastot));
-                a--;
-            }else {
-                if(pt1.getSelectedRow()==0)
-                {
-                    JOptionPane.showMessageDialog(null, "Table is Empyt");
-                }else{
-                    JOptionPane.showMessageDialog(null,"please select single row for delete");
-                }
-            }
-        
-        
-        
-        }catch(Exception e)
+        if(requestedQuantity == ""  || requestedQuantity == null || Integer.parseInt(requestedQuantity) <=0 )
         {
-            JOptionPane.showMessageDialog(null, e);
-        }
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        DefaultTableModel row=(DefaultTableModel)pt1.getModel();
-            if(row.getRowCount()==0)
-            {
-                JOptionPane.showMessageDialog(null, "Table is Empty");
-            }
-            else
-            {
-                try{ 
-     
-            db_connection c= new db_connection();
-            Connection conn=c.connect();
-            String order="INSERT INTO orders (customer_id,cashier_id)OUTPUT inserted.order_id Values(?,?)";
-            PreparedStatement stmt1 = conn.prepareStatement(order);
-            ResultSet rs = stmt1.executeQuery();
-            String orderi="";
-            while(rs.next())
-            {
-                orderi=rs.getString("order_id");
-            }
-            for(int i=0;i<row.getRowCount();i++)
-            {
-                String p_name= row.getValueAt(i, 1).toString();
-                String p_Quan= row.getValueAt(i, 3).toString();
-                String query = "insert into order_item (order_id,product_name,Quantity) values(?,?,?) ";
-                PreparedStatement stmt = conn.prepareStatement(query);
-                stmt.setString(1, orderi);
-                stmt.setString(2, p_name);
-                stmt.setString(3, p_Quan);
-                stmt.execute();
-            }
-            JOptionPane.showMessageDialog(null,"Data Inserted Successfully");
-            row.setRowCount(0);//clear table after submit
-            conn.close();
-            stmt1.close();
-            }
-            
-            catch (SQLException ee){
-            
-            ee.getMessage();
-        }
-    
-            }
-    }//GEN-LAST:event_jButton2ActionPerformed
-double sum=0;
-double dis=0;
-double calc=0;
-double diastot=0;
-int x=0;
-int a=1;
-String s;
-    private void ptMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ptMouseClicked
-//        DefaultTableModel model=(DefaultTableModel)pt.getModel();
-//        int rowIndex=pt.getSelectedRow();
-//        String p_id=model.getValueAt(rowIndex, 0).toString();
-//        String p_Quan =model.getValueAt(rowIndex, 4).toString();
-//        
-//        try{
-//            db_connection c=new db_connection();
-//            Connection conn= c.connect() ;
-//            String query ="INSERT INTO products values (?,?,?)";
-//            PreparedStatement stmt =conn.prepareStatement(query);
-//            int order=get_order();
-//            s=JOptionPane.showInputDialog(null, "enter the quantity");
-//            stmt.setInt(1,Integer.parseUnsignedInt(s) );
-//            stmt.setInt(2, order);
-//            stmt.setInt(3,Integer.parseUnsignedInt( p_id));
-//            stmt.execute();            
-//            Table_Content2();
-//            JOptionPane.showMessageDialog(this, "Item Added ");
-//            conn.close();
-//            stmt.close();
-//        }
-//        
-//        catch (SQLException ee){
-//            
-//            ee.getMessage();
-//            System.out.println("error");
-//        }
-
-        DefaultTableModel model=(DefaultTableModel)pt.getModel();
-        DefaultTableModel row=(DefaultTableModel)pt1.getModel();
-        int rowIndex=pt.getSelectedRow();
-
-         s=JOptionPane.showInputDialog(null, "enter the quantity");
-        x+=parseInt(s);
-       if(parseInt(s)==0)
-       {
-           JOptionPane.showMessageDialog(null, "Enter Correct Quantity");
-       }
-       else
-       {
-        String p_id=model.getValueAt(rowIndex, 0).toString();
-        String p_name= model.getValueAt(rowIndex, 1).toString();
-        String p_price=model.getValueAt(rowIndex, 2).toString();
-        String p_dis=model.getValueAt(rowIndex, 3).toString();
-        String p_Quan =model.getValueAt(rowIndex, 4).toString();
-        String p_cate=model.getValueAt(rowIndex, 6).toString();
-
-        if(x > parseInt(p_Quan) || parseInt(p_Quan)==0 )
-        {
-            JOptionPane.showMessageDialog(null,"THERE IS NO QUANTITY");
-             try{ 
-     
-        db_connection c= new db_connection();
-            Connection conn=c.connect();
-             String query = "update products set Quantity=0 where Name=? ";
-
-             PreparedStatement stmt = conn.prepareStatement(query);
-             stmt.setString(1, p_name);
-             stmt.execute();
-         conn.close();
-         stmt.close();
-         Table_Content();
-            }
-            
-            catch (SQLException ee){
-            
-            ee.getMessage();
-        
-    } 
-             x=0;
-        }
-        else{
-          
-            
-            System.out.println(p_Quan);
-             System.out.println(x);
-        row.addRow(new Object[]{a , p_name , p_price ,s , p_cate});
-        double price=Double.parseDouble(p_price);
-        sum+=price;
-        dis=Double.parseDouble(p_dis);
-        calc+=dis*(price/100);
-        diastot= sum-calc;
-        tot.setText(Double.toString(sum));
-        
-        disc.setText("Discount"+Double.toString(dis)+" : -" + Double.toString(calc));
-        distot.setText(Double.toString(diastot));
-        
-            a++;
-        }}
-    }//GEN-LAST:event_ptMouseClicked
-String b;
-    private void pt1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pt1MouseClicked
-         b=JOptionPane.showInputDialog(null, "Do you want to remove this Row");
-        if(b.equalsIgnoreCase("YES")||b.equalsIgnoreCase("Yes")||b.equalsIgnoreCase("yes"))
-        {
-            DefaultTableModel row=(DefaultTableModel)pt1.getModel();
-               DefaultTableModel model=(DefaultTableModel)pt.getModel();
-                int rowIndex=pt.getSelectedRow();
-                int index=pt1.getSelectedRow();
-                String p_price=row.getValueAt(index, 2).toString();
-                row.removeRow(pt1.getSelectedRow());
-                String p_dis=model.getValueAt(rowIndex, 3).toString();
-                double price=Double.parseDouble(p_price);
-                x-=parseInt(s);
-                System.out.println(sum);
-                System.out.println(price);
-                sum-=price;
-
-                dis=Double.parseDouble(p_dis);
-                calc-=dis*(price/100);
-                diastot= sum-calc;
-                tot.setText(Double.toString(sum));
-                   System.out.println(sum);
-                   System.out.println(calc);
-                   System.out.println(diastot);
-                disc.setText("Discount"+Double.toString(dis)+" : -" + Double.toString(calc));
-                distot.setText(Double.toString(diastot));
-                a--;
+            JOptionPane.showInternalMessageDialog(null, "Enter a valid Quantity");
         }
         else
         {
-            JOptionPane.showMessageDialog(null, "take care where you clicked");
+            int productID = Integer.parseInt(ProductsTable.getValueAt(row, 0).toString());
+            String productName = ProductsTable.getValueAt(row, 1).toString();
+            float price = Float.parseFloat(ProductsTable.getValueAt(row, 2).toString());
+            int quantity = Integer.parseInt(ProductsTable.getValueAt(row, 4).toString());
+            float discountOfProduct = Float.parseFloat(ProductsTable.getValueAt(row, 3).toString());
+
+            if(quantity < Integer.parseInt(requestedQuantity))
+            {
+                JOptionPane.showInternalMessageDialog(null, "Enter Less Quantity");
+            }
+            else
+            {
+                DefaultTableModel newRow;
+                newRow = (DefaultTableModel) BillTable.getModel();
+                newRow.addRow(new Object[]{productID, productName, price, Integer.parseInt(requestedQuantity), discountOfProduct});
+
+                ProductsTable.setValueAt(quantity - Integer.parseInt(requestedQuantity), row, 4);
+                System.out.println(price - Integer.parseInt(requestedQuantity));
+                total += ((price - discountOfProduct) * Integer.parseInt(requestedQuantity));
+                float subTotal = total - (total*discount);
+                
+                tot.setText(Float.toString(total));
+                distot.setText(Float.toString(subTotal));
+                Dis.setText(Float.toString(discount));
+            }
+
         }
-    }//GEN-LAST:event_pt1MouseClicked
-       
-                  
-    
-    
-    
-    
-    
-    
-    
+
+    }//GEN-LAST:event_ProductsTableMouseClicked
+Connection conn;
     /**
      * @param args the command line arguments
      */
@@ -611,19 +496,20 @@ String b;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable BillTable;
+    private javax.swing.JLabel Dis;
+    private javax.swing.JTable ProductsTable;
+    private javax.swing.JButton RemoveButton;
+    private javax.swing.JButton SubmitButton;
     private javax.swing.JLabel disc;
     private javax.swing.JLabel distot;
     private javax.swing.JButton find_Button;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable pt;
-    private javax.swing.JTable pt1;
+    private javax.swing.JLabel searchLabel;
     private javax.swing.JTextField search_TextField;
     private javax.swing.JLabel tot;
     // End of variables declaration//GEN-END:variables

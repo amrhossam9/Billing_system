@@ -669,13 +669,16 @@ public class emplyeeInfo_frame extends javax.swing.JFrame {
         String id =      EmployeeInfo.getValueAt(row, 0).toString();
 
         try{
-            PreparedStatement stmt = con.prepareStatement("Delete from employee inner join emp_phone "
-                                                        + "on employee.employee_id = emp_phone.id inner join emp_address "
-                                                        + "on employee.employee_id = emp_address.id"
-                                                        + "WHERE employee_id = ?;");
+            PreparedStatement stmt = con.prepareStatement("BEGIN TRANSACTION;\n" +
+                                                        "DECLARE @empID INT = ?;\n" +
+                                                        "Delete from emp_phone where id = @empID;\n" +
+                                                        "Delete from emp_address where id = @empID;\n" +
+                                                        "Delete from employee where employee_id = @empID;\n" +
+                                                        "COMMIT TRANSACTION;");
                 
                 stmt.setString(1, id);
                 stmt.executeQuery();
+                System.out.print("HERE");
         }catch (SQLException ex) {
                 System.out.println(ex);
         }  

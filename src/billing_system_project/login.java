@@ -185,6 +185,7 @@ public class login extends javax.swing.JFrame {
                         while(rs.next()){
                         if(rs.getString("employee_id").equals(id)){
                             if(rs.getString("password").equals(password)){
+                                id_returned = Integer.parseInt(id);
                                 found= true;
                                 this.setVisible(false);
                                 switch(role_ComboBox.getSelectedIndex()){

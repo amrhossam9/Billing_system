@@ -44,6 +44,8 @@ public class getBills extends javax.swing.JFrame {
             
         }
         
+       
+        
         
     }
 
@@ -248,17 +250,20 @@ public class getBills extends javax.swing.JFrame {
     private void showBillButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showBillButtonActionPerformed
         // TODO add your handling code here:
         displayAllBills.setVisible(false);
+        showBill.setVisible(true);
         int row =        BillsInfo.getSelectedRow();
         String BillID =    BillsInfo.getValueAt(row, 1).toString();
         String FirstNameCustomer =    BillsInfo.getValueAt(row, 1).toString();
         String SecondNameCustomer =    BillsInfo.getValueAt(row, 2).toString();
+        String orderID =    BillsInfo.getValueAt(row, 0).toString();
         
         retCustomerName.setText(FirstNameCustomer+" "+SecondNameCustomer);
-        String selectedColoumns = "order_items.quantity,products.name,products.price,products.discount";
+        String selectedColoumns = "products.name,order_items.quantity,products.price,products.discount";
                 PreparedStatement stmt;
         try {
             stmt = con.prepareStatement(
-                    String.format("SELECT %s FROM order_items join products on order_items.product_id = products.product_id where order_id = 2;",selectedColoumns));
+                    String.format("SELECT %s FROM order_items join products on order_items.product_id = products.product_id where order_id = ?;",selectedColoumns));
+            stmt.setString(1, orderID);
             ResultSet resultSet = stmt.executeQuery();
 
             info_bills.setModel(DbUtils.resultSetToTableModel(resultSet));

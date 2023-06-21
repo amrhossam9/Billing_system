@@ -6,6 +6,7 @@ package cashier;
 
 
 
+import Bill.order_items;
 import com.formdev.flatlaf.FlatDarkLaf;
 import db_connection.db_connection;
 import java.awt.Color;
@@ -105,6 +106,7 @@ public class ViewCustomersFrame extends javax.swing.JFrame {
         obj.setForeground(Color.WHITE);
        
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -272,6 +274,9 @@ public class ViewCustomersFrame extends javax.swing.JFrame {
         jLabel4.setText("Make Bill");
         jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel4MouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jLabel4MouseEntered(evt);
             }
@@ -359,6 +364,7 @@ public class ViewCustomersFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void keytextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_keytextKeyReleased
+    //GEN-FIRST:event_keytextKeyReleased
         DefaultTableModel table=(DefaultTableModel) CustomersTable.getModel();
 
         String searchkey=keytext.getText();
@@ -381,7 +387,6 @@ public class ViewCustomersFrame extends javax.swing.JFrame {
 login m1= new login();
 this.setVisible(false);
 m1.setVisible(true);
-
     }//GEN-LAST:event_labelbuttonMouseClicked
 
     private void labMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labMouseEntered
@@ -394,12 +399,12 @@ lab.setForeground(Color.WHITE);        // TODO add your handling code here:
     }//GEN-LAST:event_labMouseExited
 
     private void sortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sortActionPerformed
-        String sort_by;
+      String sort_by;
         String query;
         sort_by = (String) sort.getSelectedItem();
         switch(sort_by){
                 case "ID ↑" -> {query = "select customer_id as ID, first_name+' '+last_name as Name,  cus_phone.phone as Phone,cus_address.address as Address , membership as Membership from customer, cus_phone,cus_address where customer_id = cus_phone.id and customer_id = cus_address.id order by customer_id";}
-                case "ID ↓" -> {query = " select customer_id as ID, first_name+' '+last_name as Name, cus_phone.phone as Phone,cus_address.address as Address, membership as Membershipfrom customer, cus_phone,cus_address where customer_id = cus_phone.id and customer_id = cus_address.id order by customer_id DESC;";}
+                case "ID ↓" -> {query = " select customer_id as ID, first_name+' '+last_name as Name, cus_phone.phone as Phone,cus_address.address as Address, membership as Membership from customer, cus_phone,cus_address where customer_id = cus_phone.id and customer_id = cus_address.id order by customer_id DESC;";}
                 case "Name ↑" -> {query = "select customer_id as ID, first_name+' '+last_name as Name,cus_phone.phone as Phone,cus_address.address as Address,membership as Membership from customer, cus_phone,cus_address where customer_id = cus_phone.id and customer_id = cus_address.id order by first_name,last_name";}
                 case "Name ↓" -> {query = " select customer_id as ID, first_name+' '+last_name as Name, cus_phone.phone as Phone,cus_address.address as Address,membership as Membership from customer, cus_phone,cus_address where customer_id = cus_phone.id and customer_id = cus_address.id order by first_name DESC,last_name DESC";}
                 case "Membership ↑" -> {query = "select customer_id as ID, first_name+' '+last_name as Name, cus_phone.phone as Phone,cus_address.address as Address,membership as Membership from customer, cus_phone,cus_address where customer_id = cus_phone.id and customer_id = cus_address.id order by membership";}
@@ -444,6 +449,53 @@ lab.setForeground(Color.WHITE);        // TODO add your handling code here:
         newCustomerFrame newcust=new newCustomerFrame();
         newcust.setVisible(true);
     }//GEN-LAST:event_jLabel1MousePressed
+static float discount;
+    public static float getDiscount()
+    {
+        return discount;
+    }
+      
+    static int id;
+    public static int getID()
+    {
+        return id;
+    }
+ 
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+        //GEN-FIRST:event_jLabel4MouseClicked
+        // TODO add your handling code here:
+        int row = CustomersTable.getSelectedRow();
+        id = Integer.parseInt(CustomersTable.getValueAt(row, 0).toString());
+        String memberShip = CustomersTable.getValueAt(row,4).toString();
+        discount = 0;
+        
+        
+        if(null != memberShip)
+        switch (memberShip) {
+            case "Gold":
+                discount = (float) 0.25;
+                break;
+            case "Silver":
+                discount = (float) 0.10;
+                break;
+            case "Bronze":
+                discount = (float) 0.05;
+                break;
+            case "none":
+                discount = (float) 0.00;
+                break;
+            case "Platinum":
+                discount = (float) 0.3;
+                break;
+            default:
+                break;
+        }
+        System.out.print(discount);
+        order_items ord = new order_items();
+        ord.setVisible(true);
+        
+        this.setVisible(false);
+    }//GEN-LAST:event_jLabel4MouseClicked
 
     /**
      * @param args the command line arguments

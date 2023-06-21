@@ -97,7 +97,7 @@ public class newCustomerFrame extends javax.swing.JFrame {
         });
         getContentPane().add(adressfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 230, 240, 30));
 
-        membershipType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Bronze", "Silver", "Gold", "Platinum" }));
+        membershipType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", "Bronze", "Silver", "Gold", "Platinum" }));
         membershipType.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 membershipTypeActionPerformed(evt);
@@ -162,6 +162,9 @@ public class newCustomerFrame extends javax.swing.JFrame {
         jLabel7.setText("ADD Customer");
         jLabel7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel7MouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jLabel7MouseEntered(evt);
             }
@@ -247,6 +250,7 @@ c1.setVisible(true);
                 stmt.setString(1, first_name);stmt.setString(2, last_name);stmt.setString(3, membership);
                 stmt.setString(4, phone);stmt.setString(5, address);
                 stmt.execute();
+                JOptionPane.showMessageDialog(null, "Customer added successfully");
             }catch (SQLException ee){
                 System.out.println(ee.getMessage());
             }catch(Exception ee){
@@ -262,6 +266,10 @@ c1.setVisible(true);
     private void jLabel7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseExited
       jLabel7.setForeground(Color.CYAN);
     }//GEN-LAST:event_jLabel7MouseExited
+
+    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel7MouseClicked
 
     /**
      * @param args the command line arguments
