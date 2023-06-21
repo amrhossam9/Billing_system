@@ -734,7 +734,8 @@ public class emplyeeInfo_frame extends javax.swing.JFrame {
 
     private void jLabel7MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MousePressed
       displayAllEmployees.setVisible(false);
-        addNewEmployee.setVisible(true);
+        NewEmpFrame n=new NewEmpFrame();
+n.setVisible(true);
     }//GEN-LAST:event_jLabel7MousePressed
 
     /**

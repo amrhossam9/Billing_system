@@ -199,7 +199,7 @@ public class NewEmpFrame extends javax.swing.JFrame {
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/photos/business-growth.jpg"))); // NOI18N
         jLabel9.setText("jLabel9");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -10, 880, 730));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(-120, 0, 840, 440));
 
         pack();
         setLocationRelativeTo(null);
@@ -223,7 +223,7 @@ public class NewEmpFrame extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 this.setVisible(false);
-ViewCustomersFrame c1=new ViewCustomersFrame();
+emplyeeInfo_frame c1=new emplyeeInfo_frame();
 c1.setVisible(true);
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -238,7 +238,7 @@ c1.setVisible(true);
         {
            JOptionPane.showMessageDialog(this, "Enter all the fields");
         }
-        else if(phone.length() != 11 || !phone.startsWith("01")|| phone.contains("[a-zA-Z]+"))
+      else if(phone.length() != 11 || !phone.startsWith("01")|| phone.contains("[a-zA-Z]+"))
         {
             JOptionPane.showMessageDialog(this, "Enter valid phone number");
        }
