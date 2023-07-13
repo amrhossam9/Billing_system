@@ -1,9 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
-package billing_system_project;
 
+package billing_system_project;
 import com.formdev.flatlaf.FlatDarkLaf;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -28,7 +24,7 @@ public class Billing_system_project {
             
             
             
-            /******************************* *    SPlash Screen code*    *************************************/
+            /******************************* *    Splash Screen code*    *************************************/
             
             
             

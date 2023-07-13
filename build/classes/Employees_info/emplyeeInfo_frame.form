@@ -30,9 +30,6 @@
               <Component id="displayAllEmployees" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
-          <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-              <Component id="addNewEmployee" alignment="1" max="32767" attributes="0"/>
-          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -41,213 +38,10 @@
               <Component id="displayAllEmployees" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
           </Group>
-          <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <Component id="addNewEmployee" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-              </Group>
-          </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JPanel" name="addNewEmployee">
-      <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="4f" green="13" red="c" type="rgb"/>
-        </Property>
-      </Properties>
-
-      <Layout>
-        <DimensionLayout dim="0">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="employeeName" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="employeeName6" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="employeeName5" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="employeeName3" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="employeeName4" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="employeeName1" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="employeeName2" alignment="0" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="employeePhoneField" max="32767" attributes="0"/>
-                      <Component id="employeeAddressField" max="32767" attributes="0"/>
-                      <Component id="employeeSallaryField" max="32767" attributes="0"/>
-                      <Component id="employeeNameField" max="32767" attributes="0"/>
-                      <Component id="employeePasswordField" alignment="0" max="32767" attributes="0"/>
-                      <Component id="employeeRoleComboBox" pref="190" max="32767" attributes="0"/>
-                      <Component id="genderComboBox" max="32767" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="141" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="addEmployeeButton" min="-2" max="-2" attributes="0"/>
-                      <Component id="backtoEmployeesDataButton" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace pref="438" max="32767" attributes="0"/>
-              </Group>
-          </Group>
-        </DimensionLayout>
-        <DimensionLayout dim="1">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="employeeName" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
-                      <Component id="employeeNameField" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="addEmployeeButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="employeeName2" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
-                      <Component id="employeePhoneField" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="backtoEmployeesDataButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="employeeName1" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
-                      <Component id="employeeAddressField" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="employeeName4" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
-                      <Component id="genderComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="employeeName3" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
-                      <Component id="employeeRoleComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="employeeName5" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
-                      <Component id="employeePasswordField" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="employeeName6" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
-                      <Component id="employeeSallaryField" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace pref="76" max="32767" attributes="0"/>
-              </Group>
-          </Group>
-        </DimensionLayout>
-      </Layout>
-      <SubComponents>
-        <Component class="javax.swing.JLabel" name="employeeName">
-          <Properties>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="f4" green="fa" red="ff" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Employee Name"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="employeeName1">
-          <Properties>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="f4" green="fa" red="ff" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Employee Address"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="employeeName2">
-          <Properties>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="f4" green="fa" red="ff" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Employee Phone"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="employeeName3">
-          <Properties>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="f4" green="fa" red="ff" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Employee Role"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="employeeName4">
-          <Properties>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="f4" green="fa" red="ff" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Employee Gender"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="employeeName5">
-          <Properties>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="f4" green="fa" red="ff" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Employee Password"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="employeeName6">
-          <Properties>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="f4" green="fa" red="ff" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Employee Sallary"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="employeeNameField">
-        </Component>
-        <Component class="javax.swing.JTextField" name="employeePhoneField">
-        </Component>
-        <Component class="javax.swing.JTextField" name="employeeAddressField">
-        </Component>
-        <Component class="javax.swing.JTextField" name="employeeSallaryField">
-        </Component>
-        <Component class="javax.swing.JPasswordField" name="employeePasswordField">
-        </Component>
-        <Component class="javax.swing.JComboBox" name="employeeRoleComboBox">
-          <Properties>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="3">
-                <StringItem index="0" value="Manager"/>
-                <StringItem index="1" value="Stock Manger"/>
-                <StringItem index="2" value="Cashier"/>
-              </StringArray>
-            </Property>
-          </Properties>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-          </AuxValues>
-        </Component>
-        <Component class="javax.swing.JComboBox" name="genderComboBox">
-          <Properties>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="2">
-                <StringItem index="0" value="male"/>
-                <StringItem index="1" value="female"/>
-              </StringArray>
-            </Property>
-          </Properties>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-          </AuxValues>
-        </Component>
-        <Component class="javax.swing.JButton" name="addEmployeeButton">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Add Employee"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addEmployeeButtonActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="backtoEmployeesDataButton">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Back"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="backtoEmployeesDataButtonActionPerformed"/>
-          </Events>
-        </Component>
-      </SubComponents>
-    </Container>
     <Container class="javax.swing.JPanel" name="displayAllEmployees">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -273,7 +67,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="0" y="-10" width="1020" height="490"/>
+              <AbsoluteConstraints x="0" y="-10" width="1030" height="490"/>
             </Constraint>
           </Constraints>
 

@@ -4,6 +4,7 @@
  */
 package billing_system_project;
 import Products.stockmanager_products_frame;
+import cashier.CashierPhase;
 import cashier.ViewCustomersFrame;
 import com.formdev.flatlaf.FlatDarkLaf;
 import java.sql.Connection;
@@ -19,6 +20,7 @@ import java.awt.Insets;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.border.Border;
+import manager.ManagerPhase;
 import manager.manager_frame;
 /**
  *
@@ -57,11 +59,14 @@ public class login extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         role_ComboBox = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
         password_TextField1 = new javax.swing.JPasswordField();
+        jLabel9 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sign In");
@@ -72,44 +77,46 @@ public class login extends javax.swing.JFrame {
         setType(java.awt.Window.Type.POPUP);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setFont(new java.awt.Font("Yu Gothic UI Semibold", 3, 12)); // NOI18N
+        jButton1.setBackground(new java.awt.Color(51, 204, 0));
+        jButton1.setFont(new java.awt.Font("Tw Cen MT", 0, 24)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("LOGIN");
         jButton1.setToolTipText("Sign in");
+        jButton1.setBorder(null);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 320, 174, 40));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 320, 170, 40));
 
         id_TextField.setBackground(new java.awt.Color(102, 102, 102));
-        id_TextField.setFont(new java.awt.Font("Sitka Text", 2, 18)); // NOI18N
+        id_TextField.setFont(new java.awt.Font("Tw Cen MT", 0, 20)); // NOI18N
         id_TextField.setForeground(new java.awt.Color(255, 255, 255));
         id_TextField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         id_TextField.setSelectionColor(new java.awt.Color(255, 255, 255));
-        getContentPane().add(id_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 190, 230, 30));
+        getContentPane().add(id_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 190, 230, 30));
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel3.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 18)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel3.setText("Password");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 100, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, 120, -1));
 
         jLabel5.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel5.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 18)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel5.setText("Role");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 37, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, 50, -1));
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel6.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 18)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel6.setText("ID");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 37, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, 50, -1));
 
         role_ComboBox.setBackground(new java.awt.Color(0, 153, 255));
         role_ComboBox.setFont(new java.awt.Font("Sitka Text", 2, 18)); // NOI18N
@@ -120,45 +127,63 @@ public class login extends javax.swing.JFrame {
                 role_ComboBoxActionPerformed(evt);
             }
         });
-        getContentPane().add(role_ComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, 230, 30));
+        getContentPane().add(role_ComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 120, 230, 30));
+
+        jLabel2.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel2.setFont(new java.awt.Font("The Bold Font", 3, 36)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("WELC ");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, -1, -1));
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/photos/clear.png"))); // NOI18N
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 320, 60, 40));
 
         jButton2.setBackground(new java.awt.Color(255, 0, 51));
-        jButton2.setFont(new java.awt.Font("Sitka Text", 1, 18)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Tw Cen MT", 0, 18)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Clear");
+        jButton2.setText(" ClearFields");
         jButton2.setToolTipText("clear all fields");
+        jButton2.setBorder(null);
+        jButton2.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 110, 30));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, 130, 40));
 
         jLabel1.setBackground(new java.awt.Color(51, 153, 255));
         jLabel1.setFont(new java.awt.Font("The Bold Font", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 153, 255));
-        jLabel1.setText(" ome To WalMart");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 40, 440, 40));
+        jLabel1.setText(" ome To SWIFTPAY");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 40, 440, 40));
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/photos/log-in.png"))); // NOI18N
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 100, 100));
 
         password_TextField1.setBackground(new java.awt.Color(102, 102, 102));
+        password_TextField1.setFont(new java.awt.Font("Tw Cen MT", 0, 20)); // NOI18N
         password_TextField1.setForeground(new java.awt.Color(255, 255, 255));
         password_TextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 password_TextField1ActionPerformed(evt);
             }
         });
-        getContentPane().add(password_TextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 242, 230, 30));
+        getContentPane().add(password_TextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 240, 230, 30));
+
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/photos/close.png"))); // NOI18N
+        jLabel9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel9MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 10, 70, 80));
 
         jLabel4.setBackground(new java.awt.Color(153, 153, 153));
         jLabel4.setForeground(new java.awt.Color(102, 255, 255));
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/photos/06-loader_telega.gif"))); // NOI18N
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 0, 610, 420));
-
-        jLabel2.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel2.setFont(new java.awt.Font("The Bold Font", 3, 36)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("WELC ");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 0, 690, 450));
 
         pack();
         setLocationRelativeTo(null);
@@ -191,13 +216,13 @@ public class login extends javax.swing.JFrame {
                                 this.setVisible(false);
                                 switch(role_ComboBox.getSelectedIndex()){
                                     case 1:                                                                     //manager frame 
-                                        manager_frame x = new manager_frame();
+                                        ManagerPhase x = new ManagerPhase();
                                         x.setVisible(true);
                                         break;
                                     case 2:                                                                     //Cashier frame
                                     {
                                         this.setVisible(false);
-                                        ViewCustomersFrame cf=new ViewCustomersFrame();
+                                        CashierPhase cf=new CashierPhase();
                                         cf.setVisible(true);
                                     } 
                                         break;
@@ -253,6 +278,10 @@ public class login extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_password_TextField1ActionPerformed
 
+    private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
+        this.dispose();
+    }//GEN-LAST:event_jLabel9MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -299,6 +328,9 @@ public class login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPasswordField password_TextField1;
     private javax.swing.JComboBox<String> role_ComboBox;
     // End of variables declaration//GEN-END:variables

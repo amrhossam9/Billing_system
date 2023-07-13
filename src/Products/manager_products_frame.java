@@ -66,8 +66,10 @@ public class manager_products_frame extends javax.swing.JFrame {
         brand_ComboBox = new javax.swing.JComboBox<>();
         brand_filter_Button = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         products_Table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -119,16 +121,22 @@ public class manager_products_frame extends javax.swing.JFrame {
             products_Table.getColumnModel().getColumn(6).setResizable(false);
         }
 
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 840, 320));
+
         jButton1.setText("Back");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 450, -1, -1));
 
         jLabel1.setText("Search");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, 78, -1));
 
         search_TextField.setToolTipText("product name");
+        getContentPane().add(search_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 370, 115, -1));
+        search_TextField.getAccessibleContext().setAccessibleName("product name");
 
         find_Button.setText("Find");
         find_Button.addActionListener(new java.awt.event.ActionListener() {
@@ -136,6 +144,7 @@ public class manager_products_frame extends javax.swing.JFrame {
                 find_ButtonActionPerformed(evt);
             }
         });
+        getContentPane().add(find_Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 410, -1, -1));
 
         category_ComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--" }));
         category_ComboBox.addContainerListener(new java.awt.event.ContainerAdapter() {
@@ -193,8 +202,10 @@ public class manager_products_frame extends javax.swing.JFrame {
                 category_ComboBoxVetoableChange(evt);
             }
         });
+        getContentPane().add(category_ComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 370, 115, -1));
 
         jLabel2.setText("Category");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 340, 86, -1));
 
         cat_filter_Button.setText("Filter");
         cat_filter_Button.addActionListener(new java.awt.event.ActionListener() {
@@ -202,6 +213,7 @@ public class manager_products_frame extends javax.swing.JFrame {
                 cat_filter_ButtonActionPerformed(evt);
             }
         });
+        getContentPane().add(cat_filter_Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 410, -1, -1));
 
         brand_ComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--" }));
         brand_ComboBox.addAncestorListener(new javax.swing.event.AncestorListener() {
@@ -218,6 +230,7 @@ public class manager_products_frame extends javax.swing.JFrame {
                 brand_ComboBoxActionPerformed(evt);
             }
         });
+        getContentPane().add(brand_ComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 370, 115, 23));
 
         brand_filter_Button.setText("Filter");
         brand_filter_Button.addActionListener(new java.awt.event.ActionListener() {
@@ -225,75 +238,13 @@ public class manager_products_frame extends javax.swing.JFrame {
                 brand_filter_ButtonActionPerformed(evt);
             }
         });
+        getContentPane().add(brand_filter_Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 410, -1, -1));
 
         jLabel3.setText("Brand");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 340, 37, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 784, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(search_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton1)
-                                .addGap(12, 12, 12))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(brand_ComboBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(category_ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(42, 42, 42)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(brand_filter_Button)
-                                            .addComponent(cat_filter_Button)
-                                            .addComponent(find_Button))))
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(search_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(find_Button))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cat_filter_Button)
-                    .addComponent(category_ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(brand_filter_Button)
-                    .addComponent(brand_ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addContainerGap())
-        );
-
-        search_TextField.getAccessibleContext().setAccessibleName("product name");
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 880, 490));
 
         pack();
         setLocationRelativeTo(null);
@@ -522,6 +473,7 @@ fetch_products();
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable products_Table;
     private javax.swing.JTextField search_TextField;
