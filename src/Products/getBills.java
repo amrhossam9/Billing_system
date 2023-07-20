@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import manager.manager_frame;
+
 import net.proteanit.sql.DbUtils;
 import Products.displayAllBills;
 

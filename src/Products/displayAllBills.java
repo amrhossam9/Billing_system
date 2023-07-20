@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import manager.manager_frame;
+
 import net.proteanit.sql.DbUtils;
 /**
  *
@@ -236,9 +236,7 @@ public class displayAllBills extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_showBillButtonActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        this.setVisible(false);
-        manager_frame m=new manager_frame();
-        m.setVisible(true);
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
 

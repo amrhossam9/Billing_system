@@ -10,7 +10,7 @@ package cashier;
  */
 
 
-import Bill.order_items;
+
 import com.formdev.flatlaf.FlatDarkLaf;
 import db_connection.db_connection;
 import java.awt.Color;
@@ -30,10 +30,10 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
-import manager.manager_frame;
+
 import net.proteanit.sql.DbUtils;
 import billing_system_project.login;
-import cashier.newCustomerFrame;
+
 import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import manager.ViewEmployeesInternalFrame;
@@ -64,7 +64,7 @@ public class CustomerListInternalFrame extends javax.swing.JInternalFrame {
             UIManager.setLookAndFeel(new FlatDarkLaf());
             showdata();
         } catch (UnsupportedLookAndFeelException ex) {
-            Logger.getLogger(ViewCustomersFrame.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CustomerListInternalFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }
@@ -109,7 +109,7 @@ public class CustomerListInternalFrame extends javax.swing.JInternalFrame {
            
         }
         catch (SQLException ex) {
-            Logger.getLogger(ViewCustomersFrame.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CustomerListInternalFrame.class.getName()).log(Level.SEVERE, null, ex);
         } 
       
         
@@ -415,9 +415,12 @@ public class CustomerListInternalFrame extends javax.swing.JInternalFrame {
                 break;
             }
             System.out.print(discount);
-            order_items ord = new order_items();
-            ord.setVisible(true);
-           
+      
+        CashierPhase.jDesktopPane1.removeAll();
+        CashierPhase.jDesktopPane1.updateUI();
+        OrderItemsInternalFrame order_obj=new OrderItemsInternalFrame();
+        CashierPhase.jDesktopPane1.add(order_obj).setVisible(true);
+       
         }
         else
         {

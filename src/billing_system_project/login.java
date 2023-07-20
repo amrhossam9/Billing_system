@@ -3,9 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package billing_system_project;
-import Products.stockmanager_products_frame;
+import Products.StockManagerPhase;
+
 import cashier.CashierPhase;
-import cashier.ViewCustomersFrame;
+
 import com.formdev.flatlaf.FlatDarkLaf;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -21,7 +22,7 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.border.Border;
 import manager.ManagerPhase;
-import manager.manager_frame;
+
 /**
  *
  * @author abdoa
@@ -119,7 +120,7 @@ public class login extends javax.swing.JFrame {
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, 50, -1));
 
         role_ComboBox.setBackground(new java.awt.Color(0, 153, 255));
-        role_ComboBox.setFont(new java.awt.Font("Sitka Text", 2, 18)); // NOI18N
+        role_ComboBox.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
         role_ComboBox.setForeground(new java.awt.Color(255, 255, 255));
         role_ComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "Manager", "Cashier", "Stock manager" }));
         role_ComboBox.addActionListener(new java.awt.event.ActionListener() {
@@ -227,7 +228,7 @@ public class login extends javax.swing.JFrame {
                                     } 
                                         break;
                                     case 3:                                                                      //stock manager
-                                        stockmanager_products_frame y = new stockmanager_products_frame();
+                                        StockManagerPhase y = new StockManagerPhase();
                                         y.setVisible(true);
                                         break;
                                         
@@ -269,7 +270,7 @@ public class login extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         id_TextField.setText("");
-        id_TextField.setText("");
+        password_TextField1.setText("");
         role_ComboBox.setSelectedIndex(0);
 
     }//GEN-LAST:event_jButton2ActionPerformed

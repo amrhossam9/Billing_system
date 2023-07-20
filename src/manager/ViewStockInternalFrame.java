@@ -91,7 +91,7 @@ public class ViewStockInternalFrame extends javax.swing.JInternalFrame {
         panelGradient1.setColorGradient(new java.awt.Color(0, 153, 255));
         panelGradient1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        products_Table.setFont(new java.awt.Font("Tw Cen MT", 0, 16)); // NOI18N
+        products_Table.setFont(new java.awt.Font("Tw Cen MT", 0, 18)); // NOI18N
         products_Table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
@@ -138,7 +138,7 @@ public class ViewStockInternalFrame extends javax.swing.JInternalFrame {
         jLabel1.setFont(new java.awt.Font("Tw Cen MT", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/photos/ready-stock (1).png"))); // NOI18N
-        panelGradient1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 10, 80, 70));
+        panelGradient1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 20, 80, 60));
 
         search_TextField.setFont(new java.awt.Font("Tw Cen MT", 0, 18)); // NOI18N
         search_TextField.setToolTipText("product name");

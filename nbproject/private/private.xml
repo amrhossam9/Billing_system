@@ -3,11 +3,20 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/D:/modified/Billing_system/src/cashier/CustomerListInternalFrame.java</file>
+            <file>file:/D:/modified/Billing_system/src/Products/PanelGradient.java</file>
+            <file>file:/D:/modified/Billing_system/src/Products/getBills.java</file>
+            <file>file:/D:/modified/Billing_system/src/cashier/OrderItemsInternalFrame.java</file>
+            <file>file:/D:/modified/Billing_system/src/Products/displayAllBills.java</file>
             <file>file:/D:/modified/Billing_system/src/manager/ViewEmployeesInternalFrame.java</file>
+            <file>file:/D:/modified/Billing_system/src/cashier/CashierPhase.java</file>
+            <file>file:/D:/modified/Billing_system/src/cashier/newCustomerInternalFrame.java</file>
             <file>file:/D:/modified/Billing_system/src/manager/ManagerPhase.java</file>
-            <file>file:/D:/modified/Billing_system/src/manager/ViewCustomerInternalFrame.java</file>
-            <file>file:/D:/modified/Billing_system/src/Products/ViewCustomersFrame.java</file>
-            <file>file:/D:/modified/Billing_system/src/Employees_info/NewEmpFrame.java</file>
+            <file>file:/D:/modified/Billing_system/src/billing_system_project/Billing_system_project.java</file>
+            <file>file:/D:/modified/Billing_system/src/Products/StockManagerInternalFrame.java</file>
+            <file>file:/D:/modified/Billing_system/src/Products/Customerinfo.java</file>
+            <file>file:/D:/modified/Billing_system/src/Products/StockManagerPhase.java</file>
+            <file>file:/D:/modified/Billing_system/src/manager/NewEmpInternalFrame.java</file>
         </group>
     </open-files>
 </project-private>

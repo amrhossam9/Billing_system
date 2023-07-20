@@ -23,9 +23,9 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
-import manager.manager_frame;
+
 import net.proteanit.sql.DbUtils;
-import Employees_info.NewEmpFrame;
+
 /**
  *
  * @author medo4
@@ -176,6 +176,7 @@ public class ViewEmployeesInternalFrame extends javax.swing.JInternalFrame {
         deleteEmployeeButton.setFont(new java.awt.Font("Tw Cen MT", 0, 20)); // NOI18N
         deleteEmployeeButton.setForeground(new java.awt.Color(255, 255, 255));
         deleteEmployeeButton.setText("Delete Employee");
+        deleteEmployeeButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         deleteEmployeeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteEmployeeButtonActionPerformed(evt);
@@ -186,6 +187,7 @@ public class ViewEmployeesInternalFrame extends javax.swing.JInternalFrame {
         updateInfo.setFont(new java.awt.Font("Tw Cen MT", 0, 20)); // NOI18N
         updateInfo.setForeground(new java.awt.Color(255, 255, 255));
         updateInfo.setText("Update Info");
+        updateInfo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         updateInfo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 updateInfoActionPerformed(evt);
@@ -462,17 +464,21 @@ public class ViewEmployeesInternalFrame extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_searchButtonActionPerformed
 
     private void jLabel7MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseEntered
-        jLabel7.setForeground(Color.white);
+        jLabel7.setForeground(Color.CYAN);
     }//GEN-LAST:event_jLabel7MouseEntered
 
     private void jLabel7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseExited
-        jLabel7.setForeground(Color.CYAN);
+       
+         jLabel7.setForeground(Color.white);
     }//GEN-LAST:event_jLabel7MouseExited
 
     private void jLabel7MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MousePressed
+        ManagerPhase.jDesktopPane1.removeAll();
+        ManagerPhase.jDesktopPane1.updateUI();
+        NewEmpInternalFrame view_newemp=new NewEmpInternalFrame();
+        ManagerPhase.jDesktopPane1.add(view_newemp).setVisible(true);
         
-        NewEmpFrame n=new NewEmpFrame();
-        n.setVisible(true);
+     
     }//GEN-LAST:event_jLabel7MousePressed
 
     private void EmployeeInfoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EmployeeInfoMouseClicked
@@ -498,8 +504,7 @@ public class ViewEmployeesInternalFrame extends javax.swing.JInternalFrame {
 
     private void panelGradient2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelGradient2MouseClicked
         
-        NewEmpFrame newemp=new NewEmpFrame();
-        newemp.setVisible(true);
+        
         
     }//GEN-LAST:event_panelGradient2MouseClicked
 

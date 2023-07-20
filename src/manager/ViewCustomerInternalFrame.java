@@ -5,7 +5,7 @@
 package manager;
 
 import Products.Customerinfo;
-import Products.ViewCustomersFrame;
+
 import com.formdev.flatlaf.FlatDarkLaf;
 import java.awt.Color;
 import java.sql.Connection;
@@ -48,7 +48,7 @@ public class ViewCustomerInternalFrame extends javax.swing.JInternalFrame {
 
             
         } catch (UnsupportedLookAndFeelException ex) {
-            Logger.getLogger(ViewCustomersFrame.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ViewCustomerInternalFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     public void showdata()
@@ -92,7 +92,7 @@ public class ViewCustomerInternalFrame extends javax.swing.JInternalFrame {
            
         }
         catch (SQLException ex) {
-            Logger.getLogger(ViewCustomersFrame.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ViewCustomerInternalFrame.class.getName()).log(Level.SEVERE, null, ex);
         } 
       
         
@@ -189,7 +189,7 @@ public class ViewCustomerInternalFrame extends javax.swing.JInternalFrame {
                 labMouseExited(evt);
             }
         });
-        kGradientPanel1.add(lab, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 10, 90, 80));
+        kGradientPanel1.add(lab, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 10, 90, 70));
 
         keytext2.setFont(new java.awt.Font("Tw Cen MT", 0, 18)); // NOI18N
         keytext2.setToolTipText("search with first+last name");
@@ -223,7 +223,7 @@ public class ViewCustomerInternalFrame extends javax.swing.JInternalFrame {
                 lab1MouseExited(evt);
             }
         });
-        kGradientPanel1.add(lab1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 462, 45));
+        kGradientPanel1.add(lab1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 462, 45));
 
         getContentPane().add(kGradientPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 950, 670));
         kGradientPanel1.getAccessibleContext().setAccessibleName("");
@@ -316,7 +316,7 @@ public class ViewCustomerInternalFrame extends javax.swing.JInternalFrame {
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(ViewCustomersFrame.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ViewCustomerInternalFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         }

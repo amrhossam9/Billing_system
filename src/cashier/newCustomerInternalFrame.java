@@ -205,7 +205,7 @@ public class newCustomerInternalFrame extends javax.swing.JInternalFrame {
             }
         });
         panelGradient1.add(jLabel7);
-        jLabel7.setBounds(10, 0, 220, 40);
+        jLabel7.setBounds(20, 0, 190, 40);
 
         jPanel1.add(panelGradient1, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 520, 230, 40));
 
@@ -215,9 +215,9 @@ public class newCustomerInternalFrame extends javax.swing.JInternalFrame {
 
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/photos/18706084_rm222-mind-31.jpg"))); // NOI18N
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -130, 1040, 870));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -130, 1040, 1000));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 980, 700));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 980, 780));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -247,11 +247,12 @@ public class newCustomerInternalFrame extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jLabel7MouseClicked
 
     private void jLabel7MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseEntered
-        jLabel7.setForeground(Color.white);
+        Color a=new Color(51,255,51) ;
+        jLabel7.setForeground(a);
     }//GEN-LAST:event_jLabel7MouseEntered
 
     private void jLabel7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseExited
-
+        jLabel7.setForeground(Color.WHITE);
     }//GEN-LAST:event_jLabel7MouseExited
 
     private void jLabel7MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MousePressed

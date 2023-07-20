@@ -4,6 +4,7 @@
  */
 package cashier;
 
+import billing_system_project.login;
 import com.formdev.flatlaf.ui.FlatListCellBorder.Default;
 import java.awt.Color;
 import javax.swing.JPanel;
@@ -57,6 +58,7 @@ public class CashierPhase extends javax.swing.JFrame {
         addnewcustomerpanel = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jDesktopPane1 = new javax.swing.JDesktopPane();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -89,7 +91,7 @@ public class CashierPhase extends javax.swing.JFrame {
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 260, 170, 30));
 
         lab.setBackground(new java.awt.Color(255, 255, 255));
-        lab.setFont(new java.awt.Font("Tw Cen MT", 1, 36)); // NOI18N
+        lab.setFont(new java.awt.Font("The Bold Font", 1, 48)); // NOI18N
         lab.setForeground(new java.awt.Color(0, 204, 255));
         lab.setText("MENU");
         lab.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -100,12 +102,12 @@ public class CashierPhase extends javax.swing.JFrame {
                 labMouseExited(evt);
             }
         });
-        jPanel1.add(lab, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 150, 50));
+        jPanel1.add(lab, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 150, 50));
 
         lab2.setBackground(new java.awt.Color(255, 255, 255));
-        lab2.setFont(new java.awt.Font("Tw Cen MT", 1, 36)); // NOI18N
+        lab2.setFont(new java.awt.Font("The Bold Font", 1, 48)); // NOI18N
         lab2.setForeground(new java.awt.Color(255, 255, 255));
-        lab2.setText("CASHIER");
+        lab2.setText(" CASHIER");
         lab2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 lab2MouseEntered(evt);
@@ -114,7 +116,7 @@ public class CashierPhase extends javax.swing.JFrame {
                 lab2MouseExited(evt);
             }
         });
-        jPanel1.add(lab2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 180, 60));
+        jPanel1.add(lab2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 230, 60));
 
         jLabel9.setFont(new java.awt.Font("Tw Cen MT", 0, 20)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
@@ -152,11 +154,11 @@ public class CashierPhase extends javax.swing.JFrame {
                 jLabel10MousePressed(evt);
             }
         });
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 160, 90));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, 160, 90));
 
         kGradientPanel2.setForeground(new java.awt.Color(255, 255, 255));
         kGradientPanel2.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
-        kGradientPanel2.setkEndColor(new java.awt.Color(255, 153, 153));
+        kGradientPanel2.setkEndColor(new java.awt.Color(255, 102, 102));
         kGradientPanel2.setkGradientFocus(200);
         kGradientPanel2.setkStartColor(new java.awt.Color(255, 102, 102));
         kGradientPanel2.setMaximumSize(new java.awt.Dimension(800, 800));
@@ -165,17 +167,23 @@ public class CashierPhase extends javax.swing.JFrame {
         labelbutton.setFont(new java.awt.Font("Tw Cen MT", 0, 24)); // NOI18N
         labelbutton.setForeground(new java.awt.Color(255, 255, 255));
         labelbutton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelbutton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/photos/logouticon.png"))); // NOI18N
+        labelbutton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/photos/logoutversmall.png"))); // NOI18N
         labelbutton.setText("LOG OUT");
         labelbutton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         labelbutton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 labelbuttonMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                labelbuttonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                labelbuttonMouseExited(evt);
+            }
         });
-        kGradientPanel2.add(labelbutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 4, 170, 60));
+        kGradientPanel2.add(labelbutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 190, 50));
 
-        jPanel1.add(kGradientPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 600, 200, 70));
+        jPanel1.add(kGradientPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 620, 190, 50));
 
         viewcustomerspanel.setBackground(new java.awt.Color(255, 255, 255));
         viewcustomerspanel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -290,17 +298,23 @@ public class CashierPhase extends javax.swing.JFrame {
 
         jPanel1.add(addnewcustomerpanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 400, 190, 50));
 
-        kGradientPanel1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 230, 690));
+        kGradientPanel1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 240, 690));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/photos/cashier phase .jpg"))); // NOI18N
+
+        jDesktopPane1.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 930, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 690, Short.MAX_VALUE)
+            .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         kGradientPanel1.add(jDesktopPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, 930, 690));
@@ -323,11 +337,13 @@ public class CashierPhase extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseEntered
-        // TODO add your handling code here:
+          
+           Color a=new Color(51,0,204) ;
+            jLabel5.setForeground(a);
     }//GEN-LAST:event_jLabel5MouseEntered
 
     private void jLabel5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseExited
-        // TODO add your handling code here:
+        jLabel5.setForeground(new Color(0,204,0));
     }//GEN-LAST:event_jLabel5MouseExited
 
     private void jLabel5MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MousePressed
@@ -357,7 +373,7 @@ public class CashierPhase extends javax.swing.JFrame {
     }//GEN-LAST:event_labMouseEntered
 
     private void labMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labMouseExited
-        lab.setForeground(Color.WHITE);        // TODO add your handling code here:
+        lab.setForeground(Color.WHITE);        
     }//GEN-LAST:event_labMouseExited
 
     private void lab2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lab2MouseEntered
@@ -393,15 +409,20 @@ public class CashierPhase extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel10MousePressed
 
     private void labelbuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelbuttonMouseClicked
-       
+      
+        login obj=new login();
+        this.setVisible(false);
+       obj.setVisible(true);
     }//GEN-LAST:event_labelbuttonMouseClicked
 
     private void viewCustomersButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewCustomersButtonMouseEntered
-        // TODO add your handling code here:
+         Color a=new Color(51,0,204) ;
+        viewCustomersButton.setForeground(a);
     }//GEN-LAST:event_viewCustomersButtonMouseEntered
 
     private void viewCustomersButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewCustomersButtonMouseExited
-        // TODO add your handling code here:
+    
+       viewCustomersButton.setForeground( new Color(0,204,0));
     }//GEN-LAST:event_viewCustomersButtonMouseExited
 
     private void viewCustomersButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewCustomersButtonMousePressed
@@ -452,6 +473,15 @@ public class CashierPhase extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_addnewcustomerpanelMouseExited
 
+    private void labelbuttonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelbuttonMouseEntered
+        Color a=new Color(51,0,204) ;
+        labelbutton.setForeground(a);
+    }//GEN-LAST:event_labelbuttonMouseEntered
+
+    private void labelbuttonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelbuttonMouseExited
+          labelbutton.setForeground(Color.WHITE);
+    }//GEN-LAST:event_labelbuttonMouseExited
+
     /**
      * @param args the command line arguments
      */
@@ -489,7 +519,8 @@ public class CashierPhase extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel addnewcustomerpanel;
-    private javax.swing.JDesktopPane jDesktopPane1;
+    public static javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel8;

@@ -5,8 +5,8 @@
 package manager;
 import Products.getBills;
 import Products.Customerinfo;
-import Products.ViewCustomersFrame;
-import Products.manager_products_frame;
+
+
 import billing_system_project.login;
 import com.formdev.flatlaf.FlatDarkLaf;
 import com.formdev.flatlaf.ui.FlatListCellBorder.Default;
@@ -82,6 +82,7 @@ Color Default,Clicked,Dragged,color;
         jPanel6 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
 
@@ -328,12 +329,12 @@ Color Default,Clicked,Dragged,color;
         jLabel3.setFont(new java.awt.Font("Candara Light", 0, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("ID :");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 160, 40, -1));
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, 40, -1));
 
         jLabel4.setFont(new java.awt.Font("Candara Light", 0, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Name :");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, -1, -1));
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, -1, -1));
 
         jPanel6.setBackground(new java.awt.Color(0, 153, 255));
         jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -348,7 +349,26 @@ Color Default,Clicked,Dragged,color;
         jLabel1.setText("’Manager");
         jPanel6.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 20, 200, 50));
 
-        jPanel2.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 230, 120));
+        jLabel10.setFont(new java.awt.Font("Tw Cen MT", 0, 20)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/photos/manager icon.png"))); // NOI18N
+        jLabel10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel10.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel10MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel10MouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabel10MousePressed(evt);
+            }
+        });
+        jPanel6.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, 140, 110));
+
+        jPanel2.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 230, 150));
 
         jPanel9.setBackground(new java.awt.Color(255, 102, 102));
         jPanel9.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -369,7 +389,9 @@ Color Default,Clicked,Dragged,color;
         jLabel11.setFont(new java.awt.Font("Tw Cen MT", 0, 24)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel11.setText("Log Out");
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/photos/logoutversmall.png"))); // NOI18N
+        jLabel11.setText("LOG OUT");
+        jLabel11.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel11MouseClicked(evt);
@@ -389,17 +411,14 @@ Color Default,Clicked,Dragged,color;
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+            .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jPanel2.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 600, 190, 40));
+        jPanel2.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 590, 190, 50));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 230, 670));
 
@@ -553,7 +572,8 @@ Color Default,Clicked,Dragged,color;
     }//GEN-LAST:event_jPanel9MousePressed
 
     private void viewstocklabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewstocklabelMouseEntered
-       viewstocklabel.setForeground(Color.red);
+      Color a=new Color(51,0,204) ;
+        viewstocklabel.setForeground(a);
     }//GEN-LAST:event_viewstocklabelMouseEntered
 
     private void viewstocklabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewstocklabelMouseExited
@@ -562,7 +582,8 @@ Color Default,Clicked,Dragged,color;
     }//GEN-LAST:event_viewstocklabelMouseExited
 
     private void viewbillslabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewbillslabelMouseEntered
-       viewbillslabel.setForeground(Color.red);
+       Color a=new Color(51,0,204) ;
+        viewbillslabel.setForeground(a);
     }//GEN-LAST:event_viewbillslabelMouseEntered
 
     private void viewbillslabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewbillslabelMouseExited
@@ -570,7 +591,8 @@ Color Default,Clicked,Dragged,color;
     }//GEN-LAST:event_viewbillslabelMouseExited
 
     private void viewcustomerslabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewcustomerslabelMouseEntered
-        viewcustomerslabel.setForeground(Color.red);
+        Color a=new Color(51,0,204) ;
+        viewcustomerslabel.setForeground(a);
     }//GEN-LAST:event_viewcustomerslabelMouseEntered
 
     private void viewcustomerslabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewcustomerslabelMouseExited
@@ -578,7 +600,8 @@ Color Default,Clicked,Dragged,color;
     }//GEN-LAST:event_viewcustomerslabelMouseExited
 
     private void viewemployeeslabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewemployeeslabelMouseEntered
-         viewemployeeslabel.setForeground(Color.red);
+         Color a=new Color(51,0,204) ;
+        viewemployeeslabel.setForeground(a);
     }//GEN-LAST:event_viewemployeeslabelMouseEntered
 
     private void viewemployeeslabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewemployeeslabelMouseExited
@@ -595,12 +618,25 @@ Color Default,Clicked,Dragged,color;
     }//GEN-LAST:event_viewbillslabelMouseClicked
 
     private void jLabel11MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseEntered
-       jLabel11.setForeground(color);
+        Color a=new Color(51,0,204) ;
+        jLabel11.setForeground(a);
     }//GEN-LAST:event_jLabel11MouseEntered
 
     private void jLabel11MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseExited
          jLabel11.setForeground(Color.white);
     }//GEN-LAST:event_jLabel11MouseExited
+
+    private void jLabel10MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel10MouseEntered
+
+    private void jLabel10MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel10MouseExited
+
+    private void jLabel10MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel10MousePressed
 
     /**
      * @param args the command line arguments
@@ -638,8 +674,9 @@ Color Default,Clicked,Dragged,color;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JDesktopPane jDesktopPane1;
+    public static javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
