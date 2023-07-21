@@ -38,24 +38,9 @@ public class ViewEmployeesInternalFrame extends javax.swing.JInternalFrame {
     
      Connection con;
       db_connection c= new db_connection();
-            
-    public ViewEmployeesInternalFrame() {
-         try {
-             UIManager.setLookAndFeel(new FlatDarkLaf());
-         } catch (UnsupportedLookAndFeelException ex) {
-             Logger.getLogger(ViewEmployeesInternalFrame.class.getName()).log(Level.SEVERE, null, ex);
-         }
-            //view of internal frame modifications
-            this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0,0,0,0));
-            BasicInternalFrameUI ui= (BasicInternalFrameUI)this.getUI();
-            ui.setNorthPane(null);
-            //disable Resize for internalJframe
-            this.setResizable(false);
-        
-        
-        
-        initComponents();
-        con= c.connect();
+      public void fetch_employees()
+      {
+           con= c.connect();
 
             try {
 
@@ -73,7 +58,26 @@ public class ViewEmployeesInternalFrame extends javax.swing.JInternalFrame {
             } catch (SQLException ex) {
                 System.out.println(ex);
             }
-        displayAllEmployees.setVisible(true);
+      }
+      
+            
+    public ViewEmployeesInternalFrame() {
+         try {
+             UIManager.setLookAndFeel(new FlatDarkLaf());
+         } catch (UnsupportedLookAndFeelException ex) {
+             Logger.getLogger(ViewEmployeesInternalFrame.class.getName()).log(Level.SEVERE, null, ex);
+         }
+            //view of internal frame modifications
+            this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0,0,0,0));
+            BasicInternalFrameUI ui= (BasicInternalFrameUI)this.getUI();
+            ui.setNorthPane(null);
+            //disable Resize for internalJframe
+            this.setResizable(false);
+     
+        initComponents();
+        fetch_employees();
+       
+      //  displayAllEmployees.setVisible(true);
       //  addNewEmployee.setVisible(false);
     
     }
@@ -110,8 +114,8 @@ public class ViewEmployeesInternalFrame extends javax.swing.JInternalFrame {
         EmployeeInfo = new javax.swing.JTable();
         AddressLabel1 = new javax.swing.JLabel();
         AddressLabel2 = new javax.swing.JLabel();
-        AddressLabel3 = new javax.swing.JLabel();
         title1 = new javax.swing.JLabel();
+        AddressLabel3 = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(942, 706));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -127,7 +131,7 @@ public class ViewEmployeesInternalFrame extends javax.swing.JInternalFrame {
         SalaryLabel.setFont(new java.awt.Font("Tw Cen MT", 0, 20)); // NOI18N
         SalaryLabel.setForeground(new java.awt.Color(255, 255, 255));
         SalaryLabel.setText("Salary");
-        displayAllEmployees.add(SalaryLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 620, 85, 28));
+        displayAllEmployees.add(SalaryLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 620, 85, 28));
 
         searchLabel1.setFont(new java.awt.Font("Tw Cen MT", 0, 24)); // NOI18N
         searchLabel1.setForeground(new java.awt.Color(255, 250, 244));
@@ -142,7 +146,7 @@ public class ViewEmployeesInternalFrame extends javax.swing.JInternalFrame {
         RoleLabel.setFont(new java.awt.Font("Tw Cen MT", 0, 20)); // NOI18N
         RoleLabel.setForeground(new java.awt.Color(255, 255, 255));
         RoleLabel.setText("Role");
-        displayAllEmployees.add(RoleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 580, 60, 28));
+        displayAllEmployees.add(RoleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 580, 60, 28));
 
         NameLabel.setFont(new java.awt.Font("Tw Cen MT", 0, 20)); // NOI18N
         NameLabel.setForeground(new java.awt.Color(255, 255, 255));
@@ -230,7 +234,7 @@ public class ViewEmployeesInternalFrame extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel7.setFont(new java.awt.Font("Tw Cen MT", 0, 20)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Gilroy ExtraBold", 1, 24)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("ADD EMPLOYEE");
@@ -247,7 +251,7 @@ public class ViewEmployeesInternalFrame extends javax.swing.JInternalFrame {
             }
         });
         panelGradient2.add(jLabel7);
-        jLabel7.setBounds(40, 0, 180, 40);
+        jLabel7.setBounds(20, 0, 210, 40);
 
         displayAllEmployees.add(panelGradient2, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 680, 250, 40));
 
@@ -261,7 +265,7 @@ public class ViewEmployeesInternalFrame extends javax.swing.JInternalFrame {
                 {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Employee_id", "name", "role", "phone", "address", "gender", "sallary"
+                "Employee_id", "name", "role", "phone", "address", "gender", "salary"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -272,6 +276,7 @@ public class ViewEmployeesInternalFrame extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
+        EmployeeInfo.setShowVerticalLines(true);
         EmployeeInfo.getTableHeader().setReorderingAllowed(false);
         EmployeeInfo.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
@@ -289,7 +294,7 @@ public class ViewEmployeesInternalFrame extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(EmployeeInfo);
 
-        displayAllEmployees.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 890, 330));
+        displayAllEmployees.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 890, 340));
 
         AddressLabel1.setFont(new java.awt.Font("Tw Cen MT", 0, 20)); // NOI18N
         AddressLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -301,15 +306,15 @@ public class ViewEmployeesInternalFrame extends javax.swing.JInternalFrame {
         AddressLabel2.setText("New Employee...");
         displayAllEmployees.add(AddressLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 640, 180, 40));
 
-        AddressLabel3.setFont(new java.awt.Font("Tw Cen MT", 0, 24)); // NOI18N
-        AddressLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        AddressLabel3.setText("Data Edit :");
-        displayAllEmployees.add(AddressLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 540, 170, 30));
-
         title1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         title1.setForeground(new java.awt.Color(255, 250, 244));
         title1.setText("EMPLOYEE INFORMATION");
         displayAllEmployees.add(title1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 490, -1));
+
+        AddressLabel3.setFont(new java.awt.Font("Tw Cen MT", 0, 28)); // NOI18N
+        AddressLabel3.setForeground(new java.awt.Color(51, 255, 102));
+        AddressLabel3.setText("------------------------ Data Edit ---------------------");
+        displayAllEmployees.add(AddressLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 530, 640, 60));
 
         getContentPane().add(displayAllEmployees, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -90, 930, 750));
 
@@ -349,6 +354,7 @@ public class ViewEmployeesInternalFrame extends javax.swing.JInternalFrame {
                 ResultSet resultSet = stmt.executeQuery();
 
                 EmployeeInfo.setModel(DbUtils.resultSetToTableModel(resultSet));
+                JOptionPane.showMessageDialog(this, "Employee Removed Successfully !");
 
             } catch (SQLException ex) {
                 System.out.println(ex);
@@ -430,7 +436,8 @@ public class ViewEmployeesInternalFrame extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         if("".equals(searchField.getText().trim()))
         {
-            JOptionPane.showMessageDialog(this, "Enter a value");
+          //  JOptionPane.showMessageDialog(this, "Enter a value");
+            fetch_employees();
         }
         else
         {

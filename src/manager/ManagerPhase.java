@@ -3,14 +3,22 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package manager;
-import Products.getBills;
+import Bill.DisplayAllBillsInternalFrame;
+
 import Products.Customerinfo;
 
 
 import billing_system_project.login;
+import static billing_system_project.login.get_Manager_id;
+import static billing_system_project.login.get_cashier_id;
+import cashier.CashierPhase;
 import com.formdev.flatlaf.FlatDarkLaf;
 import com.formdev.flatlaf.ui.FlatListCellBorder.Default;
+import db_connection.db_connection;
 import java.awt.Color;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -41,6 +49,37 @@ Color Default,Clicked,Dragged,color;
             Logger.getLogger(ManagerPhase.class.getName()).log(Level.SEVERE, null, ex);
         }
        this.setResizable(false);
+       
+       
+       //setting label and id for the cashier who logged in
+          id_label.setText(get_Manager_id()+" ");  //ID set;
+          
+          
+           db_connection c= new db_connection();
+           Connection conn=db_connection.connect();
+           String query = "SELECT name FROM employee where employee_id=?";
+            PreparedStatement stmt;
+             ResultSet rs;
+           
+           
+          
+           
+        try {
+            stmt = conn.prepareStatement(query);
+            stmt.setString(1,get_Manager_id()+"");
+            rs = stmt.executeQuery();
+            if(rs.next())
+            {
+                String key=rs.getString("name");
+                key=key.substring(0,1).toUpperCase()+key.substring(1);
+                name_label.setText(key);
+            }
+        
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(CashierPhase.class.getName()).log(Level.SEVERE, null, ex);
+        }
+          
        
     }
 
@@ -77,14 +116,16 @@ Color Default,Clicked,Dragged,color;
         viewemployeeslabel = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         viewcustomerslabel = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
+        name_label2 = new javax.swing.JLabel();
+        name_label = new javax.swing.JLabel();
+        id = new javax.swing.JLabel();
+        id_label = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -166,7 +207,7 @@ Color Default,Clicked,Dragged,color;
                 .addContainerGap())
         );
 
-        jPanel2.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, 190, -1));
+        jPanel2.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, 190, -1));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -220,7 +261,7 @@ Color Default,Clicked,Dragged,color;
                 .addContainerGap())
         );
 
-        jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 190, 40));
+        jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, 190, 40));
 
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
         jPanel7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -269,7 +310,7 @@ Color Default,Clicked,Dragged,color;
                 .addContainerGap())
         );
 
-        jPanel2.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, 190, 40));
+        jPanel2.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 470, 190, 40));
 
         jPanel8.setBackground(new java.awt.Color(255, 255, 255));
         jPanel8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -324,17 +365,7 @@ Color Default,Clicked,Dragged,color;
                 .addContainerGap(7, Short.MAX_VALUE))
         );
 
-        jPanel2.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, 190, 40));
-
-        jLabel3.setFont(new java.awt.Font("Candara Light", 0, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("ID :");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, 40, -1));
-
-        jLabel4.setFont(new java.awt.Font("Candara Light", 0, 24)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Name :");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, -1, -1));
+        jPanel2.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, 190, 40));
 
         jPanel6.setBackground(new java.awt.Color(0, 153, 255));
         jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -420,6 +451,82 @@ Color Default,Clicked,Dragged,color;
 
         jPanel2.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 590, 190, 50));
 
+        name_label2.setFont(new java.awt.Font("Tw Cen MT", 0, 24)); // NOI18N
+        name_label2.setForeground(new java.awt.Color(0, 204, 255));
+        name_label2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        name_label2.setText("Hello");
+        name_label2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        name_label2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        name_label2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                name_label2MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                name_label2MouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                name_label2MousePressed(evt);
+            }
+        });
+        jPanel2.add(name_label2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 90, 50));
+
+        name_label.setFont(new java.awt.Font("Tw Cen MT", 0, 24)); // NOI18N
+        name_label.setForeground(new java.awt.Color(255, 255, 255));
+        name_label.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        name_label.setText("Manager Name");
+        name_label.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        name_label.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        name_label.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                name_labelMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                name_labelMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                name_labelMousePressed(evt);
+            }
+        });
+        jPanel2.add(name_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 220, 180, 30));
+
+        id.setFont(new java.awt.Font("Tw Cen MT", 0, 24)); // NOI18N
+        id.setForeground(new java.awt.Color(0, 204, 255));
+        id.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        id.setText("ID :");
+        id.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        id.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        id.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                idMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                idMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                idMousePressed(evt);
+            }
+        });
+        jPanel2.add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(-30, 170, 140, 60));
+
+        id_label.setFont(new java.awt.Font("Tw Cen MT", 0, 24)); // NOI18N
+        id_label.setForeground(new java.awt.Color(255, 255, 255));
+        id_label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        id_label.setText("Manager ID");
+        id_label.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        id_label.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        id_label.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                id_labelMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                id_labelMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                id_labelMousePressed(evt);
+            }
+        });
+        jPanel2.add(id_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, 150, 40));
+
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 230, 670));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1150, 660));
@@ -469,13 +576,17 @@ Color Default,Clicked,Dragged,color;
     }//GEN-LAST:event_jPanel3MouseClicked
 
     private void jPanel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel5MouseClicked
-         //Coloring each buton 
-        compositecoloringset(jPanel5,Clicked,jPanel3,Default,jPanel7,Default,jPanel8,Default);
-         //Calling internal frame into this desktop panel
-        GetBillsInternalFrame view=new GetBillsInternalFrame();
-        jDesktopPane1.removeAll();
-        jDesktopPane1.updateUI();
-        jDesktopPane1.add(view).setVisible(true);
+//         //Coloring each buton 
+//        compositecoloringset(jPanel5,Clicked,jPanel3,Default,jPanel7,Default,jPanel8,Default);
+//         //Calling internal frame into this desktop panel
+//        GetBillsInternalFrame view=new GetBillsInternalFrame();
+//        jDesktopPane1.removeAll();
+//        jDesktopPane1.updateUI();
+//        jDesktopPane1.add(view).setVisible(true);
+
+DisplayAllBillsInternalFrame obj=new DisplayAllBillsInternalFrame();
+obj.setVisible(true);
+
     }//GEN-LAST:event_jPanel5MouseClicked
 
     private void jPanel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel8MouseClicked
@@ -611,10 +722,12 @@ Color Default,Clicked,Dragged,color;
     private void viewbillslabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewbillslabelMouseClicked
          compositecoloringset(jPanel5,Clicked,jPanel3,Default,jPanel7,Default,jPanel8,Default);
          //Calling internal frame into this desktop panel
-        GetBillsInternalFrame view=new GetBillsInternalFrame();
+        DisplayAllBillsInternalFrame view=new DisplayAllBillsInternalFrame();
         jDesktopPane1.removeAll();
         jDesktopPane1.updateUI();
         jDesktopPane1.add(view).setVisible(true);
+
+
     }//GEN-LAST:event_viewbillslabelMouseClicked
 
     private void jLabel11MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseEntered
@@ -637,6 +750,54 @@ Color Default,Clicked,Dragged,color;
     private void jLabel10MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MousePressed
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel10MousePressed
+
+    private void idMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_idMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_idMouseEntered
+
+    private void idMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_idMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_idMouseExited
+
+    private void idMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_idMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_idMousePressed
+
+    private void id_labelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_id_labelMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_id_labelMouseEntered
+
+    private void id_labelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_id_labelMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_id_labelMouseExited
+
+    private void id_labelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_id_labelMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_id_labelMousePressed
+
+    private void name_labelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_name_labelMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_name_labelMouseEntered
+
+    private void name_labelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_name_labelMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_name_labelMouseExited
+
+    private void name_labelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_name_labelMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_name_labelMousePressed
+
+    private void name_label2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_name_label2MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_name_label2MouseEntered
+
+    private void name_label2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_name_label2MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_name_label2MouseExited
+
+    private void name_label2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_name_label2MousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_name_label2MousePressed
 
     /**
      * @param args the command line arguments
@@ -674,13 +835,13 @@ Color Default,Clicked,Dragged,color;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel id;
+    private javax.swing.JLabel id_label;
     public static javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -690,6 +851,8 @@ Color Default,Clicked,Dragged,color;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
+    private javax.swing.JLabel name_label;
+    private javax.swing.JLabel name_label2;
     private javax.swing.JLabel viewbillslabel;
     private javax.swing.JLabel viewcustomerslabel;
     private javax.swing.JLabel viewemployeeslabel;

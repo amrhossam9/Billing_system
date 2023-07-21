@@ -10,10 +10,7 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 public class Billing_system_project {
-
-    /**
-     * @param args the command line arguments
-     */
+    
     public static void main(String[] args) throws UnsupportedLookAndFeelException {
 
         try {
@@ -35,7 +32,7 @@ public class Billing_system_project {
             try{
                 for( x=0;x<=100;x++)
                 {
-                    Thread.sleep(15);
+                    Thread.sleep(25);
                     s.progress.setValue(x);
                     s.Percent.setText(Integer.toString(x)+"%");
                      if(x==100)

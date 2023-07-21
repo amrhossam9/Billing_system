@@ -155,7 +155,7 @@ public class ViewCustomerInternalFrame extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(CustomersTable);
 
-        kGradientPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 870, 450));
+        kGradientPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 870, 460));
 
         keytext.setFont(new java.awt.Font("Tw Cen MT", 0, 18)); // NOI18N
         keytext.setToolTipText("search by all fields");
@@ -169,13 +169,13 @@ public class ViewCustomerInternalFrame extends javax.swing.JInternalFrame {
                 keytextKeyReleased(evt);
             }
         });
-        kGradientPanel1.add(keytext, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 580, 176, 31));
+        kGradientPanel1.add(keytext, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 580, 210, 31));
 
         jLabel2.setBackground(new java.awt.Color(255, 0, 102));
         jLabel2.setFont(new java.awt.Font("Tw Cen MT", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("General Search");
-        kGradientPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 580, 160, 32));
+        kGradientPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 580, 160, 32));
 
         lab.setBackground(new java.awt.Color(51, 51, 51));
         lab.setFont(new java.awt.Font("Tw Cen MT", 1, 36)); // NOI18N
@@ -189,7 +189,7 @@ public class ViewCustomerInternalFrame extends javax.swing.JInternalFrame {
                 labMouseExited(evt);
             }
         });
-        kGradientPanel1.add(lab, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 10, 90, 70));
+        kGradientPanel1.add(lab, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 10, 80, 70));
 
         keytext2.setFont(new java.awt.Font("Tw Cen MT", 0, 18)); // NOI18N
         keytext2.setToolTipText("search with first+last name");
@@ -203,13 +203,13 @@ public class ViewCustomerInternalFrame extends javax.swing.JInternalFrame {
                 keytext2KeyReleased(evt);
             }
         });
-        kGradientPanel1.add(keytext2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 580, 176, 34));
+        kGradientPanel1.add(keytext2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 580, 220, 34));
 
         jLabel4.setBackground(new java.awt.Color(255, 0, 102));
         jLabel4.setFont(new java.awt.Font("Tw Cen MT", 0, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Search by Name");
-        kGradientPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 580, 180, 32));
+        kGradientPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 580, 180, 32));
 
         lab1.setBackground(new java.awt.Color(51, 51, 51));
         lab1.setFont(new java.awt.Font("Tw Cen MT", 1, 36)); // NOI18N
@@ -223,7 +223,7 @@ public class ViewCustomerInternalFrame extends javax.swing.JInternalFrame {
                 lab1MouseExited(evt);
             }
         });
-        kGradientPanel1.add(lab1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 462, 45));
+        kGradientPanel1.add(lab1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 490, 45));
 
         getContentPane().add(kGradientPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 950, 670));
         kGradientPanel1.getAccessibleContext().setAccessibleName("");

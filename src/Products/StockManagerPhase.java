@@ -6,9 +6,17 @@ package Products;
 
 
 import billing_system_project.login;
+import static billing_system_project.login.get_StockManager_id;
+import static billing_system_project.login.get_cashier_id;
+import cashier.CashierPhase;
 import com.formdev.flatlaf.FlatDarkLaf;
 import com.formdev.flatlaf.ui.FlatListCellBorder.Default;
+import db_connection.db_connection;
 import java.awt.Color;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JPanel;
@@ -39,6 +47,39 @@ public class StockManagerPhase extends javax.swing.JFrame {
             Logger.getLogger(ManagerPhase.class.getName()).log(Level.SEVERE, null, ex);
         }
        this.setResizable(false);
+       
+       
+        //setting label and id for the cashier who logged in
+          id_label.setText(get_StockManager_id()+" ");  //ID set;
+          
+          
+           db_connection c= new db_connection();
+           Connection conn=db_connection.connect();
+           String query = "SELECT name FROM employee where employee_id=?";
+            PreparedStatement stmt;
+             ResultSet rs;
+           
+           
+          
+           
+        try {
+            stmt = conn.prepareStatement(query);
+            stmt.setString(1,get_StockManager_id()+"");
+            rs = stmt.executeQuery();
+            if(rs.next())
+            {
+                String key=rs.getString("name");
+                key=key.substring(0,1).toUpperCase()+key.substring(1);
+                name_label.setText(key);
+            }
+        
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(CashierPhase.class.getName()).log(Level.SEVERE, null, ex);
+        }
+          
+       
+       
           
     }
 
@@ -62,9 +103,11 @@ public class StockManagerPhase extends javax.swing.JFrame {
         viewanalysislabel = new javax.swing.JLabel();
         kGradientPanel2 = new keeptoo.KGradientPanel();
         labelbutton = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
+        id = new javax.swing.JLabel();
+        id_label = new javax.swing.JLabel();
+        name_label = new javax.swing.JLabel();
+        name_label2 = new javax.swing.JLabel();
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jLabel1 = new javax.swing.JLabel();
 
@@ -160,7 +203,7 @@ public class StockManagerPhase extends javax.swing.JFrame {
             .addComponent(managestocklabel, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
         );
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, 190, 50));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 390, 190, 50));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -200,7 +243,7 @@ public class StockManagerPhase extends javax.swing.JFrame {
             .addComponent(viewanalysislabel, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
         );
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 400, -1, 50));
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 480, -1, 50));
 
         kGradientPanel2.setForeground(new java.awt.Color(255, 255, 255));
         kGradientPanel2.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
@@ -231,44 +274,6 @@ public class StockManagerPhase extends javax.swing.JFrame {
 
         jPanel1.add(kGradientPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 620, 190, 50));
 
-        jLabel9.setFont(new java.awt.Font("Tw Cen MT", 0, 20)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setText("Stock Manager Name");
-        jLabel9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel9.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabel9MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jLabel9MouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                jLabel9MousePressed(evt);
-            }
-        });
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 190, 30));
-
-        jLabel8.setFont(new java.awt.Font("Tw Cen MT", 0, 20)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("Stock Manager ID");
-        jLabel8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabel8MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jLabel8MouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                jLabel8MousePressed(evt);
-            }
-        });
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, 170, 30));
-
         jLabel10.setFont(new java.awt.Font("Tw Cen MT", 0, 20)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -287,6 +292,82 @@ public class StockManagerPhase extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 160, 100));
+
+        id.setFont(new java.awt.Font("Tw Cen MT", 0, 24)); // NOI18N
+        id.setForeground(new java.awt.Color(0, 204, 255));
+        id.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        id.setText("ID :");
+        id.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        id.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        id.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                idMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                idMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                idMousePressed(evt);
+            }
+        });
+        jPanel1.add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 140, 60));
+
+        id_label.setFont(new java.awt.Font("Tw Cen MT", 0, 24)); // NOI18N
+        id_label.setForeground(new java.awt.Color(255, 255, 255));
+        id_label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        id_label.setText("Manager ID");
+        id_label.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        id_label.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        id_label.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                id_labelMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                id_labelMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                id_labelMousePressed(evt);
+            }
+        });
+        jPanel1.add(id_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 250, 150, 40));
+
+        name_label.setFont(new java.awt.Font("Tw Cen MT", 0, 24)); // NOI18N
+        name_label.setForeground(new java.awt.Color(255, 255, 255));
+        name_label.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        name_label.setText("Manager Name");
+        name_label.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        name_label.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        name_label.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                name_labelMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                name_labelMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                name_labelMousePressed(evt);
+            }
+        });
+        jPanel1.add(name_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 300, 180, 30));
+
+        name_label2.setFont(new java.awt.Font("Tw Cen MT", 0, 24)); // NOI18N
+        name_label2.setForeground(new java.awt.Color(0, 204, 255));
+        name_label2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        name_label2.setText("Hello");
+        name_label2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        name_label2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        name_label2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                name_label2MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                name_label2MouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                name_label2MousePressed(evt);
+            }
+        });
+        jPanel1.add(name_label2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, 90, 50));
 
         kGradientPanel1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 240, 720));
 
@@ -403,30 +484,6 @@ public class StockManagerPhase extends javax.swing.JFrame {
         obj.setVisible(true);
     }//GEN-LAST:event_labelbuttonMouseClicked
 
-    private void jLabel9MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel9MouseEntered
-
-    private void jLabel9MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel9MouseExited
-
-    private void jLabel9MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel9MousePressed
-
-    private void jLabel8MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel8MouseEntered
-
-    private void jLabel8MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel8MouseExited
-
-    private void jLabel8MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel8MousePressed
-
     private void jLabel10MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseEntered
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel10MouseEntered
@@ -447,6 +504,54 @@ public class StockManagerPhase extends javax.swing.JFrame {
     private void labelbuttonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelbuttonMouseExited
         labelbutton.setForeground(Color.WHITE);
     }//GEN-LAST:event_labelbuttonMouseExited
+
+    private void idMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_idMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_idMouseEntered
+
+    private void idMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_idMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_idMouseExited
+
+    private void idMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_idMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_idMousePressed
+
+    private void id_labelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_id_labelMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_id_labelMouseEntered
+
+    private void id_labelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_id_labelMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_id_labelMouseExited
+
+    private void id_labelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_id_labelMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_id_labelMousePressed
+
+    private void name_labelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_name_labelMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_name_labelMouseEntered
+
+    private void name_labelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_name_labelMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_name_labelMouseExited
+
+    private void name_labelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_name_labelMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_name_labelMousePressed
+
+    private void name_label2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_name_label2MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_name_label2MouseEntered
+
+    private void name_label2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_name_label2MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_name_label2MouseExited
+
+    private void name_label2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_name_label2MousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_name_label2MousePressed
 
     /**
      * @param args the command line arguments
@@ -484,11 +589,11 @@ public class StockManagerPhase extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel id;
+    private javax.swing.JLabel id_label;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -499,6 +604,8 @@ public class StockManagerPhase extends javax.swing.JFrame {
     private javax.swing.JLabel lab2;
     private javax.swing.JLabel labelbutton;
     private javax.swing.JLabel managestocklabel;
+    private javax.swing.JLabel name_label;
+    private javax.swing.JLabel name_label2;
     private javax.swing.JLabel viewanalysislabel;
     // End of variables declaration//GEN-END:variables
 }

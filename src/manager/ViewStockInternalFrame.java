@@ -75,7 +75,6 @@ public class ViewStockInternalFrame extends javax.swing.JInternalFrame {
         products_Table = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         search_TextField = new javax.swing.JTextField();
-        find_Button = new javax.swing.JButton();
         category_ComboBox = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         cat_filter_Button = new javax.swing.JButton();
@@ -142,17 +141,12 @@ public class ViewStockInternalFrame extends javax.swing.JInternalFrame {
 
         search_TextField.setFont(new java.awt.Font("Tw Cen MT", 0, 18)); // NOI18N
         search_TextField.setToolTipText("product name");
-        panelGradient1.add(search_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 540, 140, -1));
-
-        find_Button.setFont(new java.awt.Font("Tw Cen MT", 0, 20)); // NOI18N
-        find_Button.setForeground(new java.awt.Color(255, 255, 255));
-        find_Button.setText("Find");
-        find_Button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                find_ButtonActionPerformed(evt);
+        search_TextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                search_TextFieldKeyReleased(evt);
             }
         });
-        panelGradient1.add(find_Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 580, 140, 30));
+        panelGradient1.add(search_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 540, 170, 30));
 
         category_ComboBox.setFont(new java.awt.Font("Tw Cen MT", 0, 18)); // NOI18N
         category_ComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--" }));
@@ -211,7 +205,7 @@ public class ViewStockInternalFrame extends javax.swing.JInternalFrame {
                 category_ComboBoxVetoableChange(evt);
             }
         });
-        panelGradient1.add(category_ComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 540, 140, -1));
+        panelGradient1.add(category_ComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 540, 180, -1));
 
         jLabel2.setFont(new java.awt.Font("Tw Cen MT", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -226,7 +220,7 @@ public class ViewStockInternalFrame extends javax.swing.JInternalFrame {
                 cat_filter_ButtonActionPerformed(evt);
             }
         });
-        panelGradient1.add(cat_filter_Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 580, 140, 30));
+        panelGradient1.add(cat_filter_Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 580, 180, 30));
 
         brand_ComboBox.setFont(new java.awt.Font("Tw Cen MT", 0, 18)); // NOI18N
         brand_ComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--" }));
@@ -244,7 +238,7 @@ public class ViewStockInternalFrame extends javax.swing.JInternalFrame {
                 brand_ComboBoxActionPerformed(evt);
             }
         });
-        panelGradient1.add(brand_ComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 540, 140, 23));
+        panelGradient1.add(brand_ComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 540, 160, 30));
 
         brand_filter_Button.setFont(new java.awt.Font("Tw Cen MT", 0, 20)); // NOI18N
         brand_filter_Button.setForeground(new java.awt.Color(255, 255, 255));
@@ -254,7 +248,7 @@ public class ViewStockInternalFrame extends javax.swing.JInternalFrame {
                 brand_filter_ButtonActionPerformed(evt);
             }
         });
-        panelGradient1.add(brand_filter_Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 580, 140, 30));
+        panelGradient1.add(brand_filter_Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 580, 160, -1));
 
         jLabel3.setFont(new java.awt.Font("Tw Cen MT", 0, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -287,30 +281,6 @@ public class ViewStockInternalFrame extends javax.swing.JInternalFrame {
     private void products_TablePropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_products_TablePropertyChange
 
     }//GEN-LAST:event_products_TablePropertyChange
-
-    private void find_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_find_ButtonActionPerformed
-
-        try{
-
-            db_connection c= new db_connection();
-            String product_name = search_TextField.getText();
-            Connection conn=c.connect();
-            String query = "SELECT product_id as Id,name as Name,price AS Price,discount AS Discount,quantity AS Quantity,brand_name AS Brand,category_name AS Category FROM  products,brands,categories "
-            + "where categories.id=products.category_id and brands.id = products.brand_id and name like ? ";
-            PreparedStatement stmt = conn.prepareStatement(query);
-            stmt.setString(1, "%"+product_name+"%");
-            ResultSet rs = stmt.executeQuery();
-            products_Table.setModel(DbUtils.resultSetToTableModel(rs));
-            conn.close();
-            stmt.close();
-        }
-
-        catch (SQLException ee){
-
-            ee.getMessage();
-        }
-
-    }//GEN-LAST:event_find_ButtonActionPerformed
 
     private void category_ComboBoxComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_category_ComboBoxComponentAdded
         // TODO add your handling code here:
@@ -363,7 +333,7 @@ public class ViewStockInternalFrame extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_category_ComboBoxComponentShown
 
     private void category_ComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_category_ComboBoxActionPerformed
-
+ 
     }//GEN-LAST:event_category_ComboBoxActionPerformed
 
     private void category_ComboBoxPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_category_ComboBoxPropertyChange
@@ -428,7 +398,7 @@ public class ViewStockInternalFrame extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_brand_ComboBoxAncestorAdded
 
     private void brand_ComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brand_ComboBoxActionPerformed
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_brand_ComboBoxActionPerformed
 
     private void brand_filter_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brand_filter_ButtonActionPerformed
@@ -459,13 +429,35 @@ public class ViewStockInternalFrame extends javax.swing.JInternalFrame {
             }}
     }//GEN-LAST:event_brand_filter_ButtonActionPerformed
 
+    private void search_TextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_search_TextFieldKeyReleased
+        try{
+
+            db_connection c= new db_connection();
+            String product_name = search_TextField.getText();
+            Connection conn=c.connect();
+            String query = "SELECT product_id as Id,name as Name,price AS Price,discount AS Discount,quantity AS Quantity,brand_name AS Brand,category_name AS Category FROM  products,brands,categories "
+            + "where categories.id=products.category_id and brands.id = products.brand_id and name like ? ";
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setString(1, "%"+product_name+"%");
+            ResultSet rs = stmt.executeQuery();
+            products_Table.setModel(DbUtils.resultSetToTableModel(rs));
+            conn.close();
+            stmt.close();
+        }
+
+        catch (SQLException ee){
+
+            ee.getMessage();
+        }
+
+    }//GEN-LAST:event_search_TextFieldKeyReleased
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> brand_ComboBox;
     private javax.swing.JButton brand_filter_Button;
     private javax.swing.JButton cat_filter_Button;
     private javax.swing.JComboBox<String> category_ComboBox;
-    private javax.swing.JButton find_Button;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

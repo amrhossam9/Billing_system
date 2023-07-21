@@ -33,7 +33,8 @@ public class db_connection {
        }
 
        public ResultSet fetch(String table_name){
-            try{ db_connection c= new db_connection();
+            try{ 
+                db_connection c= new db_connection();
            Connection conn=db_connection.connect();
            String query = "SELECT * FROM ('"+table_name+"')";
            PreparedStatement stmt = conn.prepareStatement(query);

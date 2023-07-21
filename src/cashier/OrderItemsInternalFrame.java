@@ -184,7 +184,6 @@ public class OrderItemsInternalFrame extends javax.swing.JInternalFrame {
 
         back.setFont(new java.awt.Font("Tw Cen MT", 0, 24)); // NOI18N
         back.setForeground(new java.awt.Color(255, 255, 255));
-        back.setIcon(new javax.swing.ImageIcon(getClass().getResource("/photos/back.png"))); // NOI18N
         back.setText("Back");
         back.setBorder(null);
         back.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -193,7 +192,7 @@ public class OrderItemsInternalFrame extends javax.swing.JInternalFrame {
                 backActionPerformed(evt);
             }
         });
-        kGradientPanel1.add(back, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 640, 210, 50));
+        kGradientPanel1.add(back, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 630, 200, 40));
 
         SubmitButton.setBackground(new java.awt.Color(51, 255, 102));
         SubmitButton.setFont(new java.awt.Font("Libel Suit Rg", 0, 36)); // NOI18N
@@ -206,7 +205,7 @@ public class OrderItemsInternalFrame extends javax.swing.JInternalFrame {
                 SubmitButtonActionPerformed(evt);
             }
         });
-        kGradientPanel1.add(SubmitButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 580, 210, 50));
+        kGradientPanel1.add(SubmitButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 580, 200, 40));
 
         BillTable.setFont(new java.awt.Font("Tw Cen MT", 0, 18)); // NOI18N
         BillTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -236,9 +235,9 @@ public class OrderItemsInternalFrame extends javax.swing.JInternalFrame {
 
         kGradientPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 900, 250));
 
-        jLabel2.setFont(new java.awt.Font("Quicksilver", 1, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(102, 255, 102));
-        jLabel2.setText("STOCK");
+        jLabel2.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel2.setText("Stock");
         kGradientPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 110, 60));
 
         tot.setFont(new java.awt.Font("Yu Gothic UI", 1, 24)); // NOI18N
@@ -290,7 +289,7 @@ public class OrderItemsInternalFrame extends javax.swing.JInternalFrame {
                 RemoveButton1ActionPerformed(evt);
             }
         });
-        kGradientPanel1.add(RemoveButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 580, 160, 50));
+        kGradientPanel1.add(RemoveButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 580, 180, 40));
 
         jLabel4.setBackground(new java.awt.Color(255, 153, 102));
         jLabel4.setFont(new java.awt.Font("The Bold Font", 1, 36)); // NOI18N
@@ -303,9 +302,9 @@ public class OrderItemsInternalFrame extends javax.swing.JInternalFrame {
         jLabel6.setText("TOTAL");
         kGradientPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 580, 80, 20));
 
-        jLabel7.setFont(new java.awt.Font("Quicksilver", 1, 24)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(102, 255, 102));
-        jLabel7.setText("Customer BIll ");
+        jLabel7.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel7.setText("Customer Bill ");
         kGradientPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 200, 80));
 
         getContentPane().add(kGradientPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 950, 810));

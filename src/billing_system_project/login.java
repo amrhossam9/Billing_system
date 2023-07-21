@@ -35,13 +35,20 @@ public class login extends javax.swing.JFrame {
     /**
      * Creates new form login
      */
-    public login() {
+ public static int id_returned;
+ public login() {
         initComponents();
        
     }
-  public static int id_returned;
+  
     
     public static int get_cashier_id(){//function to return cashier id---------->id
+        return id_returned;
+    }
+     public static int get_Manager_id(){//function to return cashier id---------->id
+        return id_returned;
+    }
+      public static int get_StockManager_id(){//function to return cashier id---------->id
         return id_returned;
     }
 
@@ -225,12 +232,16 @@ public class login extends javax.swing.JFrame {
                                         this.setVisible(false);
                                         CashierPhase cf=new CashierPhase();
                                         cf.setVisible(true);
+                                        id_returned = Integer.parseInt(id);
                                     } 
                                         break;
                                     case 3:                                                                      //stock manager
+                                    {
                                         StockManagerPhase y = new StockManagerPhase();
                                         y.setVisible(true);
+                                        id_returned = Integer.parseInt(id);
                                         break;
+                                    }
                                         
                                 }
                                 
