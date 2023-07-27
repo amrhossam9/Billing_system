@@ -255,7 +255,7 @@ public class ViewEmployeesInternalFrame extends javax.swing.JInternalFrame {
 
         displayAllEmployees.add(panelGradient2, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 680, 250, 40));
 
-        EmployeeInfo.setFont(new java.awt.Font("Tw Cen MT", 0, 18)); // NOI18N
+        EmployeeInfo.setFont(new java.awt.Font("Tw Cen MT", 0, 16)); // NOI18N
         EmployeeInfo.setForeground(new java.awt.Color(255, 255, 255));
         EmployeeInfo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -276,6 +276,8 @@ public class ViewEmployeesInternalFrame extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
+        EmployeeInfo.setSelectionBackground(new java.awt.Color(26, 226, 141));
+        EmployeeInfo.setSelectionForeground(new java.awt.Color(255, 255, 255));
         EmployeeInfo.setShowVerticalLines(true);
         EmployeeInfo.getTableHeader().setReorderingAllowed(false);
         EmployeeInfo.addAncestorListener(new javax.swing.event.AncestorListener() {

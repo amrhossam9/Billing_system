@@ -17,7 +17,9 @@ import javax.swing.JOptionPane;
 import db_connection.db_connection;
 import java.awt.Component;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Insets;
+import javax.swing.ImageIcon;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.border.Border;
@@ -38,8 +40,9 @@ public class login extends javax.swing.JFrame {
  public static int id_returned;
  public login() {
         initComponents();
-       
-    }
+       Image icon=new ImageIcon(this.getClass().getResource("/bill2.png")).getImage();
+       this.setIconImage(icon);
+ }
   
     
     public static int get_cashier_id(){//function to return cashier id---------->id
@@ -73,6 +76,7 @@ public class login extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         password_TextField1 = new javax.swing.JPasswordField();
+        jLabel10 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
 
@@ -178,6 +182,12 @@ public class login extends javax.swing.JFrame {
             }
         });
         getContentPane().add(password_TextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 240, 230, 30));
+
+        jLabel10.setFont(new java.awt.Font("Quicksilver", 3, 48)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(51, 204, 255));
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/photos/bill2.png"))); // NOI18N
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(-80, 150, 260, 290));
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/photos/close.png"))); // NOI18N
         jLabel9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -335,6 +345,7 @@ public class login extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

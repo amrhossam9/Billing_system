@@ -90,7 +90,8 @@ public class ViewStockInternalFrame extends javax.swing.JInternalFrame {
         panelGradient1.setColorGradient(new java.awt.Color(0, 153, 255));
         panelGradient1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        products_Table.setFont(new java.awt.Font("Tw Cen MT", 0, 18)); // NOI18N
+        products_Table.setFont(new java.awt.Font("Tw Cen MT", 0, 16)); // NOI18N
+        products_Table.setForeground(new java.awt.Color(255, 255, 255));
         products_Table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
@@ -110,6 +111,8 @@ public class ViewStockInternalFrame extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
+        products_Table.setSelectionBackground(new java.awt.Color(26, 226, 141));
+        products_Table.setSelectionForeground(new java.awt.Color(255, 255, 255));
         products_Table.getTableHeader().setReorderingAllowed(false);
         products_Table.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {

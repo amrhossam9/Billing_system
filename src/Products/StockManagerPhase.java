@@ -13,17 +13,20 @@ import com.formdev.flatlaf.FlatDarkLaf;
 import com.formdev.flatlaf.ui.FlatListCellBorder.Default;
 import db_connection.db_connection;
 import java.awt.Color;
+import java.awt.Image;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import manager.ManagerPhase;
 import manager.ViewStockInternalFrame;
+import test.ViewAnalysisInternalFrame;
 /**
  *
  * @author medo4
@@ -39,6 +42,11 @@ public class StockManagerPhase extends javax.swing.JFrame {
     Color Default,Clicked;
     public StockManagerPhase() {
         initComponents();
+        //setting icon on desktop bar 
+        Image icon=new ImageIcon(this.getClass().getResource("/bill2.png")).getImage();
+       this.setIconImage(icon);
+       
+       
         Default=new Color(255,255,255);
          Clicked=new Color(51,204,255);
            try {           
@@ -135,7 +143,7 @@ public class StockManagerPhase extends javax.swing.JFrame {
                 labMouseExited(evt);
             }
         });
-        jPanel1.add(lab, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 240, 50));
+        jPanel1.add(lab, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 170, 50));
 
         lab2.setBackground(new java.awt.Color(255, 255, 255));
         lab2.setFont(new java.awt.Font("The Bold Font", 1, 36)); // NOI18N
@@ -331,9 +339,9 @@ public class StockManagerPhase extends javax.swing.JFrame {
         });
         jPanel1.add(id_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 250, 150, 40));
 
-        name_label.setFont(new java.awt.Font("Tw Cen MT", 0, 24)); // NOI18N
+        name_label.setFont(new java.awt.Font("Tw Cen MT", 0, 20)); // NOI18N
         name_label.setForeground(new java.awt.Color(255, 255, 255));
-        name_label.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        name_label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         name_label.setText("Manager Name");
         name_label.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         name_label.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -348,7 +356,7 @@ public class StockManagerPhase extends javax.swing.JFrame {
                 name_labelMousePressed(evt);
             }
         });
-        jPanel1.add(name_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 300, 180, 30));
+        jPanel1.add(name_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, 220, 30));
 
         name_label2.setFont(new java.awt.Font("Tw Cen MT", 0, 24)); // NOI18N
         name_label2.setForeground(new java.awt.Color(0, 204, 255));
@@ -393,7 +401,8 @@ public class StockManagerPhase extends javax.swing.JFrame {
                 .addGap(16, 16, 16))
         );
 
-        kGradientPanel1.add(jDesktopPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, -10, 950, 720));
+        kGradientPanel1.add(jDesktopPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, -10, 930, 758));
+        jDesktopPane1.getAccessibleContext().setAccessibleName("");
 
         getContentPane().add(kGradientPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1150, 710));
 
@@ -429,6 +438,10 @@ public class StockManagerPhase extends javax.swing.JFrame {
 
     private void viewanalysislabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewanalysislabelMouseClicked
         compositecoloringset(jPanel3,Clicked,jPanel2,Default);
+        jDesktopPane1.removeAll();
+        jDesktopPane1.updateUI();
+        ViewAnalysisInternalFrame view=new ViewAnalysisInternalFrame();
+        jDesktopPane1.add(view).setVisible(true);
     }//GEN-LAST:event_viewanalysislabelMouseClicked
 
     private void viewanalysislabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewanalysislabelMouseEntered

@@ -9,6 +9,7 @@ import static billing_system_project.login.get_cashier_id;
 import com.formdev.flatlaf.ui.FlatListCellBorder.Default;
 import db_connection.db_connection;
 import java.awt.Color;
+import java.awt.Image;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -18,6 +19,7 @@ import javax.swing.JPanel;
 import manager.ViewStockInternalFrame;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -38,6 +40,9 @@ public class CashierPhase extends javax.swing.JFrame {
      
     public CashierPhase() {
         initComponents();
+        //setting desktop icon 
+        Image icon=new ImageIcon(this.getClass().getResource("/bill2.png")).getImage();
+       this.setIconImage(icon);
         Default=new Color(255,255,255);
          Dragged=new Color(229,229,229);
          Clicked=new Color(51,204,255);
@@ -387,7 +392,9 @@ public class CashierPhase extends javax.swing.JFrame {
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 985, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -396,7 +403,7 @@ public class CashierPhase extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        kGradientPanel1.add(jDesktopPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, 930, 690));
+        kGradientPanel1.add(jDesktopPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 0, 930, 690));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

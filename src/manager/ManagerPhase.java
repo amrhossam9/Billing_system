@@ -16,12 +16,14 @@ import com.formdev.flatlaf.FlatDarkLaf;
 import com.formdev.flatlaf.ui.FlatListCellBorder.Default;
 import db_connection.db_connection;
 import java.awt.Color;
+import java.awt.Image;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -38,6 +40,9 @@ Color Default,Clicked,Dragged,color;
 
     public ManagerPhase() {
         initComponents();
+        //setting Icon on desktop bar
+        Image icon=new ImageIcon(this.getClass().getResource("/bill2.png")).getImage();
+       this.setIconImage(icon);
          //Theme initialize
          Default=new Color(255,255,255);
          Dragged=new Color(229,229,229);
@@ -573,6 +578,10 @@ Color Default,Clicked,Dragged,color;
 
     private void jPanel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseClicked
        compositecoloringset(jPanel3,Clicked,jPanel5,Default,jPanel7,Default,jPanel8,Default);
+        ViewStockInternalFrame view=new ViewStockInternalFrame();
+         jDesktopPane1.removeAll();
+           jDesktopPane1.updateUI();
+        jDesktopPane1.add(view).setVisible(true);
     }//GEN-LAST:event_jPanel3MouseClicked
 
     private void jPanel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel5MouseClicked
@@ -584,8 +593,14 @@ Color Default,Clicked,Dragged,color;
 //        jDesktopPane1.updateUI();
 //        jDesktopPane1.add(view).setVisible(true);
 
-DisplayAllBillsInternalFrame obj=new DisplayAllBillsInternalFrame();
-obj.setVisible(true);
+
+
+        compositecoloringset(jPanel5,Clicked,jPanel3,Default,jPanel7,Default,jPanel8,Default);
+         //Calling internal frame into this desktop panel
+        DisplayAllBillsInternalFrame view=new DisplayAllBillsInternalFrame();
+        jDesktopPane1.removeAll();
+        jDesktopPane1.updateUI();
+        jDesktopPane1.add(view).setVisible(true);
 
     }//GEN-LAST:event_jPanel5MouseClicked
 

@@ -201,6 +201,7 @@ public class StockManagerInternalFrame extends javax.swing.JInternalFrame {
         kGradientPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         products_Table.setFont(new java.awt.Font("Tw Cen MT", 0, 18)); // NOI18N
+        products_Table.setForeground(new java.awt.Color(255, 255, 255));
         products_Table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
@@ -220,6 +221,8 @@ public class StockManagerInternalFrame extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
+        products_Table.setSelectionBackground(new java.awt.Color(26, 226, 141));
+        products_Table.setSelectionForeground(new java.awt.Color(255, 255, 255));
         products_Table.getTableHeader().setReorderingAllowed(false);
         products_Table.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
@@ -510,7 +513,7 @@ public class StockManagerInternalFrame extends javax.swing.JInternalFrame {
 
         message_Label.setFont(new java.awt.Font("Teen-Poem", 1, 18)); // NOI18N
         message_Label.setForeground(javax.swing.UIManager.getDefaults().getColor("Actions.Red"));
-        kGradientPanel4.add(message_Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 680, 310, 20));
+        kGradientPanel4.add(message_Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 680, 500, 20));
 
         getContentPane().add(kGradientPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 930, 720));
 

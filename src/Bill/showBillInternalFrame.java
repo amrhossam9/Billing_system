@@ -56,7 +56,7 @@ public class showBillInternalFrame extends javax.swing.JInternalFrame {
             ui.setNorthPane(null);
             //disable Resize for internalJframe
             this.setResizable(false);
-        
+        idLabel.setText("ID ="+DisplayAllBillsInternalFrame.returnID());
         
         
         
@@ -75,6 +75,22 @@ public class showBillInternalFrame extends javax.swing.JInternalFrame {
             } catch (SQLException ex) {
                 Logger.getLogger(showBillInternalFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
+                
+                float totalprice=0;
+                int rownumber=info_bills.getRowCount();
+                for(int i=0;i<rownumber;i++)
+                {
+                    
+                    int quantity;
+                    float price,discount,priceitem;
+                     quantity=Integer.parseInt( info_bills.getValueAt(i, 1).toString());
+                     price=Float.parseFloat(info_bills.getValueAt(i, 2).toString());
+                     discount= Float.parseFloat( info_bills.getValueAt(i, 3).toString());
+                    priceitem=(price*quantity)-(price*quantity*discount);
+                    totalprice+=priceitem;
+                   
+                }
+               total.setText(Float.toString(totalprice));
     }
 
     /**
@@ -90,9 +106,13 @@ public class showBillInternalFrame extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         info_bills = new javax.swing.JTable();
-        customerName = new javax.swing.JLabel();
+        total = new javax.swing.JLabel();
         retCustomerName = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        customerName1 = new javax.swing.JLabel();
+        idLabel = new javax.swing.JLabel();
+        labbbel = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -111,7 +131,7 @@ public class showBillInternalFrame extends javax.swing.JInternalFrame {
                 jLabel2MousePressed(evt);
             }
         });
-        displayAllBills.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 590, 60, 40));
+        displayAllBills.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 590, 60, 40));
 
         info_bills.setFont(new java.awt.Font("Tw Cen MT", 0, 16)); // NOI18N
         info_bills.setForeground(new java.awt.Color(255, 255, 255));
@@ -136,11 +156,11 @@ public class showBillInternalFrame extends javax.swing.JInternalFrame {
 
         displayAllBills.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 75, 870, 490));
 
-        customerName.setFont(new java.awt.Font("Tw Cen MT", 1, 30)); // NOI18N
-        customerName.setForeground(new java.awt.Color(255, 255, 255));
-        customerName.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        customerName.setText("Customer name :");
-        displayAllBills.add(customerName, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, 60));
+        total.setFont(new java.awt.Font("SansSerif", 1, 20)); // NOI18N
+        total.setForeground(new java.awt.Color(51, 255, 51));
+        total.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        total.setText("Total:");
+        displayAllBills.add(total, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 580, 140, 60));
 
         retCustomerName.setFont(new java.awt.Font("Gilroy ExtraBold", 1, 36)); // NOI18N
         retCustomerName.setForeground(new java.awt.Color(255, 255, 255));
@@ -158,6 +178,27 @@ public class showBillInternalFrame extends javax.swing.JInternalFrame {
             }
         });
         displayAllBills.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 590, 160, 40));
+
+        customerName1.setFont(new java.awt.Font("Tw Cen MT", 1, 30)); // NOI18N
+        customerName1.setForeground(new java.awt.Color(255, 255, 255));
+        customerName1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        customerName1.setText("Customer name :");
+        displayAllBills.add(customerName1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, 60));
+
+        idLabel.setFont(new java.awt.Font("Tw Cen MT", 1, 30)); // NOI18N
+        idLabel.setForeground(new java.awt.Color(255, 255, 255));
+        idLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        idLabel.setText("Customer name :");
+        displayAllBills.add(idLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 10, -1, 60));
+
+        labbbel.setFont(new java.awt.Font("SansSerif", 1, 20)); // NOI18N
+        labbbel.setForeground(new java.awt.Color(255, 255, 255));
+        labbbel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        labbbel.setText("Total :");
+        displayAllBills.add(labbbel, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 580, 70, 60));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/photos/money-bag (1).png"))); // NOI18N
+        displayAllBills.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 580, -1, 50));
 
         getContentPane().add(displayAllBills, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 950, 670));
 
@@ -178,21 +219,22 @@ public class showBillInternalFrame extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jLabel2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MousePressed
-        ManagerPhase.jDesktopPane1.removeAll();
-        ManagerPhase.jDesktopPane1.updateUI();
-        ViewEmployeesInternalFrame view=new ViewEmployeesInternalFrame();
-        ManagerPhase.jDesktopPane1.add(view).setVisible(true);
+     
 
     }//GEN-LAST:event_jLabel2MousePressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel customerName;
+    private javax.swing.JLabel customerName1;
     private keeptoo.KGradientPanel displayAllBills;
+    private javax.swing.JLabel idLabel;
     public static javax.swing.JTable info_bills;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel labbbel;
     public static javax.swing.JLabel retCustomerName;
+    private javax.swing.JLabel total;
     // End of variables declaration//GEN-END:variables
 }

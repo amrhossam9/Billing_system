@@ -160,6 +160,7 @@ public class CustomerListInternalFrame extends javax.swing.JInternalFrame {
         jScrollPane1.setBorder(null);
 
         CustomersTable.setFont(new java.awt.Font("Tw Cen MT", 0, 18)); // NOI18N
+        CustomersTable.setForeground(new java.awt.Color(255, 255, 255));
         CustomersTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -175,6 +176,8 @@ public class CustomerListInternalFrame extends javax.swing.JInternalFrame {
         CustomersTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
         CustomersTable.setColumnSelectionAllowed(true);
         CustomersTable.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        CustomersTable.setSelectionBackground(new java.awt.Color(26, 226, 141));
+        CustomersTable.setSelectionForeground(new java.awt.Color(255, 255, 255));
         CustomersTable.setShowVerticalLines(true);
         CustomersTable.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {

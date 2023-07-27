@@ -35,7 +35,8 @@ public class DisplayAllBillsInternalFrame extends javax.swing.JInternalFrame {
     public void fetchAllBills(){
       try{
           con= c.connect();
-            String selectedColoumns = "order_id,first_name,last_name,cashier_id";
+            String selectedColoumns = "order_id,first_name,last_name,cashier_id,date";
+             
                 PreparedStatement stmt = con.prepareStatement(
                     String.format("SELECT %s FROM orders join customer on customer.customer_id = orders.customer_id;",selectedColoumns));
 
@@ -87,11 +88,11 @@ public class DisplayAllBillsInternalFrame extends javax.swing.JInternalFrame {
         BillsInfo = new javax.swing.JTable();
         searchLabel = new javax.swing.JLabel();
         searchField = new javax.swing.JTextField();
-        searchButton = new javax.swing.JButton();
         searchType = new javax.swing.JComboBox<>();
         showBillButton = new javax.swing.JButton();
         searchLabel1 = new javax.swing.JLabel();
         lab = new javax.swing.JLabel();
+        message_Label = new javax.swing.JLabel();
 
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -110,9 +111,11 @@ public class DisplayAllBillsInternalFrame extends javax.swing.JInternalFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Bills_id", "Customer id", "Cashier_id", "Date"
+                "order_id", "customer id", "cashier_id", "date"
             }
         ));
+        BillsInfo.setSelectionBackground(new java.awt.Color(26, 226, 141));
+        BillsInfo.setSelectionForeground(new java.awt.Color(255, 255, 255));
         BillsInfo.setShowVerticalLines(true);
         BillsInfo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -121,7 +124,7 @@ public class DisplayAllBillsInternalFrame extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(BillsInfo);
 
-        displayAllBills.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 156, 880, 420));
+        displayAllBills.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 96, 880, 480));
 
         searchLabel.setFont(new java.awt.Font("Tw Cen MT", 1, 36)); // NOI18N
         searchLabel.setForeground(new java.awt.Color(255, 250, 244));
@@ -130,25 +133,21 @@ public class DisplayAllBillsInternalFrame extends javax.swing.JInternalFrame {
 
         searchField.setFont(new java.awt.Font("Tw Cen MT", 0, 18)); // NOI18N
         searchField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                searchFieldKeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 searchFieldKeyReleased(evt);
             }
-        });
-        displayAllBills.add(searchField, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 229, 30));
-
-        searchButton.setFont(new java.awt.Font("Tw Cen MT", 0, 20)); // NOI18N
-        searchButton.setForeground(new java.awt.Color(255, 255, 255));
-        searchButton.setText("Search");
-        searchButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchButtonActionPerformed(evt);
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                searchFieldKeyTyped(evt);
             }
         });
-        displayAllBills.add(searchButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 110, 190, 40));
+        displayAllBills.add(searchField, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 590, 229, 30));
 
         searchType.setFont(new java.awt.Font("Tw Cen MT", 0, 18)); // NOI18N
         searchType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Order ID", "Customer ID", "Cashier ID" }));
-        displayAllBills.add(searchType, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 110, 150, 30));
+        displayAllBills.add(searchType, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 590, 150, 30));
 
         showBillButton.setFont(new java.awt.Font("Tw Cen MT", 0, 24)); // NOI18N
         showBillButton.setForeground(new java.awt.Color(51, 255, 51));
@@ -164,7 +163,7 @@ public class DisplayAllBillsInternalFrame extends javax.swing.JInternalFrame {
         searchLabel1.setFont(new java.awt.Font("Tw Cen MT", 0, 24)); // NOI18N
         searchLabel1.setForeground(new java.awt.Color(255, 250, 244));
         searchLabel1.setText("Search");
-        displayAllBills.add(searchLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 130, 30));
+        displayAllBills.add(searchLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 590, 130, 30));
 
         lab.setBackground(new java.awt.Color(51, 51, 51));
         lab.setFont(new java.awt.Font("Tw Cen MT", 1, 36)); // NOI18N
@@ -180,6 +179,10 @@ public class DisplayAllBillsInternalFrame extends javax.swing.JInternalFrame {
         });
         displayAllBills.add(lab, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 10, 80, 70));
 
+        message_Label.setFont(new java.awt.Font("Teen-Poem", 1, 18)); // NOI18N
+        message_Label.setForeground(javax.swing.UIManager.getDefaults().getColor("Actions.Red"));
+        displayAllBills.add(message_Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 620, 490, 20));
+
         getContentPane().add(displayAllBills, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 950, 670));
 
         pack();
@@ -189,40 +192,6 @@ public class DisplayAllBillsInternalFrame extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
 
     }//GEN-LAST:event_BillsInfoMouseClicked
-
-    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
-        // TODO add your handling code here:
-        if("".equals(searchField.getText().trim()))
-        {
-               fetchAllBills();
-        
-            JOptionPane.showMessageDialog(this, "Enter a value");
-        }
-        else
-        {
-
-            try {
-                String s;
-                switch (searchType.getSelectedIndex()) {
-                    case 1 ->  s = "customer_id";
-                    case 2 ->  s = "cashier_id";
-                    default -> s = "order_id";
-                }
-                String selectedColoumns = "order_id,first_name,last_name,cashier_id";
-                PreparedStatement stmt = con.prepareStatement(
-                    String.format("SELECT %s FROM orders join customer on customer.customer_id = orders.customer_id where order_id = ?;",selectedColoumns,s));
-
-                stmt.setString(1, searchField.getText().trim());
-
-                ResultSet resultSet = stmt.executeQuery();
-
-                BillsInfo.setModel(DbUtils.resultSetToTableModel(resultSet));
-
-            } catch (SQLException ex) {
-                System.out.println(ex);
-            }
-        }
-    }//GEN-LAST:event_searchButtonActionPerformed
    
     private void showBillButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showBillButtonActionPerformed
        
@@ -231,6 +200,8 @@ public class DisplayAllBillsInternalFrame extends javax.swing.JInternalFrame {
         {JOptionPane.showMessageDialog(null, "Please Select Order");}
         else
         {
+            orderID=BillsInfo.getValueAt(row, 0).toString();
+            
              showBillInternalFrame view=new showBillInternalFrame();
             ManagerPhase.jDesktopPane1.removeAll();
             ManagerPhase.jDesktopPane1.updateUI();
@@ -264,7 +235,36 @@ public class DisplayAllBillsInternalFrame extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_showBillButtonActionPerformed
 
     private void searchFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchFieldKeyReleased
-        // TODO add your handling code here:
+        if("".equals(searchField.getText().trim()))
+        {
+               fetchAllBills();
+        
+           
+        }
+        else
+        {
+
+            try {
+                String s;
+                switch (searchType.getSelectedIndex()) {
+                    case 1 ->  s = "orders.customer_id";
+                    case 2 ->  s = "cashier_id";
+                    default -> s = "order_id";
+                }
+                String selectedColoumns = "order_id,first_name,last_name,cashier_id";
+                PreparedStatement stmt = con.prepareStatement(
+                    String.format("SELECT %s FROM orders join customer on customer.customer_id = orders.customer_id where %s = ?;",selectedColoumns,s));
+
+                stmt.setString(1, searchField.getText().trim());
+
+                ResultSet resultSet = stmt.executeQuery();
+
+                BillsInfo.setModel(DbUtils.resultSetToTableModel(resultSet));
+
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+        }
     }//GEN-LAST:event_searchFieldKeyReleased
 
     private void labMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labMouseEntered
@@ -276,13 +276,33 @@ public class DisplayAllBillsInternalFrame extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_labMouseExited
 
+    private void searchFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchFieldKeyTyped
+        
+    }//GEN-LAST:event_searchFieldKeyTyped
+
+    private void searchFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchFieldKeyPressed
+        char c= evt.getKeyChar();
+        if(Character.isLetter(c)){
+            searchField.setEditable(false);
+            message_Label.setText("Please Enter numbers only");
+        }
+        else{
+            searchField.setEditable(true);
+            message_Label.setText("");
+
+        }
+        
+        
+         
+    }//GEN-LAST:event_searchFieldKeyPressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable BillsInfo;
     private keeptoo.KGradientPanel displayAllBills;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lab;
-    private javax.swing.JButton searchButton;
+    private javax.swing.JLabel message_Label;
     private javax.swing.JTextField searchField;
     private javax.swing.JLabel searchLabel;
     private javax.swing.JLabel searchLabel1;

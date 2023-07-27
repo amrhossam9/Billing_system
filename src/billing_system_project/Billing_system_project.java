@@ -32,13 +32,13 @@ public class Billing_system_project {
             try{
                 for( x=0;x<=100;x++)
                 {
-                    Thread.sleep(25);
+                    Thread.sleep(35);
                     s.progress.setValue(x);
                     s.Percent.setText(Integer.toString(x)+"%");
                      if(x==100)
                 {
                      s.Percent.setText("Welcome ♥   ");
-                    Thread.sleep(1000);
+                    Thread.sleep(1500);
   
                     s.dispose();
                     l.setVisible(true);

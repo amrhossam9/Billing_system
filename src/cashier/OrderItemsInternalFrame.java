@@ -135,6 +135,7 @@ public class OrderItemsInternalFrame extends javax.swing.JInternalFrame {
         kGradientPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         ProductsTable.setFont(new java.awt.Font("Tw Cen MT", 0, 18)); // NOI18N
+        ProductsTable.setForeground(new java.awt.Color(255, 255, 255));
         ProductsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
@@ -154,6 +155,8 @@ public class OrderItemsInternalFrame extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
+        ProductsTable.setSelectionBackground(new java.awt.Color(26, 226, 141));
+        ProductsTable.setSelectionForeground(new java.awt.Color(255, 255, 255));
         ProductsTable.setShowVerticalLines(true);
         ProductsTable.getTableHeader().setReorderingAllowed(false);
         ProductsTable.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -208,6 +211,7 @@ public class OrderItemsInternalFrame extends javax.swing.JInternalFrame {
         kGradientPanel1.add(SubmitButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 580, 200, 40));
 
         BillTable.setFont(new java.awt.Font("Tw Cen MT", 0, 18)); // NOI18N
+        BillTable.setForeground(new java.awt.Color(255, 255, 255));
         BillTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -224,6 +228,8 @@ public class OrderItemsInternalFrame extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
+        BillTable.setSelectionBackground(new java.awt.Color(26, 226, 141));
+        BillTable.setSelectionForeground(new java.awt.Color(255, 255, 255));
         BillTable.setShowVerticalLines(true);
         BillTable.getTableHeader().setReorderingAllowed(false);
         BillTable.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -236,19 +242,19 @@ public class OrderItemsInternalFrame extends javax.swing.JInternalFrame {
         kGradientPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 900, 250));
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Stock");
         kGradientPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 110, 60));
 
         tot.setFont(new java.awt.Font("Yu Gothic UI", 1, 24)); // NOI18N
         tot.setForeground(new java.awt.Color(255, 255, 255));
         tot.setText("0");
-        kGradientPanel1.add(tot, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 570, 120, 30));
+        kGradientPanel1.add(tot, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 570, 140, 30));
 
         distot.setFont(new java.awt.Font("Yu Gothic UI", 1, 24)); // NOI18N
         distot.setForeground(new java.awt.Color(51, 255, 102));
         distot.setText("0");
-        kGradientPanel1.add(distot, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 640, 80, 40));
+        kGradientPanel1.add(distot, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 640, 100, 40));
 
         jLabel5.setFont(new java.awt.Font("Good Times Rg", 1, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(51, 255, 102));
@@ -263,7 +269,7 @@ public class OrderItemsInternalFrame extends javax.swing.JInternalFrame {
         Dis.setFont(new java.awt.Font("Yu Gothic UI", 1, 24)); // NOI18N
         Dis.setForeground(new java.awt.Color(255, 255, 255));
         Dis.setText("0");
-        kGradientPanel1.add(Dis, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 600, 130, 30));
+        kGradientPanel1.add(Dis, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 600, 150, 30));
 
         disc1.setFont(new java.awt.Font("The Bold Font", 1, 24)); // NOI18N
         disc1.setForeground(new java.awt.Color(255, 255, 255));
@@ -303,7 +309,7 @@ public class OrderItemsInternalFrame extends javax.swing.JInternalFrame {
         kGradientPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 580, 80, 20));
 
         jLabel7.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Customer Bill ");
         kGradientPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 200, 80));
 
