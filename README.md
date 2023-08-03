@@ -49,7 +49,13 @@ Aesthetically Pleasing Dark Theme:
 User experience is paramount to us, and we took care to design a visually appealing application. With the "FlatLaf Theme Editor" integration, "SwiftPay" features a dark theme that's easy on the eyes and exudes modernity.
 
 > The beginning of the application.
-![splash 1](https://github.com/Abdu117/SwiftPay_Billing_System/assets/101186125/160e3f2d-63fb-48e7-915e-06972a11d9c8)
+<![splash 1](https://github.com/Abdu117/SwiftPay_Billing_System/assets/101186125/160e3f2d-63fb-48e7-915e-06972a11d9c8)
 
 > The login in page enables the user to use different roles.
-![WhatsApp Image 2023-07-30 at 12 03 12 AM](https://github.com/Abdu117/SwiftPay_Billing_System/assets/101186125/1159faf4-5d29-4328-84ea-237cef284fcd)
+<![WhatsApp Image 2023-07-30 at 12 03 12 AM](https://github.com/Abdu117/SwiftPay_Billing_System/assets/101186125/1159faf4-5d29-4328-84ea-237cef284fcd)
+> Manager can view all the stock content without editing it.
+<![WhatsApp Image 2023-07-30 at 12 03 37 AM](https://github.com/Abdu117/SwiftPay_Billing_System/assets/101186125/f6fd3294-fb34-4e8a-ad56-e901f8f224c3)
+> Can view also Bills history.
+<![WhatsApp Image 2023-07-30 at 12 04 00 AM](https://github.com/Abdu117/SwiftPay_Billing_System/assets/101186125/b345ac20-8a17-4c6d-8d63-bff83804f73c)
+> Can view also elements inside each bill.
+<![WhatsApp Image 2023-07-30 at 12 04 14 AM](https://github.com/Abdu117/SwiftPay_Billing_System/assets/101186125/6b88ef3f-9869-4f34-8c58-99626ecb1dfc)
