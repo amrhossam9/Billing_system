@@ -50,7 +50,7 @@ User experience is paramount to us, and we took care to design a visually appeal
 
 > The loading menu.
 
-<![splash 1](https://github.com/Abdu117/SwiftPay_Billing_System/assets/101186125/160e3f2d-63fb-48e7-915e-06972a11d9c8)>
+![splash 1](https://github.com/Abdu117/SwiftPay_Billing_System/assets/101186125/160e3f2d-63fb-48e7-915e-06972a11d9c8)
 
 > The login page enables the user to choose different roles.
 
@@ -79,4 +79,4 @@ User experience is paramount to us, and we took care to design a visually appeal
 > An important feature that the app includes is the Analysis menu that gives analytical info about the product counts that are sold in a specific year.
 > The graph also shows sales and profit for products.
 
-https://user-images.githubusercontent.com/58245926/205355303-7201cd86-4f91-4282-a6ff-1db0b8135140.gif
+![205355303-7201cd86-4f91-4282-a6ff-1db0b8135140](https://github.com/Abdu117/SwiftPay_Billing_System/assets/101186125/d3b86010-379d-4182-9bd5-d8db215dacb8)
