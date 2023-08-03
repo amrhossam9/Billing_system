@@ -79,8 +79,8 @@ User experience is paramount to us, and we took care to design a visually appeal
 > An important feature that the app includes is the Analysis menu that gives analytical info about the product counts that are sold in a specific year.
 > The graph also shows sales and profit for products.
 
->![WhatsApp Image 2023-07-30 at 12 12 54 AM](https://github.com/Abdu117/SwiftPay_Billing_System/assets/101186125/e5b92299-b7c1-48df-ad02-cb83059df06c)
->![205355303-7201cd86-4f91-4282-a6ff-1db0b8135140](https://github.com/Abdu117/SwiftPay_Billing_System/assets/101186125/d3b86010-379d-4182-9bd5-d8db215dacb8)
+![WhatsApp Image 2023-07-30 at 12 12 54 AM](https://github.com/Abdu117/SwiftPay_Billing_System/assets/101186125/e5b92299-b7c1-48df-ad02-cb83059df06c)
+![205355303-7201cd86-4f91-4282-a6ff-1db0b8135140](https://github.com/Abdu117/SwiftPay_Billing_System/assets/101186125/d3b86010-379d-4182-9bd5-d8db215dacb8)
 
 
 > ERD
