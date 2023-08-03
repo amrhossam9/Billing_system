@@ -80,3 +80,8 @@ User experience is paramount to us, and we took care to design a visually appeal
 > The graph also shows sales and profit for products.
 
 ![205355303-7201cd86-4f91-4282-a6ff-1db0b8135140](https://github.com/Abdu117/SwiftPay_Billing_System/assets/101186125/d3b86010-379d-4182-9bd5-d8db215dacb8)
+
+
+> ERD
+
+![Screenshot 2023-08-03 120147](https://github.com/Abdu117/SwiftPay_Billing_System/assets/101186125/0f8e4a5d-01cb-4070-9a9e-a899af9e9652)
