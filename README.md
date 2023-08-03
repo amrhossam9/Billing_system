@@ -1,4 +1,4 @@
-# Billing_system
+# SwiftPay
 
 ## Table of contents
 
