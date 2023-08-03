@@ -48,17 +48,35 @@ Beyond its essential functionalities, "SwiftPay" offers an extra edge by providi
 Aesthetically Pleasing Dark Theme:
 User experience is paramount to us, and we took care to design a visually appealing application. With the "FlatLaf Theme Editor" integration, "SwiftPay" features a dark theme that's easy on the eyes and exudes modernity.
 
-> The beginning of the application.
+> The loading menu.
 
-![splash 1](https://github.com/Abdu117/SwiftPay_Billing_System/assets/101186125/160e3f2d-63fb-48e7-915e-06972a11d9c8)
+<![splash 1](https://github.com/Abdu117/SwiftPay_Billing_System/assets/101186125/160e3f2d-63fb-48e7-915e-06972a11d9c8)>
 
-> The login in page enables the user to use different roles.
+> The login page enables the user to choose different roles.
 
 ![WhatsApp Image 2023-07-30 at 12 03 12 AM](https://github.com/Abdu117/SwiftPay_Billing_System/assets/101186125/1159faf4-5d29-4328-84ea-237cef284fcd)
 
-> Manager can view all the stock content without editing it.
-<![WhatsApp Image 2023-07-30 at 12 03 37 AM](https://github.com/Abdu117/SwiftPay_Billing_System/assets/101186125/f6fd3294-fb34-4e8a-ad56-e901f8f224c3)>
-> Can view also Bills history.
-<![WhatsApp Image 2023-07-30 at 12 04 00 AM](https://github.com/Abdu117/SwiftPay_Billing_System/assets/101186125/b345ac20-8a17-4c6d-8d63-bff83804f73c)>
-> Can view also elements inside each bill.
-<![WhatsApp Image 2023-07-30 at 12 04 14 AM](https://github.com/Abdu117/SwiftPay_Billing_System/assets/101186125/6b88ef3f-9869-4f34-8c58-99626ecb1dfc)>
+> Manager can view all the stock content without editing it. If the user login as a stock manager he can edit the stock data.
+
+![WhatsApp Image 2023-07-30 at 12 03 37 AM](https://github.com/Abdu117/SwiftPay_Billing_System/assets/101186125/f6fd3294-fb34-4e8a-ad56-e901f8f224c3)
+
+> Manager can view Bills' history.
+
+![WhatsApp Image 2023-07-30 at 12 04 00 AM](https://github.com/Abdu117/SwiftPay_Billing_System/assets/101186125/b345ac20-8a17-4c6d-8d63-bff83804f73c)
+
+> Can also view elements inside each bill.
+
+![WhatsApp Image 2023-07-30 at 12 04 14 AM](https://github.com/Abdu117/SwiftPay_Billing_System/assets/101186125/6b88ef3f-9869-4f34-8c58-99626ecb1dfc)
+
+> Manager can view and edit customer and employee info.
+
+![WhatsApp Image 2023-07-30 at 12 05 26 AM](https://github.com/Abdu117/SwiftPay_Billing_System/assets/101186125/57a2979c-36cb-4cdd-89a5-c4cff6b40af8)
+
+> Inside the cashier menu you can view your current customers or add a new one and submit an order for him.
+
+![WhatsApp Image 2023-07-30 at 12 11 44 AM](https://github.com/Abdu117/SwiftPay_Billing_System/assets/101186125/9468e631-08dd-4782-929f-50a420604df7)
+
+> An important feature that the app includes is the Analysis menu that gives analytical info about the product counts that are sold in a specific year.
+> The graph also shows sales and profit for products.
+
+https://user-images.githubusercontent.com/58245926/205355303-7201cd86-4f91-4282-a6ff-1db0b8135140.gif
