@@ -48,8 +48,8 @@ Beyond its essential functionalities, "SwiftPay" offers an extra edge by providi
 Aesthetically Pleasing Dark Theme:
 User experience is paramount to us, and we took care to design a visually appealing application. With the "FlatLaf Theme Editor" integration, "SwiftPay" features a dark theme that's easy on the eyes and exudes modernity.
 
->> The beginning of the application.
+> The beginning of the application.
 ![splash 1](https://github.com/Abdu117/SwiftPay_Billing_System/assets/101186125/160e3f2d-63fb-48e7-915e-06972a11d9c8)
 
->> The login in page it enable the user to use different roles
+> The login in page enables the user to use different roles.
 ![WhatsApp Image 2023-07-30 at 12 03 12 AM](https://github.com/Abdu117/SwiftPay_Billing_System/assets/101186125/1159faf4-5d29-4328-84ea-237cef284fcd)
