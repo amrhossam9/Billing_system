@@ -76,7 +76,7 @@ User experience is paramount to us, and we took care to design a visually appeal
 
 <img width="800" alt="Login Interface" src="https://github.com/Abdu117/SwiftPay_Billing_System/assets/101186125/9468e631-08dd-4782-929f-50a420604df7">
 
-> An important feature that the app includes is the Analysis menu that gives analytical info about the product counts that are sold in a specific year.
+> An important feature that the app includes is the Analysis menu. It gives analytical info about the product counts that are sold in a specific year.
 > The graph also shows sales and profit for products.
 
 <img width="800" alt="Login Interface" src="https://github.com/Abdu117/SwiftPay_Billing_System/assets/101186125/e5b92299-b7c1-48df-ad02-cb83059df06c">
