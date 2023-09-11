@@ -14,7 +14,7 @@ This Billing System is a software application designed to help users manage and 
 ## Technologies
 Project is created with:
 * Language: JAVA
-* DataBase: MySQL
+* DataBase: MS SQL Server
 	
 ## Setup
 To run this project, install it locally :
